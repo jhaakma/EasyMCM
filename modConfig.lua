@@ -1,9 +1,5 @@
 local this = {}
 
-
-    
-
-
 --Setup local configs. 
 --Call this in your initial loaded event before you start using config values
 function this.initialiseLocalSettings(modData )
@@ -161,19 +157,11 @@ function this.registerModData(modData) -- params: name, modDataPath, configPath
         mwse.log("Toggle: new value %s", newValue)
         updateSettingData(setting, newValue)
 
-        
         e.source.text = getTextFromBool (newValue, setting.type)
 
         if setting.callback then 
             setting.callback()
         end
-    end
-
-    local function formatBlock(block)
-        block.layoutWidthFraction = 1.0
-        block.autoHeight = true
-        block.flowDirection = "top_to_bottom"
-        block.paddingAllSides = 2
     end
 
     local function checkDoDisable()
@@ -224,7 +212,10 @@ function this.registerModData(modData) -- params: name, modDataPath, configPath
         assert( (params.label or params.description ), getLogMessage("No label or description given", logLevels.error))
 
         local block = params.parentBlock:createBlock()
-        formatBlock(block)
+        block.layoutWidthFraction = 1.0
+        block.autoHeight = true
+        block.flowDirection = "top_to_bottom"
+        block.paddingAllSides = 2
 
         local label = nil
         if params.label then
@@ -317,8 +308,7 @@ function this.registerModData(modData) -- params: name, modDataPath, configPath
         outerSliderBlock.widthProportional = 1.0
         outerSliderBlock.autoHeight = true
 
-
-        
+    
         local labelBlock
         labelBlock = outerSliderBlock:createBlock({})
         labelBlock.flowDirection = "left_to_right"
@@ -332,7 +322,6 @@ function this.registerModData(modData) -- params: name, modDataPath, configPath
         label.widthProportional = 1.0
 
 
-
         local sliderBlock 
         sliderBlock = outerSliderBlock:createBlock()
         sliderBlock.flowDirection = "left_to_right"
@@ -341,8 +330,6 @@ function this.registerModData(modData) -- params: name, modDataPath, configPath
         sliderBlock.borderLeft = 12
         sliderBlock.borderBottom = 4
 
-
-        
         
         local slider 
         slider = sliderBlock:createSlider({
@@ -374,8 +361,6 @@ function this.registerModData(modData) -- params: name, modDataPath, configPath
             local startingValue = initaliseSettingData(setting)
             slider.widget.current = startingValue
             sliderValueLabel.text = startingValue
-
-
 
             slider:register(
                 "PartScrollBar_changed", 
