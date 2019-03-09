@@ -69,13 +69,13 @@ function Component:registerMouseOverElements(mouseOverList)
             element:register(
                 "mouseOver",
                 function()
-                    event.trigger("MCM:ComponentMouseOver", self)
+                    event.trigger("MCM:MouseOver", self)
                 end
             )
             element:register(
                 "mouseLeave",
                 function()
-                    event.trigger("MCM:ComponentMouseLeave")
+                    event.trigger("MCM:MouseLeave")
                 end
             )
         end

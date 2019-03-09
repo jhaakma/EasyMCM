@@ -27,6 +27,7 @@ function this.registerModData(mcmData)
         local templatePath = ( "easyMCM.components.templates." .. templateClass)
         local template = require(templatePath):new(mcmData)
         template:create(container)
+        modConfig.onClose = template.onClose
     end
 
     return modConfig

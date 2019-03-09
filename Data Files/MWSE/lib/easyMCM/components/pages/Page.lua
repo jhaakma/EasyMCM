@@ -22,6 +22,12 @@ function Page:new(data)
 
 end
 
+function Page:createLabel(parentBlock)
+    if self.showHeader then
+        Parent.createLabel(self, parentBlock)
+    end
+end
+
 
 function Page:disable()
     --Update and grey out page label

@@ -2,12 +2,12 @@
     Info field that shows mouseover information for settings
 ]]--
 
-
+ 
 local Parent = require("easyMCM.components.infos.Info")
 
 local MouseOverInfo = Parent:new()
-MouseOverInfo.triggerOn = "MCM:ComponentMouseOver"
-MouseOverInfo.triggerOff = "MCM:ComponentMouseLeave"
+MouseOverInfo.triggerOn = "MCM:MouseOver"
+MouseOverInfo.triggerOff = "MCM:MouseLeave"
 
 
 function MouseOverInfo:createComponent(parentBlock)
@@ -15,11 +15,11 @@ function MouseOverInfo:createComponent(parentBlock)
     Parent.createComponent(self, parentBlock)
     local info = self.elements.info
 
-    local function updateInfo(setting)
+    local function updateInfo(component)
         --If component has a description, update mouseOver
         --Or return to original text on mouseLeave
         local newText = (
-            setting and  setting.description or 
+            component and  component.description or 
             self.text or 
             ""
         )

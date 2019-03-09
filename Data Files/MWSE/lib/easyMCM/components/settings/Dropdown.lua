@@ -54,7 +54,6 @@ function Dropdown:createDropdown()
         dropdown.paddingAllSides = 6
         dropdown.borderTop = 0
         for _, option in ipairs(self.options) do
-            mwse.log("%s: %s", option.label, option.value)
             if option.value ~= self.variable.value then
                 
                 local listItem = dropdown:createTextSelect({ text = option.label })

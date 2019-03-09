@@ -19,23 +19,20 @@ local placeholderText = "Search..."
 
 
 --Constructor
-function ExclusionsPage:new(categoryData)
+function ExclusionsPage:new(data)
     local t = {}
-    if categoryData then
-        t = categoryData
+    if data then
+        t = data
         local tabUID = ( "Page_" .. t.label)
         t.tabUID = tes3ui.registerID(tabUID)
-        t.config = mwse.loadConfig(t.configPath)
-        if not t.config then
-            t.config = {
-                blocked = {}
-            }
-            mwse.saveConfig(t.configPath, t.config)
+
+        --create variable
+        local typePath = ("easyMCM.variables." .. t.variable.class)
+        t.variable = require(typePath):new(t.variable)
+        if t.variable.value == nil then
+            t.variable.value = { blocked = {} }
         end
-        if not t.config.blocked then
-            t.config.blocked = {}
-            mwse.saveConfig(t.configPath, t.config)
-        end
+
     end
     setmetatable(t, self)
     self.__index = self
@@ -64,6 +61,9 @@ local function getSortedObjectList(params)
                     doAdd = false
                 end
             end
+        end
+        if params.noScripted and obj.script ~= nil then
+            doAdd = false
         end
 
 		if doAdd then
@@ -94,13 +94,12 @@ function ExclusionsPage:toggle(e)
 	-- toggle blocked
 	if list == self.elements.leftList then
 		list = self.elements.rightList
-        self.config.blocked[text] = nil
+        self.variable.value.blocked[text] = nil
 	else
 		list = self.elements.leftList
-		self.config.blocked[text] = true
+		self.variable.value.blocked[text] = true
 	end
-    mwse.log("Saving %s value %s to %s", text, self.config.blocked[text], self.configPath)
-    mwse.saveConfig(self.configPath, self.config)
+    mwse.log("Saving %s value %s to %s", text, self.variable.value.blocked[text], self.configPath)
 
 	-- create element
 	list:createTextSelect{ id = itemID, text=text}:register("mouseClick", function(e) self:toggle(e) end )
@@ -147,7 +146,7 @@ function ExclusionsPage:distribute(items)
     self.elements.rightList:getContentElement():destroyChildren()
 
     for i, name in pairs(items) do
-		if self.config.blocked[name] then
+		if self.variable.value.blocked[name] then
 			self.elements.leftList:createTextSelect{ id = itemID, text=name}:register("mouseClick",  function(e) self:toggle(e) end )
 		else
 			self.elements.rightList:createTextSelect{ id = itemID, text=name}:register("mouseClick",  function(e) self:toggle(e) end)
@@ -283,13 +282,15 @@ function ExclusionsPage:createFiltersSection(parentBlock)
     block.autoWidth = true
     block.heightProportional = 1.0   
     block.borderTop = 13
+    block.borderLeft = self.indent
+    block.borderRight = self.indent
 
     local filterList = block:createBlock{id = tes3ui.registerID("FilterList")}
     filterList.flowDirection = "top_to_bottom"
     filterList.autoWidth = true
     filterList.heightProportional = 1.0
-    filterList.borderLeft = self.indent
-    filterList.borderRight = self.indent
+
+    
     filterList.borderTop = 3
 
     --Add buttons for each filter
@@ -306,7 +307,8 @@ function ExclusionsPage:createFiltersSection(parentBlock)
                 function() 
                     return getSortedObjectList({
                         objectType = filter.objectType, 
-                        objectFilters = filter.objectFilters
+                        objectFilters = filter.objectFilters,
+                        noScripted = filter.noScripted
                     }) 
                 end
             ) 
@@ -328,6 +330,10 @@ function ExclusionsPage:createFiltersSection(parentBlock)
             end
         )
 
+    end
+
+    if #self.filters <= 1 then
+        filterList.visible = false
     end
 
     self.elements.filterList = filterList

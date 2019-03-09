@@ -9,9 +9,9 @@ Setting.restartRequired = false
 Setting.restartRequiredMessage = "The game must be restarted before this change will come into effect."
 
 
-function Setting:new(settingData) 
-    local t = settingData or {}
-    if settingData and settingData.variable then
+function Setting:new(data) 
+    local t = data or {}
+    if data and data.variable then
         --create setting variable
         local typePath = ("easyMCM.variables." .. t.variable.class)
         t.variable = require(typePath):new(t.variable)

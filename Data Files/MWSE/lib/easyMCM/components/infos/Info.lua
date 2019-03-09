@@ -14,7 +14,7 @@ local Parent = require("easyMCM.components.settings.Setting")
 
 local Info = Parent:new()
 Info.componentType = "Info"
-
+Info.text = ""
 --CONTROL METHODS
 
 function Info:disable()
@@ -31,8 +31,9 @@ function Info:createComponent(parentBlock)
     info.wrapText = true
     info.text = self.text
     info.autoHeight = true
-    info.widthProportional = 1.0
     info.autoWidth = true
+    info.widthProportional = 1.0
+
     self.elements.info = info
     table.insert(self.mouseOvers, info)
     info:getTopLevelParent():updateLayout()

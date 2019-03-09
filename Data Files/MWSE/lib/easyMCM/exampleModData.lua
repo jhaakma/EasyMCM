@@ -67,22 +67,6 @@ local simpleExample = {
                     }
                 },
 
-                {
-                    label = "Second Category",
-                    class = "Category",
-                    components = {
-                        {
-                            label = "A Yes No Button using PlayerData",
-                            class = "YesNoButton",
-                            variable = {
-                                id = "variableID2",
-                                class = "PlayerData",
-                                path = "path_to_player_data",
-                            },
-                        },
-                    }
-                }
-                
             },
             sidebarComponents = {
                 {
@@ -103,7 +87,7 @@ local simpleExample = {
 local configPath = "name_of_config file" 
 --Define path to player data variables, relative to tes3.player.data
 local playerDataPath = "modName.mcmSettings"
-
+local localConfig = mwse.loadConfig(configPath)
 
 --Function to generate buttons for every effect in tes3.effect for our Filter list
 local function createFilterSettings()
@@ -126,10 +110,16 @@ local function createFilterSettings()
                         )
                     end
                 ),
-                variable = {
+                --[[variable = {
                     id = effect,
                     class = "ConfigVariable",
                     path = configPath,
+                    defaultSetting = true,
+                },]]--
+                variable = {
+                    id = effect,
+                    class = "TableVariable",
+                    table = localConfig,
                     defaultSetting = true,
                 },
 
@@ -150,6 +140,12 @@ local weatherList = getWeatherList()
 
 local exampleTemplate = {
     name = "My Mod Name",
+    onClose = (
+        function()
+            mwse.log("saving config ot json")
+            mwse.saveConfig(configPath, localConfig)
+        end
+    ),
     pages = {
 
         --Page
@@ -179,12 +175,19 @@ local exampleTemplate = {
                             label = "Button Setting",
                             class = "OnOffButton",
                             restartRequired = true, --Can be on the setting or variable, when active will prompt the user to restart when the setting changes.
-                            variable = {
+                            --[[variable = {
                                 id = "enabled",
                                 class = "ConfigVariable",--Saves to a json file
                                 defaultSetting = true,--Optional: for OnOffButton defaults to false
                                 path = configPath,--Path to config file
-                            },
+                            },]]--
+                            variable = {
+                                id = "enabled",
+                                class = "TableVariable",
+                                table = localConfig,
+                                defaultSetting = true,
+                            },                            
+
                         },
                         {--Sliders work best for Integer settings
                             label = "Time Scale",
@@ -248,6 +251,7 @@ local exampleTemplate = {
                     components = {
                         {
                             buttonText = "Reset Actors",
+                            description = "Call the Reset Actors function which returns all actors to their original positions.",
                             class = "Button",
                             inGameOnly = true,
                             callback = (
@@ -260,6 +264,7 @@ local exampleTemplate = {
                         },--/Reset Actors Button
                         {
                             buttonText = "Fix Me",
+                            description = "Call the Fix Me function which attempts to free the player from being stuck.",
                             class = "Button",
                             inGameOnly = true,
                             callback = (
@@ -281,11 +286,12 @@ local exampleTemplate = {
                         {
                             class = "KeyBinder", 
                             label = "Single Key Binding",
+                            description = "Keybindings is a special button that lets you set a keybind",
                             allowCombinations = false,--This one only allows single key bindings
                             variable = {
                                 id = "keybind2", 
-                                class = "ConfigVariable", 
-                                path = configPath,
+                                class = "TableVariable", 
+                                table = localConfig,
                                 defaultSetting = {
                                     keyCode = tes3.scanCode.l,
                                 },
@@ -295,11 +301,12 @@ local exampleTemplate = {
                         {
                             class = "KeyBinder", 
                             label = "Key Combo Binding",
+                            description = "Keybinds can allow combos of Shift+x, Alt+x or Ctrl+x.",
                             allowCombinations = true,--Optional: defaults to true. Allows for Shift, Alt or Ctrl + Key
                             variable = {
                                 id = "keybind1", 
-                                class = "ConfigVariable", 
-                                path = configPath,
+                                class = "TableVariable", 
+                                table = localConfig,
                                 defaultSetting = {
                                     keyCode = tes3.scanCode.k,
                                     --These default to false
@@ -332,17 +339,34 @@ local exampleTemplate = {
                     },
                 },--/Other Settings
 
+                {--Dropdowns allow you to select an option from a list. Good for settings with a small number of predefined possible values.
+                    label = "Pick a Fruit",
+                    class = "Dropdown",
+                    description = "Choose a fruit from the dropdown.",
+                    options = {
+                        { label = "Apple", value = "apple" },
+                        { label = "Banana", value = "banana" },
+                        { label = "Orange", value = "orange" },
+                    },
+                    variable = {
+                        id = "fruitList",
+                        class = "TableVariable", 
+                        table = localConfig,
+                        defaultSetting = "banana",
+                    },
+                },
+                
                 --Dropdown using a custom variable. Override get and set functions to get and change the weather
                 {
                     label = "Change the Weather",
                     class = "Dropdown", 
+                    description = "Immediately transitions to the selected weather.",
                     options = weatherList,
                     inGameOnly = true,
                     variable = {
                         class = "Variable",
                         get = (
-                                function(self)
-                                
+                            function(self)
                                 return tes3.getCurrentWeather().index or 0
                             end
                         ),
@@ -355,32 +379,6 @@ local exampleTemplate = {
                         ),
                     },
                 },
-
-                {--Dropdowns allow you to select an option from a list. Good for settings with a small number of predefined possible values.
-                    label = "Pick a Fruit",
-                    class = "Dropdown",
-
-                    options = {
-                        { label = "Apple", value = "apple" },
-                        { label = "Banana", value = "banana" },
-                        { label = "Orange", value = "orange" },
-                    },
-                    variable = {
-                        id = "fruitList",
-                        path = configPath,
-                        class = "ConfigVariable",
-                        defaultSetting = "banana",
-                    },
-                },
-                
-                {
-                    label = "Another Info Field",
-                    class = "Info",
-                    --inGameOnly = true,
-                    text = "You can mix settings and categories in your components list.",
-                    description = "Mouse over text for Info field"
-                },--/Info
-
 
             },--/page2 components
         },--/page2
@@ -399,7 +397,11 @@ local exampleTemplate = {
             leftListLabel = "Blacklist", --Optional: default "Blocked"
             rightListLabel = "Whitelist", --Optional: default = "Allowed"
 
-            configPath = configPath,
+            variable = {
+                id = "exclusions",
+                class = "TableVariable", 
+                table = localConfig,
+            },
 
             --You can have multiple filters to customise what kind of objects can be excluded
             filters = {
@@ -409,7 +411,6 @@ local exampleTemplate = {
                     label = "Plugins",
                     type = "Plugin",
                 },
-
                 --Filter by object type
                 {
                     label = "Ingredients",
@@ -459,7 +460,7 @@ local exampleTemplate = {
                             return gmstNames
                         end
                     )
-                }
+                },
             }--/filters
         },--/page3
 
@@ -472,11 +473,11 @@ local exampleTemplate = {
             sidebarComponents = {
                 {
                     class = "Info",
-                    text = (
+                    --[[text = (
                         "This is a Filter Page. You can filter settings by typing in the search bar. " ..
                         "Here we have made list of buttons for each effect in tes3.effect, " ..
                         "and a button that will reset them to their default values. "
-                    )
+                    )]]--
                 },
                 {
                     class = "Button",
