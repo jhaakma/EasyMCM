@@ -5,7 +5,8 @@
 
 local Parent = require ("easyMCM.components.pages.Page")
 local SideBarPage = Parent:new()
-
+SideBarPage.triggerOn = "MCM:MouseOver"
+SideBarPage.triggerOff = "MCM:MouseLeave"
 
 function SideBarPage:createSidetoSideBlock(parentBlock)
     local sideToSideBlock = parentBlock:createBlock()
@@ -41,18 +42,57 @@ function SideBarPage:createRightColumn(parentBlock)
     rightColumn.paddingTop = self.indent + 4
     rightColumn.paddingLeft = self.indent + 4
 
+    --ContentsBlock is hidden on mouseOver
+    local defaultContentsBlock = rightColumn:createBlock()
+    defaultContentsBlock.heightProportional = 1.0
+    defaultContentsBlock.widthProportional = 1.0
+    defaultContentsBlock.flowDirection = "top_to_bottom"
 
     if self.sidebarComponents then
-        self:createSubcomponents(rightColumn, self.sidebarComponents)
+        self:createSubcomponents(defaultContentsBlock, self.sidebarComponents)
     else
         --By default, sidebar is a mouseOver description pane
         local sidebarInfo = self:getComponent({
             --label = self.label,
             text = self.description or "",
-            class = "MouseOverInfo"
+            class = "Info"
         })
-        sidebarInfo:create(rightColumn)
+        sidebarInfo:create(defaultContentsBlock)
     end
+
+    --mouseover shows descriptions of settings
+    local mouseOver = self:getComponent({
+        --label = self.label,
+        text = self.description or "",
+        class = "MouseOverInfo"
+    })
+    mouseOver:create(rightColumn)
+    mouseOver.elements.outerContainer.visible = false
+    self.elements.mouseOver = mouseOver
+
+    --event to hide default and show mouseover
+    local function doMouseOver(component)
+        if component.description then
+            mouseOver.elements.outerContainer.visible = true
+            defaultContentsBlock.visible = false
+        end
+    end
+
+    --event to hide mouseover and show default
+    local function doMouseLeave()
+        mouseOver.elements.outerContainer.visible = false
+        defaultContentsBlock.visible = true
+    end
+
+    --register events
+    event.register(self.triggerOn, doMouseOver)
+    event.register(self.triggerOff, doMouseLeave)
+    parentBlock:register("destroy",
+    function()
+        event.unregister(self.triggerOn, doMouseOver)
+        event.unregister(self.triggerOff, doMouseLeave)
+    end
+)
 end
 
 

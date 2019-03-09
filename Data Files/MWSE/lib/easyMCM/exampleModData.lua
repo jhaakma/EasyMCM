@@ -473,11 +473,11 @@ local exampleTemplate = {
             sidebarComponents = {
                 {
                     class = "Info",
-                    --[[text = (
+                    text = (
                         "This is a Filter Page. You can filter settings by typing in the search bar. " ..
                         "Here we have made list of buttons for each effect in tes3.effect, " ..
                         "and a button that will reset them to their default values. "
-                    )]]--
+                    )
                 },
                 {
                     class = "Button",
