@@ -30,7 +30,7 @@ function ExclusionsPage:new(data)
         local typePath = ("easyMCM.variables." .. t.variable.class)
         t.variable = require(typePath):new(t.variable)
         if t.variable.value == nil then
-            t.variable.value = { blocked = {} }
+            t.variable.value = { }
         end
 
     end
@@ -94,12 +94,12 @@ function ExclusionsPage:toggle(e)
 	-- toggle blocked
 	if list == self.elements.leftList then
 		list = self.elements.rightList
-        self.variable.value.blocked[text] = nil
+        self.variable.value[text] = nil
 	else
 		list = self.elements.leftList
-		self.variable.value.blocked[text] = true
+		self.variable.value[text] = true
 	end
-    mwse.log("Saving %s value %s to %s", text, self.variable.value.blocked[text], self.configPath)
+    mwse.log("Saving %s value %s to %s", text, self.variable.value[text], self.configPath)
 
 	-- create element
 	list:createTextSelect{ id = itemID, text=text}:register("mouseClick", function(e) self:toggle(e) end )
@@ -146,7 +146,7 @@ function ExclusionsPage:distribute(items)
     self.elements.rightList:getContentElement():destroyChildren()
 
     for i, name in pairs(items) do
-		if self.variable.value.blocked[name] then
+		if self.variable.value[name] then
 			self.elements.leftList:createTextSelect{ id = itemID, text=name}:register("mouseClick",  function(e) self:toggle(e) end )
 		else
 			self.elements.rightList:createTextSelect{ id = itemID, text=name}:register("mouseClick",  function(e) self:toggle(e) end)

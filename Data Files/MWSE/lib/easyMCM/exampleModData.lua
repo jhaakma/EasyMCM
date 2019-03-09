@@ -398,7 +398,7 @@ local exampleTemplate = {
             rightListLabel = "Whitelist", --Optional: default = "Allowed"
 
             variable = {
-                id = "exclusions",
+                id = "blocked",
                 class = "TableVariable", 
                 table = localConfig,
             },
