@@ -4,7 +4,7 @@ local Parent = require("easyMCM.components.settings.Setting")
 
 local Button = Parent:new()
 Button.disabledText = "---"
-
+Button.leftSide = true
 --Determines what text is displayed on the button
 function Button:getText()
     return self.buttonText
@@ -66,8 +66,13 @@ end
 
 function Button:createContentsContainer(parentBlock)
     self:createInnerContainer(parentBlock)
-    self:createComponent(self.elements.innerContainer)
+    if self.leftSide then
+        self:createComponent(self.elements.innerContainer)
+    end
     self:createLabel(self.elements.innerContainer)
+    if not self.leftSide then
+        self:createComponent(self.elements.innerContainer)
+    end
 end
 
 

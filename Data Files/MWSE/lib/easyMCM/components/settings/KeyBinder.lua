@@ -18,7 +18,6 @@ KeyBinder.messageDoRebind = "Set new key binding to: %s"
 KeyBinder.messageRebinded = "Key binding changed to '%s'"
 KeyBinder.sOkay = "Rebind"
 KeyBinder.sNotChanged = "Key binding not changed."
-
 KeyBinder.sCancel = tes3.findGMST(tes3.gmst.sCancel).value
 
 
@@ -158,14 +157,9 @@ end
 
 function KeyBinder:createComponent(parentBlock)
     Parent.createComponent(self, parentBlock)
-    self.elements.button.absolutePosAlignX = 1.0
+    --self.elements.button.absolutePosAlignX = 1.0
 end
 
-function KeyBinder:createContentsContainer(parentBlock)
-    self:createInnerContainer(parentBlock)
-    self:createLabel(self.elements.innerContainer)
-    self:createComponent(self.elements.innerContainer)
-end
 
 
 return KeyBinder

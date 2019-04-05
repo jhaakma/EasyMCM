@@ -233,6 +233,46 @@ local exampleTemplate = {
 
                     },
                 },
+                                {--Keybindings is a special button that lets you set a keybind
+                                class = "Category",
+                                label = "Bindings",
+                                components = {
+            
+                                    {
+                                        class = "KeyBinder", 
+                                        label = "Single Key Binding",
+                                        description = "Keybindings is a special button that lets you set a keybind",
+                                        allowCombinations = false,--This one only allows single key bindings
+                                        variable = {
+                                            id = "keybind2", 
+                                            class = "TableVariable", 
+                                            table = localConfig,
+                                            defaultSetting = {
+                                                keyCode = tes3.scanCode.l,
+                                            },
+                                        },--/rebind
+                                    },
+            
+                                    {
+                                        class = "KeyBinder", 
+                                        label = "Key Combo Binding",
+                                        description = "Keybinds can allow combos of Shift+x, Alt+x or Ctrl+x.",
+                                        allowCombinations = true,--Optional: defaults to true. Allows for Shift, Alt or Ctrl + Key
+                                        variable = {
+                                            id = "keybind1", 
+                                            class = "TableVariable", 
+                                            table = localConfig,
+                                            defaultSetting = {
+                                                keyCode = tes3.scanCode.k,
+                                                --These default to false
+                                                isShiftDown = true,
+                                                isAltDown = false,
+                                                isControlDown = false,
+                                            },
+                                        },--/rebind
+                                    },
+                                }
+                            },
             },--/page components
         },--/page1
 
@@ -407,7 +447,7 @@ local exampleTemplate = {
             filters = {
 
                 --Filter by plugins to exclude entire mods
-                {
+                --[[{
                     label = "Plugins",
                     type = "Plugin",
                 },
@@ -447,7 +487,7 @@ local exampleTemplate = {
                     label = "Statics",
                     type = "Object",
                     objectType = tes3.objectType.static,
-                },
+                },]]--
                 --Finally, define your own callback for a purely custom filter
                 {
                     label = "GMSTs",

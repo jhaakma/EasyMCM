@@ -1,5 +1,5 @@
 local this = {}
-
+this.version = 1.2
 function this.registerModData(mcmData)
     --object returned to be used in modConfigMenu
     local modConfig = {}
@@ -12,7 +12,7 @@ function this.registerModData(mcmData)
     }
     local function getLogMessage(message, logLevel)
         logLevel = logLevel or logLevels.info
-        formattedMessage = string.format("[%s MCM: %s] %s", mcmData.name, logLevel, message)
+        formattedMessage = string.format("[%s MCM %s] %s", mcmData.name, logLevel, message)
         return formattedMessage
     end
 
@@ -30,9 +30,15 @@ function this.registerModData(mcmData)
         modConfig.onClose = template.onClose
     end
 
+   mwse.log( "[EasyMCM v%s]: %s mod config registered", this.version, mcmData.name )
+
     return modConfig
 end
 
+function this.registerMCM(mcmData)
+    local mcm = this.registerModData( mcmData ) 
+    mwse.registerModConfig(mcmData.name, mcm)
+end
 
 
 return this
