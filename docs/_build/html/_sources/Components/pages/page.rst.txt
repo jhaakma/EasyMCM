@@ -2,17 +2,22 @@
 Page
 ==========
 
+
+
 A ``Page`` a container that holds other components. It acts a bit like a 
 page on your web browser, in that you have tabs across the top of 
 your menu to selecta page to view. Pages must go in the 
-``pages`` table in your template.::
+``pages`` table in your template.
+
+The default page is a simple container, it is recommended you use 
+the `SideBarPage`_ for basic settings.::
 
     --Page fields
     {
-            label = "SideBar Page",
-            class = "Page",
-            components = {},
-        }
+        label = "Page 1",
+        class = "Page",
+        components = {},
+    }
 
 label
     The ``label`` field is displayed in the tab for that page at the top 
@@ -24,3 +29,5 @@ class (Optional)
 
 components
     A list of components to display.
+
+.. _`SideBarPage`: SideBarPage.html

@@ -1,0 +1,700 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Example mcmData &mdash; EasyMCM  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> EasyMCM
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components/components.html">Components</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EasyMCM</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Example mcmData</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/Example.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="example-mcmdata">
+<h1>Example mcmData<a class="headerlink" href="#example-mcmdata" title="Permalink to this headline">¶</a></h1>
+<p>This is a <strong>comprehensive</strong> example of mcmData. It can be used as a quick
+reference for how to use a given EasyMCM class. It is also fully functional,
+so if you register your MCM to use “easyMCM.exampleModData” you can view the
+whole thing in-game:</p>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="c1">--Add this to your main.lua</span>
+
+<span class="c1">--Change the mcmDataPath to point to your own mcmData file.</span>
+<span class="c1">--The rest you can leave exactly as it is.</span>
+
+<span class="kd">local</span> <span class="n">mcmDataPath</span> <span class="o">=</span> <span class="s2">&quot;easyMCM.exampleModData&quot;</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">placeholderMCM</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+    <span class="n">element</span><span class="p">:</span><span class="n">createLabel</span><span class="p">{</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;This mod requires the EasyMCM library to be installed.&quot;</span><span class="p">}</span>
+    <span class="kd">local</span> <span class="n">link</span> <span class="o">=</span> <span class="n">element</span><span class="p">:</span><span class="n">createTextSelect</span><span class="p">{</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Go to EasyMCM Nexus Page&quot;</span><span class="p">}</span>
+    <span class="n">link</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">tes3ui</span><span class="p">.</span><span class="n">getPalette</span><span class="p">(</span><span class="s2">&quot;link_color&quot;</span><span class="p">)</span>
+    <span class="n">link</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">idle</span> <span class="o">=</span> <span class="n">tes3ui</span><span class="p">.</span><span class="n">getPalette</span><span class="p">(</span><span class="s2">&quot;link_color&quot;</span><span class="p">)</span>
+    <span class="n">link</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">over</span> <span class="o">=</span> <span class="n">tes3ui</span><span class="p">.</span><span class="n">getPalette</span><span class="p">(</span><span class="s2">&quot;link_over_color&quot;</span><span class="p">)</span>
+    <span class="n">link</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">pressed</span> <span class="o">=</span> <span class="n">tes3ui</span><span class="p">.</span><span class="n">getPalette</span><span class="p">(</span><span class="s2">&quot;link_pressed_color&quot;</span><span class="p">)</span>
+    <span class="n">link</span><span class="p">:</span><span class="n">register</span><span class="p">(</span><span class="s2">&quot;mouseClick&quot;</span><span class="p">,</span> <span class="kr">function</span><span class="p">()</span>
+        <span class="nb">os.execute</span><span class="p">(</span><span class="s2">&quot;start https://www.nexusmods.com/morrowind/mods/46427?tab=files&quot;</span><span class="p">)</span>
+    <span class="kr">end</span><span class="p">)</span>
+<span class="kr">end</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">registerModConfig</span><span class="p">()</span>
+    <span class="kd">local</span> <span class="n">easyMCM</span> <span class="o">=</span> <span class="n">include</span><span class="p">(</span><span class="s2">&quot;easyMCM.modConfig&quot;</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">mcmData</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="n">mcmDataPath</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">modData</span> <span class="o">=</span> <span class="n">easyMCM</span> <span class="ow">and</span> <span class="n">easyMCM</span><span class="p">.</span><span class="n">registerModData</span><span class="p">(</span><span class="n">mcmData</span><span class="p">)</span>
+    <span class="n">mwse</span><span class="p">.</span><span class="n">registerModConfig</span><span class="p">(</span><span class="n">mcmData</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">modData</span> <span class="ow">or</span> <span class="p">{</span><span class="n">onCreate</span><span class="o">=</span><span class="n">placeholderMCM</span><span class="p">})</span>
+<span class="kr">end</span>
+<span class="c1">--register mcm event</span>
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="s2">&quot;modConfigReady&quot;</span><span class="p">,</span> <span class="n">registerModConfig</span><span class="p">)</span>
+
+<span class="c1">------------------------------------------------------------------------------</span>
+
+<span class="c1">--In your mcmData.lua file:</span>
+
+<span class="c1">--Define config path</span>
+<span class="kd">local</span> <span class="n">configPath</span> <span class="o">=</span> <span class="s2">&quot;name_of_config file&quot;</span>
+<span class="c1">--Define path to player data variables, relative to tes3.player.data</span>
+<span class="kd">local</span> <span class="n">playerDataPath</span> <span class="o">=</span> <span class="s2">&quot;modName.mcmSettings&quot;</span>
+<span class="kd">local</span> <span class="n">localConfig</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">loadConfig</span><span class="p">(</span><span class="n">configPath</span><span class="p">)</span>
+
+<span class="c1">--Function to generate buttons for every effect in tes3.effect for our Filter list</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">createFilterSettings</span><span class="p">()</span>
+    <span class="kd">local</span> <span class="n">settings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">}</span>
+    <span class="kr">for</span> <span class="n">effect</span><span class="p">,</span> <span class="n">id</span> <span class="kr">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">effect</span><span class="p">)</span> <span class="kr">do</span>
+        <span class="nb">table.insert</span><span class="p">(</span>
+            <span class="n">settings</span><span class="p">,</span>
+            <span class="p">{</span>
+                <span class="n">label</span> <span class="o">=</span> <span class="n">effect</span><span class="p">,</span>
+                <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;OnOffButton&quot;</span><span class="p">,</span>
+                <span class="n">postCreate</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="kr">function</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+                        <span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span>
+                            <span class="s2">&quot;resetFilterSettings&quot;</span><span class="p">,</span>
+                            <span class="kr">function</span><span class="p">()</span>
+                                <span class="n">self</span><span class="p">.</span><span class="n">variable</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">variable</span><span class="p">.</span><span class="n">defaultSetting</span>
+                                <span class="n">self</span><span class="p">:</span><span class="n">update</span><span class="p">()</span>
+                            <span class="kr">end</span>
+                        <span class="p">)</span>
+                    <span class="kr">end</span>
+                <span class="p">),</span>
+                <span class="cm">--[[variable = {</span>
+<span class="cm">                    id = effect,</span>
+<span class="cm">                    class = &quot;ConfigVariable&quot;,</span>
+<span class="cm">                    path = configPath,</span>
+<span class="cm">                    defaultSetting = true,</span>
+<span class="cm">                },]]</span><span class="c1">--</span>
+                <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="n">id</span> <span class="o">=</span> <span class="n">effect</span><span class="p">,</span>
+                    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;TableVariable&quot;</span><span class="p">,</span>
+                    <span class="n">table</span> <span class="o">=</span> <span class="n">localConfig</span><span class="p">,</span>
+                    <span class="n">defaultSetting</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="p">},</span>
+
+            <span class="p">}</span>
+        <span class="p">)</span>
+    <span class="kr">end</span>
+    <span class="kr">return</span> <span class="n">settings</span>
+<span class="kr">end</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">getWeatherList</span><span class="p">()</span>
+    <span class="kd">local</span> <span class="n">list</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="kr">for</span> <span class="n">weather</span><span class="p">,</span> <span class="n">val</span> <span class="kr">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">weather</span><span class="p">)</span> <span class="kr">do</span>
+        <span class="nb">table.insert</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="n">weather</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">val</span> <span class="p">}</span> <span class="p">)</span>
+    <span class="kr">end</span>
+    <span class="kr">return</span> <span class="n">list</span>
+<span class="kr">end</span>
+<span class="kd">local</span> <span class="n">weatherList</span> <span class="o">=</span> <span class="n">getWeatherList</span><span class="p">()</span>
+
+<span class="kd">local</span> <span class="n">mcmData</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;My Mod Name&quot;</span><span class="p">,</span>
+    <span class="n">onClose</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="kr">function</span><span class="p">()</span>
+            <span class="n">mwse</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;saving config ot json&quot;</span><span class="p">)</span>
+            <span class="n">mwse</span><span class="p">.</span><span class="n">saveConfig</span><span class="p">(</span><span class="n">configPath</span><span class="p">,</span> <span class="n">localConfig</span><span class="p">)</span>
+        <span class="kr">end</span>
+    <span class="p">),</span>
+    <span class="n">pages</span> <span class="o">=</span> <span class="p">{</span>
+
+        <span class="c1">--Page</span>
+        <span class="p">{</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Normal Page&quot;</span><span class="p">,</span>
+            <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Page&quot;</span><span class="p">,</span><span class="c1">--defaults to &quot;Page&quot;</span>
+            <span class="n">components</span> <span class="o">=</span> <span class="p">{</span><span class="c1">--Children of this component go in the components table. Categories can be nested infinitely.</span>
+                <span class="p">{</span>
+                    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Category Label&quot;</span><span class="p">,</span>
+                    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Category&quot;</span><span class="p">,</span><span class="c1">--Categories break components into organised groups with labels and indentation.</span>
+                    <span class="n">postCreate</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="c1">--Optional: override this function for any small formatting changes you want to do</span>
+                        <span class="c1">--Gets called after the component has been built</span>
+                        <span class="kr">function</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+                            <span class="n">self</span><span class="p">.</span><span class="n">elements</span><span class="p">.</span><span class="n">label</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">tes3ui</span><span class="p">.</span><span class="n">getPalette</span><span class="p">(</span><span class="s2">&quot;link_color&quot;</span><span class="p">)</span>
+                        <span class="kr">end</span>
+                    <span class="p">),</span>
+                    <span class="n">enable</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="c1">--Optional: You can also override any other field or function belonging to the component</span>
+                        <span class="kr">function</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+                            <span class="c1">--mwse.log(&quot;Enabling category&quot;)</span>
+                            <span class="n">self</span><span class="p">.</span><span class="n">elements</span><span class="p">.</span><span class="n">label</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">tes3ui</span><span class="p">.</span><span class="n">getPalette</span><span class="p">(</span><span class="s2">&quot;header_color&quot;</span><span class="p">)</span>
+                        <span class="kr">end</span>
+                    <span class="p">),</span>
+                    <span class="n">components</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="p">{</span><span class="c1">--OnOffButton and YesNoButton are the best way to handle boolean settings</span>
+                            <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Button Setting&quot;</span><span class="p">,</span>
+                            <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;OnOffButton&quot;</span><span class="p">,</span>
+                            <span class="n">restartRequired</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">--Can be on the setting or variable, when active will prompt the user to restart when the setting changes.</span>
+                            <span class="cm">--[[variable = {</span>
+<span class="cm">                                id = &quot;enabled&quot;,</span>
+<span class="cm">                                class = &quot;ConfigVariable&quot;,--Saves to a json file</span>
+<span class="cm">                                defaultSetting = true,--Optional: for OnOffButton defaults to false</span>
+<span class="cm">                                path = configPath,--Path to config file</span>
+<span class="cm">                            },]]</span><span class="c1">--</span>
+                            <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
+                                <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;enabled&quot;</span><span class="p">,</span>
+                                <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;TableVariable&quot;</span><span class="p">,</span>
+                                <span class="n">table</span> <span class="o">=</span> <span class="n">localConfig</span><span class="p">,</span>
+                                <span class="n">defaultSetting</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+                            <span class="p">},</span>
+
+                        <span class="p">},</span>
+                        <span class="p">{</span><span class="c1">--Sliders work best for Integer settings</span>
+                            <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Time Scale&quot;</span><span class="p">,</span>
+                            <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Slider&quot;</span><span class="p">,</span>
+                            <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Changes the speed of the day/night cycle. A value of 1 makes the day go at real-time speed; an in-game day would last 24 hours in real life. A value of 10 will make it ten times as fast as real-time (i.e., one in-game day lasts 2.4 hours), etc. The default timescale is 30 (1 in-game day = 48 real minutes).&quot;</span><span class="p">,</span>
+                            <span class="c1">--slider settings optional, will default to the following</span>
+                            <span class="n">min</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="c1">--default 0</span>
+                            <span class="n">max</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="c1">--default 100</span>
+                            <span class="n">step</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="c1">--default 1</span>
+                            <span class="n">jump</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="c1">--default 5</span>
+
+                            <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
+                                <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;timeScale&quot;</span><span class="p">,</span>
+                                <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Global&quot;</span><span class="p">,</span>
+                            <span class="p">},</span>
+                        <span class="p">},</span>
+                        <span class="p">{</span><span class="c1">--Text fields are used for changing settings with string variables.</span>
+                            <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Your pet&#39;s name&quot;</span><span class="p">,</span>
+                            <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;TextField&quot;</span><span class="p">,</span>
+                            <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Enter the name of your beloved pet!&quot;</span><span class="p">,</span>
+                            <span class="n">sNewValue</span> <span class="o">=</span> <span class="s2">&quot;Your pet&#39;s new name is %s&quot;</span><span class="p">,</span>
+                            <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
+                                <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;PlayerData&quot;</span><span class="p">,</span><span class="c1">--PlayerData is stored on tes3.player.data so the setting value is local to the game save.</span>
+                                <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;petName&quot;</span><span class="p">,</span>
+                                <span class="n">path</span> <span class="o">=</span> <span class="n">playerDataPath</span><span class="p">,</span>
+                                <span class="n">defaultSetting</span> <span class="o">=</span> <span class="s2">&quot;Scruffy&quot;</span><span class="p">,</span><span class="c1">--Optional, for TextField defaults to &quot;&quot;</span>
+                            <span class="p">},</span>
+
+                        <span class="p">},</span>
+
+                        <span class="p">{</span>
+                            <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;A Hyperlink&quot;</span><span class="p">,</span>
+                            <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Hyperlink&quot;</span><span class="p">,</span>
+                            <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;A Hyperlink that goes to Google&quot;</span><span class="p">,</span>
+                            <span class="n">exec</span> <span class="o">=</span> <span class="s2">&quot;start http://google.com&quot;</span>
+                        <span class="p">},</span><span class="c1">--/Info</span>
+
+                        <span class="p">{</span>
+                            <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Hyperlink&quot;</span><span class="p">,</span>
+                            <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;A no label Hyperlink&quot;</span><span class="p">,</span>
+                            <span class="n">exec</span> <span class="o">=</span> <span class="s2">&quot;start http://google.com&quot;</span>
+                        <span class="p">},</span><span class="c1">--/Info</span>
+
+                    <span class="p">},</span>
+                <span class="p">},</span>
+                                <span class="p">{</span><span class="c1">--Keybindings is a special button that lets you set a keybind</span>
+                                <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Category&quot;</span><span class="p">,</span>
+                                <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Bindings&quot;</span><span class="p">,</span>
+                                <span class="n">components</span> <span class="o">=</span> <span class="p">{</span>
+
+                                    <span class="p">{</span>
+                                        <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;KeyBinder&quot;</span><span class="p">,</span>
+                                        <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Single Key Binding&quot;</span><span class="p">,</span>
+                                        <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Keybindings is a special button that lets you set a keybind&quot;</span><span class="p">,</span>
+                                        <span class="n">allowCombinations</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span><span class="c1">--This one only allows single key bindings</span>
+                                        <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
+                                            <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;keybind2&quot;</span><span class="p">,</span>
+                                            <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;TableVariable&quot;</span><span class="p">,</span>
+                                            <span class="n">table</span> <span class="o">=</span> <span class="n">localConfig</span><span class="p">,</span>
+                                            <span class="n">defaultSetting</span> <span class="o">=</span> <span class="p">{</span>
+                                                <span class="n">keyCode</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">scanCode</span><span class="p">.</span><span class="n">l</span><span class="p">,</span>
+                                            <span class="p">},</span>
+                                        <span class="p">},</span><span class="c1">--/rebind</span>
+                                    <span class="p">},</span>
+
+                                    <span class="p">{</span>
+                                        <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;KeyBinder&quot;</span><span class="p">,</span>
+                                        <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Key Combo Binding&quot;</span><span class="p">,</span>
+                                        <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Keybinds can allow combos of Shift+x, Alt+x or Ctrl+x.&quot;</span><span class="p">,</span>
+                                        <span class="n">allowCombinations</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span><span class="c1">--Optional: defaults to true. Allows for Shift, Alt or Ctrl + Key</span>
+                                        <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
+                                            <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;keybind1&quot;</span><span class="p">,</span>
+                                            <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;TableVariable&quot;</span><span class="p">,</span>
+                                            <span class="n">table</span> <span class="o">=</span> <span class="n">localConfig</span><span class="p">,</span>
+                                            <span class="n">defaultSetting</span> <span class="o">=</span> <span class="p">{</span>
+                                                <span class="n">keyCode</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">scanCode</span><span class="p">.</span><span class="n">k</span><span class="p">,</span>
+                                                <span class="c1">--These default to false</span>
+                                                <span class="n">isShiftDown</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+                                                <span class="n">isAltDown</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+                                                <span class="n">isControlDown</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+                                            <span class="p">},</span>
+                                        <span class="p">},</span><span class="c1">--/rebind</span>
+                                    <span class="p">},</span>
+                                <span class="p">}</span>
+                            <span class="p">},</span>
+            <span class="p">},</span><span class="c1">--/page components</span>
+        <span class="p">},</span><span class="c1">--/page1</span>
+
+        <span class="c1">--SideBarPage</span>
+        <span class="p">{</span><span class="c1">--A Sidebar page displays components on the left column, and a second set of components on the sidebar.</span>
+        <span class="c1">--If no &#39;sidebarComponents&#39; table is defined, the sidebar instead displays the description of the page,</span>
+        <span class="c1">--and the description of any component when moused over.</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Sidebar Page&quot;</span><span class="p">,</span>
+            <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;SideBarPage&quot;</span><span class="p">,</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Here is the sidebar description for our example mod! You can mouse over settings to see more information on each one.&quot;</span><span class="p">,</span>
+            <span class="n">components</span> <span class="o">=</span> <span class="p">{</span>
+
+                <span class="p">{</span><span class="c1">--SideBySide block is useful for displaying multiple simple buttons with no labels</span>
+                    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;SideBySideBlock&quot;</span><span class="p">,</span>
+                    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Console Commands&quot;</span><span class="p">,</span>
+                    <span class="n">components</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="p">{</span>
+                            <span class="n">buttonText</span> <span class="o">=</span> <span class="s2">&quot;Reset Actors&quot;</span><span class="p">,</span>
+                            <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Call the Reset Actors function which returns all actors to their original positions.&quot;</span><span class="p">,</span>
+                            <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Button&quot;</span><span class="p">,</span>
+                            <span class="n">inGameOnly</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+                            <span class="n">callback</span> <span class="o">=</span> <span class="p">(</span>
+                                <span class="kr">function</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+                                    <span class="n">tes3</span><span class="p">.</span><span class="n">messageBox</span><span class="p">(</span><span class="s2">&quot;Resetting Actors&quot;</span><span class="p">)</span>
+                                    <span class="n">tes3</span><span class="p">.</span><span class="n">runLegacyScript</span><span class="p">({</span><span class="n">command</span> <span class="o">=</span> <span class="s2">&quot;ResetActors&quot;</span><span class="p">})</span>
+                                <span class="kr">end</span>
+                            <span class="p">),</span>
+
+                        <span class="p">},</span><span class="c1">--/Reset Actors Button</span>
+                        <span class="p">{</span>
+                            <span class="n">buttonText</span> <span class="o">=</span> <span class="s2">&quot;Fix Me&quot;</span><span class="p">,</span>
+                            <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Call the Fix Me function which attempts to free the player from being stuck.&quot;</span><span class="p">,</span>
+                            <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Button&quot;</span><span class="p">,</span>
+                            <span class="n">inGameOnly</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+                            <span class="n">callback</span> <span class="o">=</span> <span class="p">(</span>
+                                <span class="kr">function</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+                                    <span class="n">tes3</span><span class="p">.</span><span class="n">messageBox</span><span class="p">(</span><span class="s2">&quot;Calling Fix me&quot;</span><span class="p">)</span>
+                                    <span class="n">tes3</span><span class="p">.</span><span class="n">runLegacyScript</span><span class="p">({</span><span class="n">command</span> <span class="o">=</span> <span class="s2">&quot;fixme&quot;</span><span class="p">})</span>
+                                <span class="kr">end</span>
+                            <span class="p">),</span>
+
+                        <span class="p">},</span><span class="c1">--/Fix Me Button</span>
+                    <span class="p">}</span><span class="c1">--/Buttons components</span>
+                <span class="p">},</span><span class="c1">--/SideBySide Buttons block</span>
+
+                <span class="p">{</span><span class="c1">--Keybindings is a special button that lets you set a keybind</span>
+                    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Category&quot;</span><span class="p">,</span>
+                    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Bindings&quot;</span><span class="p">,</span>
+                    <span class="n">components</span> <span class="o">=</span> <span class="p">{</span>
+
+                        <span class="p">{</span>
+                            <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;KeyBinder&quot;</span><span class="p">,</span>
+                            <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Single Key Binding&quot;</span><span class="p">,</span>
+                            <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Keybindings is a special button that lets you set a keybind&quot;</span><span class="p">,</span>
+                            <span class="n">allowCombinations</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span><span class="c1">--This one only allows single key bindings</span>
+                            <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
+                                <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;keybind2&quot;</span><span class="p">,</span>
+                                <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;TableVariable&quot;</span><span class="p">,</span>
+                                <span class="n">table</span> <span class="o">=</span> <span class="n">localConfig</span><span class="p">,</span>
+                                <span class="n">defaultSetting</span> <span class="o">=</span> <span class="p">{</span>
+                                    <span class="n">keyCode</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">scanCode</span><span class="p">.</span><span class="n">l</span><span class="p">,</span>
+                                <span class="p">},</span>
+                            <span class="p">},</span><span class="c1">--/rebind</span>
+                        <span class="p">},</span>
+
+                        <span class="p">{</span>
+                            <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;KeyBinder&quot;</span><span class="p">,</span>
+                            <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Key Combo Binding&quot;</span><span class="p">,</span>
+                            <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Keybinds can allow combos of Shift+x, Alt+x or Ctrl+x.&quot;</span><span class="p">,</span>
+                            <span class="n">allowCombinations</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span><span class="c1">--Optional: defaults to true. Allows for Shift, Alt or Ctrl + Key</span>
+                            <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
+                                <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;keybind1&quot;</span><span class="p">,</span>
+                                <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;TableVariable&quot;</span><span class="p">,</span>
+                                <span class="n">table</span> <span class="o">=</span> <span class="n">localConfig</span><span class="p">,</span>
+                                <span class="n">defaultSetting</span> <span class="o">=</span> <span class="p">{</span>
+                                    <span class="n">keyCode</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">scanCode</span><span class="p">.</span><span class="n">k</span><span class="p">,</span>
+                                    <span class="c1">--These default to false</span>
+                                    <span class="n">isShiftDown</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+                                    <span class="n">isAltDown</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+                                    <span class="n">isControlDown</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+                                <span class="p">},</span>
+                            <span class="p">},</span><span class="c1">--/rebind</span>
+                        <span class="p">},</span>
+                    <span class="p">}</span>
+                <span class="p">},</span>
+
+                <span class="p">{</span>
+                    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Other Settings&quot;</span><span class="p">,</span>
+                    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Category&quot;</span><span class="p">,</span>
+                    <span class="n">components</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="p">{</span>
+                            <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;An Info Field&quot;</span><span class="p">,</span>
+                            <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Info&quot;</span><span class="p">,</span>
+                            <span class="n">inGameOnly</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+                            <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;This is an info box. It should wrap text if the window is too small&quot;</span>
+                        <span class="p">},</span><span class="c1">--/Info</span>
+
+                        <span class="p">{</span>
+                            <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Info&quot;</span><span class="p">,</span>
+                            <span class="n">inGameOnly</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+                            <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;An info box with no label won&#39;t indent&quot;</span>
+                        <span class="p">},</span><span class="c1">--/Info</span>
+
+                    <span class="p">},</span>
+                <span class="p">},</span><span class="c1">--/Other Settings</span>
+
+                <span class="p">{</span><span class="c1">--Dropdowns allow you to select an option from a list. Good for settings with a small number of predefined possible values.</span>
+                    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Pick a Fruit&quot;</span><span class="p">,</span>
+                    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Dropdown&quot;</span><span class="p">,</span>
+                    <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Choose a fruit from the dropdown.&quot;</span><span class="p">,</span>
+                    <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Apple&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;apple&quot;</span> <span class="p">},</span>
+                        <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Banana&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;banana&quot;</span> <span class="p">},</span>
+                        <span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Orange&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;orange&quot;</span> <span class="p">},</span>
+                    <span class="p">},</span>
+                    <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;fruitList&quot;</span><span class="p">,</span>
+                        <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;TableVariable&quot;</span><span class="p">,</span>
+                        <span class="n">table</span> <span class="o">=</span> <span class="n">localConfig</span><span class="p">,</span>
+                        <span class="n">defaultSetting</span> <span class="o">=</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span>
+                    <span class="p">},</span>
+                <span class="p">},</span>
+
+                <span class="c1">--Dropdown using a custom variable. Override get and set functions to get and change the weather</span>
+                <span class="p">{</span>
+                    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Change the Weather&quot;</span><span class="p">,</span>
+                    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Dropdown&quot;</span><span class="p">,</span>
+                    <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Immediately transitions to the selected weather.&quot;</span><span class="p">,</span>
+                    <span class="n">options</span> <span class="o">=</span> <span class="n">weatherList</span><span class="p">,</span>
+                    <span class="n">inGameOnly</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+                    <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Variable&quot;</span><span class="p">,</span>
+                        <span class="n">get</span> <span class="o">=</span> <span class="p">(</span>
+                            <span class="kr">function</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+                                <span class="kr">return</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getCurrentWeather</span><span class="p">().</span><span class="n">index</span> <span class="ow">or</span> <span class="mi">0</span>
+                            <span class="kr">end</span>
+                        <span class="p">),</span>
+                        <span class="n">set</span> <span class="o">=</span> <span class="p">(</span>
+                            <span class="kr">function</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">newVal</span><span class="p">)</span>
+                                <span class="kr">if</span> <span class="n">tes3</span><span class="p">.</span><span class="n">player</span> <span class="kr">then</span>
+                                    <span class="n">tes3</span><span class="p">.</span><span class="n">getWorldController</span><span class="p">().</span><span class="n">weatherController</span><span class="p">:</span><span class="n">switchImmediate</span><span class="p">(</span><span class="n">newVal</span><span class="p">)</span>
+                                <span class="kr">end</span>
+                            <span class="kr">end</span>
+                        <span class="p">),</span>
+                    <span class="p">},</span>
+                <span class="p">},</span>
+
+            <span class="p">},</span><span class="c1">--/page2 components</span>
+        <span class="p">},</span><span class="c1">--/page2</span>
+
+        <span class="c1">--Exclusions Page</span>
+        <span class="p">{</span><span class="c1">--Exclusions page is a special page type that lets you move plugins or game objects into a blacklist.</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Exclusions Page&quot;</span><span class="p">,</span>
+            <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;ExclusionsPage&quot;</span><span class="p">,</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="s2">&quot;Mod Exclusions Page</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">..</span>
+                <span class="s2">&quot;This text will be displayed at the top of the page. &quot;</span> <span class="o">..</span>
+                <span class="s2">&quot;Give a nice description of what your exclusions list does.&quot;</span>
+            <span class="p">),</span>
+            <span class="c1">--You can customise all the text and buttons</span>
+            <span class="n">toggleText</span> <span class="o">=</span> <span class="s2">&quot;Apply&quot;</span><span class="p">,</span> <span class="c1">--Optional: default &quot;Toggle Filtered&quot;</span>
+            <span class="n">leftListLabel</span> <span class="o">=</span> <span class="s2">&quot;Blacklist&quot;</span><span class="p">,</span> <span class="c1">--Optional: default &quot;Blocked&quot;</span>
+            <span class="n">rightListLabel</span> <span class="o">=</span> <span class="s2">&quot;Whitelist&quot;</span><span class="p">,</span> <span class="c1">--Optional: default = &quot;Allowed&quot;</span>
+
+            <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;blocked&quot;</span><span class="p">,</span>
+                <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;TableVariable&quot;</span><span class="p">,</span>
+                <span class="n">table</span> <span class="o">=</span> <span class="n">localConfig</span><span class="p">,</span>
+            <span class="p">},</span>
+
+            <span class="c1">--You can have multiple filters to customise what kind of objects can be excluded</span>
+            <span class="n">filters</span> <span class="o">=</span> <span class="p">{</span>
+
+                <span class="c1">--Filter by plugins to exclude entire mods</span>
+                <span class="cm">--[[{</span>
+<span class="cm">                    label = &quot;Plugins&quot;,</span>
+<span class="cm">                    type = &quot;Plugin&quot;,</span>
+<span class="cm">                },</span>
+<span class="cm">                --Filter by object type</span>
+<span class="cm">                {</span>
+<span class="cm">                    label = &quot;Ingredients&quot;,</span>
+<span class="cm">                    type = &quot;Object&quot;,</span>
+<span class="cm">                    objectType = tes3.objectType.ingredient,</span>
+<span class="cm">                },</span>
+
+<span class="cm">                --Define object filters for more specific filters</span>
+<span class="cm">                {</span>
+<span class="cm">                    label = &quot;Helmets&quot;,</span>
+<span class="cm">                    type = &quot;Object&quot;,</span>
+<span class="cm">                    objectType = tes3.objectType.armor,</span>
+<span class="cm">                    objectFilters = {</span>
+<span class="cm">                        slot = tes3.armorSlot.helmet</span>
+<span class="cm">                    }</span>
+<span class="cm">                },</span>
+<span class="cm">                {</span>
+<span class="cm">                    label = &quot;Blunt Weapons&quot;,</span>
+<span class="cm">                    type = &quot;Object&quot;,</span>
+<span class="cm">                    objectType = tes3.objectType.weapon,</span>
+<span class="cm">                    objectFilters = {</span>
+<span class="cm">                        type = tes3.weaponType.bluntOneHand</span>
+<span class="cm">                    }</span>
+<span class="cm">                },</span>
+<span class="cm">                {</span>
+<span class="cm">                    label = &quot;Essential NPCs&quot;,</span>
+<span class="cm">                    type = &quot;Object&quot;,</span>
+<span class="cm">                    objectType = tes3.objectType.npc,</span>
+<span class="cm">                    objectFilters = {</span>
+<span class="cm">                        isEssential = true</span>
+<span class="cm">                    }</span>
+<span class="cm">                },</span>
+<span class="cm">                {</span>
+<span class="cm">                    label = &quot;Statics&quot;,</span>
+<span class="cm">                    type = &quot;Object&quot;,</span>
+<span class="cm">                    objectType = tes3.objectType.static,</span>
+<span class="cm">                },]]</span><span class="c1">--</span>
+                <span class="c1">--Finally, define your own callback for a purely custom filter</span>
+                <span class="p">{</span>
+                    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;GMSTs&quot;</span><span class="p">,</span>
+                    <span class="n">callback</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="kr">function</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+                            <span class="kd">local</span> <span class="n">gmstNames</span> <span class="o">=</span> <span class="p">{}</span>
+                            <span class="kr">for</span> <span class="n">gmst</span><span class="p">,</span> <span class="n">_</span> <span class="kr">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">tes3</span><span class="p">.</span><span class="n">gmst</span><span class="p">)</span> <span class="kr">do</span>
+                                <span class="nb">table.insert</span><span class="p">(</span><span class="n">gmstNames</span><span class="p">,</span> <span class="n">gmst</span><span class="p">)</span>
+                            <span class="kr">end</span>
+                            <span class="kr">return</span> <span class="n">gmstNames</span>
+                        <span class="kr">end</span>
+                    <span class="p">)</span>
+                <span class="p">},</span>
+            <span class="p">}</span><span class="c1">--/filters</span>
+        <span class="p">},</span><span class="c1">--/page3</span>
+
+        <span class="c1">--Filter Page</span>
+        <span class="p">{</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Filter Page&quot;</span><span class="p">,</span>
+            <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;FilterPage&quot;</span><span class="p">,</span>
+            <span class="n">components</span> <span class="o">=</span> <span class="n">createFilterSettings</span><span class="p">(),</span>
+            <span class="c1">--Rather than use the default mouseOverInfo, we define a sidebarComponents table so we can add a &quot;restore defaults&quot; button</span>
+            <span class="n">sidebarComponents</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="p">{</span>
+                    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Info&quot;</span><span class="p">,</span>
+                    <span class="n">text</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="s2">&quot;This is a Filter Page. You can filter settings by typing in the search bar. &quot;</span> <span class="o">..</span>
+                        <span class="s2">&quot;Here we have made list of buttons for each effect in tes3.effect, &quot;</span> <span class="o">..</span>
+                        <span class="s2">&quot;and a button that will reset them to their default values. &quot;</span>
+                    <span class="p">)</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Button&quot;</span><span class="p">,</span>
+                    <span class="n">buttonText</span> <span class="o">=</span> <span class="s2">&quot;Restore default values&quot;</span><span class="p">,</span>
+                    <span class="n">callback</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="kr">function</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+                            <span class="kd">local</span> <span class="kr">function</span> <span class="nf">reset</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+                                <span class="kr">if</span> <span class="n">e</span><span class="p">.</span><span class="n">button</span> <span class="o">==</span> <span class="mi">0</span> <span class="kr">then</span>
+                                    <span class="n">tes3</span><span class="p">.</span><span class="n">messageBox</span><span class="p">{</span>
+                                        <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Default values have been restored.&quot;</span><span class="p">,</span>
+                                        <span class="n">buttons</span> <span class="o">=</span> <span class="p">{</span> <span class="n">self</span><span class="p">.</span><span class="n">sOK</span> <span class="p">}</span>
+                                    <span class="p">}</span>
+                                    <span class="n">mwse</span><span class="p">.</span><span class="n">saveConfig</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="p">{})</span>
+                                    <span class="n">event</span><span class="p">.</span><span class="n">trigger</span><span class="p">(</span><span class="s2">&quot;resetFilterSettings&quot;</span><span class="p">)</span>
+                                <span class="kr">end</span>
+                            <span class="kr">end</span>
+
+                            <span class="n">tes3</span><span class="p">.</span><span class="n">messageBox</span><span class="p">{</span>
+                                <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Reset all settings to their default values?&quot;</span><span class="p">,</span>
+                                <span class="n">buttons</span> <span class="o">=</span> <span class="p">{</span> <span class="n">self</span><span class="p">.</span><span class="n">sYes</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">sCancel</span> <span class="p">},</span>
+                                <span class="n">callback</span> <span class="o">=</span> <span class="n">reset</span>
+                            <span class="p">}</span>
+                        <span class="kr">end</span>
+                    <span class="p">),</span>
+                    <span class="n">postCreate</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="kr">function</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+                            <span class="n">self</span><span class="p">.</span><span class="n">elements</span><span class="p">.</span><span class="n">innerContainer</span><span class="p">.</span><span class="n">alignX</span> <span class="o">=</span> <span class="mf">0.5</span>
+                        <span class="kr">end</span>
+                    <span class="p">),</span>
+                <span class="p">},</span><span class="c1">--//button</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+    <span class="p">},</span><span class="c1">--/pages</span>
+<span class="p">}</span>
+<span class="kr">return</span> <span class="n">mcmData</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Jeremy Haakma
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

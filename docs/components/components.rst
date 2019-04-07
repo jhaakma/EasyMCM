@@ -1,5 +1,5 @@
 ###################
-Components
+Component Types
 ###################
 
 .. toctree::
@@ -7,5 +7,5 @@ Components
    :glob:
 
    templates/*
-   pages/*
+   pages/Page
 
