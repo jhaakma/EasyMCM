@@ -21,26 +21,20 @@ The ``name`` field is the mod name, used to register the MCM,
 and is displayed in the mod list on the lefthand pane.
 
 class (Optional)
-################
-
-Can be set to custom template types. Defaults to "Template" for the 
-top level table in mcmData.
+    Can be set to custom template types. Defaults to "Template" for the 
+    top level table in mcmData.
 
 headerImagePath (Optional)
-##########################
-
-Set headerImagePath to display an image at the top of your menu. 
-Path is relative to ``Data Files/``
+    Set headerImagePath to display an image at the top of your menu. 
+    Path is relative to ``Data Files/``
 
 onClose (Optional)
-##################
+    Set this to a function which will be called when the menu is closed. 
+    Useful for saving variables, such as ``TableVariable``. For example::
 
-Set this to a function which will be called when the menu is closed. 
-Useful for saving variables, such as ``TableVariable``. For example::
-
-    onClose = (
-        function()
-            mwse.log("saving config to json")
-            mwse.saveConfig(configPath, localConfig)
-        end
-    ),
+        onClose = (
+            function()
+                mwse.log("saving config to json")
+                mwse.saveConfig(configPath, localConfig)
+            end
+        ),

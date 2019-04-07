@@ -88,7 +88,13 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#create-an-mcmdata-file">Create an mcmData file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-an-mcmdata-file">Create an mcmData file</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#registering-the-mcm">Registering the MCM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#try-out-your-mcm">Try out your MCM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#categories">Categories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -196,51 +202,229 @@ following:</p>
 <span class="kr">return</span> <span class="n">mcmData</span>
 </pre></div>
 </div>
-<p>Right now, our mcmData is simply a <a class="reference external" href="components/templates/template.html">Template</a>. A template is the top-level
+<p>Right now, our mcmData is simply a <a class="reference external" href="components/templates/Template.html">Template</a>. A template is the top-level
 component of an EasyMCM menu. The <code class="docutils literal notranslate"><span class="pre">name</span></code> field is the name of your mod.
 The <code class="docutils literal notranslate"><span class="pre">class</span></code> field is what we use to tell EasyMCM what kind of component
 we are using.
 Go ahead and change the <code class="docutils literal notranslate"><span class="pre">name</span></code> field to
 the name of your mod.</p>
 <p>Now we will add a <a class="reference external" href="components/pages/Page.html">Page</a> to the <code class="docutils literal notranslate"><span class="pre">pages</span></code> table in our templates:</p>
-<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">mcmData</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Simple MCM&quot;</span><span class="p">,</span>
-    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Template&quot;</span><span class="p">,</span>
-    <span class="n">pages</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="n">pages</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">{</span>
         <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Page 1&quot;</span><span class="p">,</span>
         <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Page&quot;</span><span class="p">,</span>
         <span class="n">components</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="p">}</span>
+    <span class="p">},</span>
 <span class="p">}</span>
-<span class="kr">return</span> <span class="n">mcmData</span>
 </pre></div>
 </div>
 <p>A <a class="reference external" href="components/pages/Page.html">Page</a> is a bit like a webpage in your browser. you can select pages
 by clicking on tabs at the top of your menu. The <code class="docutils literal notranslate"><span class="pre">name</span></code> field
 determines the text shown in the tab for this page. Rename it if you
 like.</p>
-<p>Now for the fun part! Let’s add our first <a class="reference external" href="components/settings/Setting.html">Setting</a>:</p>
+<p>We’re now ready to add our first setting! Add the following to the
+components table in your page:</p>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="n">components</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">{</span>
+        <span class="n">buttonText</span> <span class="o">=</span> <span class="s2">&quot;Reset Actors&quot;</span><span class="p">,</span>
+        <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Button&quot;</span><span class="p">,</span>
+        <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Button&quot;</span><span class="p">,</span>
+        <span class="n">inGameOnly</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="n">callback</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="kr">function</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+                <span class="n">tes3</span><span class="p">.</span><span class="n">messageBox</span><span class="p">(</span><span class="s2">&quot;Resetting Actors&quot;</span><span class="p">)</span>
+                <span class="n">tes3</span><span class="p">.</span><span class="n">runLegacyScript</span><span class="p">({</span><span class="n">command</span> <span class="o">=</span> <span class="s2">&quot;ResetActors&quot;</span><span class="p">})</span>
+            <span class="kr">end</span>
+        <span class="p">),</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here we have added a component called “Reset Actors”, defined
+with the “Button” class. We’ve set inGameOnly to true, so it
+can only be clicked while in the game. Finally, we’ve
+defined a <code class="docutils literal notranslate"><span class="pre">callback</span></code> which will run when the button is clicked.
+In this callback we are calling the ResetActors command in
+mwscript and showing a message box.</p>
+<p>We’ll come back to mcmData for now. Here is what it should look like so far:</p>
 <div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">mcmData</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Simple MCM&quot;</span><span class="p">,</span>
     <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Template&quot;</span><span class="p">,</span>
     <span class="n">pages</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Page 1&quot;</span><span class="p">,</span>
-        <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Page&quot;</span><span class="p">,</span>
-        <span class="n">components</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="p">}</span>
-                <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;An On Off Button&quot;</span><span class="p">,</span>
-                <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;OnOffButton&quot;</span><span class="p">,</span>
-                <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
-                    <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;variableID&quot;</span><span class="p">,</span>
-                    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;ConfigVariable&quot;</span><span class="p">,</span>
-                    <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;path_to_config_file&quot;</span><span class="p">,</span>
-                <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Page 1&quot;</span><span class="p">,</span>
+            <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Page&quot;</span><span class="p">,</span>
+            <span class="n">components</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="p">{</span>
+                    <span class="n">buttonText</span> <span class="o">=</span> <span class="s2">&quot;Reset Actors&quot;</span><span class="p">,</span>
+                    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Button&quot;</span><span class="p">,</span>
+                    <span class="n">inGameOnly</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+                    <span class="n">callback</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="kr">function</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+                            <span class="n">tes3</span><span class="p">.</span><span class="n">messageBox</span><span class="p">(</span><span class="s2">&quot;Resetting Actors&quot;</span><span class="p">)</span>
+                            <span class="n">tes3</span><span class="p">.</span><span class="n">runLegacyScript</span><span class="p">({</span><span class="n">command</span> <span class="o">=</span> <span class="s2">&quot;ResetActors&quot;</span><span class="p">})</span>
+                        <span class="kr">end</span>
+                    <span class="p">),</span>
+
+                <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
 <span class="kr">return</span> <span class="n">mcmData</span>
 </pre></div>
+</div>
+<p>Now let’s get it showing up in-game!</p>
+<div class="section" id="registering-the-mcm">
+<h4>Registering the MCM<a class="headerlink" href="#registering-the-mcm" title="Permalink to this headline">¶</a></h4>
+<p>Go back to your <code class="docutils literal notranslate"><span class="pre">main.lua</span></code> file. First thing we need to do is
+set a local variable <code class="docutils literal notranslate"><span class="pre">mcmDataPath</span></code> to point to the mcmData file
+we just made. It should be “{Your mod name}.mcmData”:</p>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">mcmDataPath</span> <span class="o">=</span> <span class="s2">&quot;myModName.mcmData&quot;</span>
+</pre></div>
+</div>
+<p>Now we want to register the MCM. Below where you’ve defined your
+mcmData path, type the following:</p>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">registerModConfig</span><span class="p">()</span>
+    <span class="kd">local</span> <span class="n">easyMCM</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;easyMCM.modConfig&quot;</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">mcmData</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="n">mcmDataPath</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">modData</span> <span class="o">=</span> <span class="n">easyMCM</span><span class="p">.</span><span class="n">registerModData</span><span class="p">(</span><span class="n">mcmData</span><span class="p">)</span>
+    <span class="n">mwse</span><span class="p">.</span><span class="n">registerModConfig</span><span class="p">(</span><span class="n">mcmData</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">modData</span><span class="p">)</span>
+<span class="kr">end</span>
+<span class="c1">--register mcm event</span>
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="s2">&quot;modConfigReady&quot;</span><span class="p">,</span> <span class="n">registerModConfig</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This code will register the <code class="docutils literal notranslate"><span class="pre">modConfigReady</span></code> event, which
+calls <code class="docutils literal notranslate"><span class="pre">registerModConfig()</span></code>. This function will get EasyMCM
+to create your MCM using mcmData.</p>
+<p>This is all very well and good, but let’s face it. Players are stupid,
+and they can’t follow instructions. This means they probably don’t have
+EasyMCM installed. Let’s change this a bit to send them a message telling
+them to install EasyMCM if they haven’t already. Replace the code with
+the following:</p>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">placeholderMCM</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+    <span class="n">element</span><span class="p">:</span><span class="n">createLabel</span><span class="p">{</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;This mod requires the EasyMCM library to be installed.&quot;</span><span class="p">}</span>
+    <span class="kd">local</span> <span class="n">link</span> <span class="o">=</span> <span class="n">element</span><span class="p">:</span><span class="n">createTextSelect</span><span class="p">{</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Go to EasyMCM Nexus Page&quot;</span><span class="p">}</span>
+    <span class="n">link</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">tes3ui</span><span class="p">.</span><span class="n">getPalette</span><span class="p">(</span><span class="s2">&quot;link_color&quot;</span><span class="p">)</span>
+    <span class="n">link</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">idle</span> <span class="o">=</span> <span class="n">tes3ui</span><span class="p">.</span><span class="n">getPalette</span><span class="p">(</span><span class="s2">&quot;link_color&quot;</span><span class="p">)</span>
+    <span class="n">link</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">over</span> <span class="o">=</span> <span class="n">tes3ui</span><span class="p">.</span><span class="n">getPalette</span><span class="p">(</span><span class="s2">&quot;link_over_color&quot;</span><span class="p">)</span>
+    <span class="n">link</span><span class="p">.</span><span class="n">widget</span><span class="p">.</span><span class="n">pressed</span> <span class="o">=</span> <span class="n">tes3ui</span><span class="p">.</span><span class="n">getPalette</span><span class="p">(</span><span class="s2">&quot;link_pressed_color&quot;</span><span class="p">)</span>
+    <span class="n">link</span><span class="p">:</span><span class="n">register</span><span class="p">(</span><span class="s2">&quot;mouseClick&quot;</span><span class="p">,</span> <span class="kr">function</span><span class="p">()</span>
+        <span class="nb">os.execute</span><span class="p">(</span><span class="s2">&quot;start https://www.nexusmods.com/morrowind/mods/46427?tab=files&quot;</span><span class="p">)</span>
+    <span class="kr">end</span><span class="p">)</span>
+<span class="kr">end</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">registerModConfig</span><span class="p">()</span>
+    <span class="kd">local</span> <span class="n">easyMCM</span> <span class="o">=</span> <span class="n">include</span><span class="p">(</span><span class="s2">&quot;easyMCM.modConfig&quot;</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">mcmData</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="n">mcmDataPath</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">modData</span> <span class="o">=</span> <span class="n">easyMCM</span> <span class="ow">and</span> <span class="n">easyMCM</span><span class="p">.</span><span class="n">registerModData</span><span class="p">(</span><span class="n">mcmData</span><span class="p">)</span>
+    <span class="n">mwse</span><span class="p">.</span><span class="n">registerModConfig</span><span class="p">(</span><span class="n">mcmData</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">modData</span> <span class="ow">or</span> <span class="p">{</span><span class="n">onCreate</span><span class="o">=</span><span class="n">placeholderMCM</span><span class="p">})</span>
+<span class="kr">end</span>
+<span class="c1">--register mcm event</span>
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="s2">&quot;modConfigReady&quot;</span><span class="p">,</span> <span class="n">registerModConfig</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here, instead of requiring EasyMCM, we simply include it, and if it doesn’t
+exist, we instead create a very simple MCM that provides a link to the
+EasyMCM Nexus page.</p>
+</div>
+<div class="section" id="try-out-your-mcm">
+<h4>Try out your MCM<a class="headerlink" href="#try-out-your-mcm" title="Permalink to this headline">¶</a></h4>
+<p>You have your mcmData, and it’s been registered, so it should be ready to
+go! You can now boot up the game, open the Mod Config and click on your mod,
+and you should see a button that says “Reset Actors”. It will be greyed out,
+but if you enter a game and then go back to the menu, you’ll be able to
+click it and reset the actors in the cell.</p>
+<p>Congratulations! You now have a working MCM. Let’s explore some more settings
+and features.</p>
+</div>
+<div class="section" id="categories">
+<h4>Categories<a class="headerlink" href="#categories" title="Permalink to this headline">¶</a></h4>
+<p>Let’s add another setting to our menu. Back in mcmData, in the <code class="docutils literal notranslate"><span class="pre">components</span></code>
+table, add the following, after the button:</p>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Time Scale&quot;</span><span class="p">,</span>
+    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Slider&quot;</span><span class="p">,</span>
+    <span class="n">min</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">max</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
+    <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;timeScale&quot;</span><span class="p">,</span>
+        <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Global&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">},</span>
+</pre></div>
+</div>
+<p>This is a <a class="reference external" href="components/settings/Slider.html">Slider</a>. Take note of the
+<code class="docutils literal notranslate"><span class="pre">variable</span></code> field. Here we have defined our variable as a “Global” class,
+which means it will point to a global in the game. The global we are pointing
+to is the vanilla global, “timeScale”, which determines how fast time passes
+in the game.</p>
+<p>There are many types of variables. Have a look at the Variables page for more
+information about what kind of variables you can use.</p>
+<p>We now have two settings, but they aren’t very related to each other.
+We should separate them into their own <a class="reference external" href="components/categories/Category.html">Categories</a>. Change your mcmData
+table so it looks like this:</p>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">mcmData</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Simple MCM&quot;</span><span class="p">,</span>
+    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Template&quot;</span><span class="p">,</span>
+    <span class="n">pages</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="p">{</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Page 1&quot;</span><span class="p">,</span>
+            <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Page&quot;</span><span class="p">,</span>
+            <span class="n">components</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="p">{</span>
+                    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Buttons&quot;</span><span class="p">,</span>
+                    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Category&quot;</span><span class="p">,</span>
+                    <span class="n">components</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="p">{</span>
+                            <span class="n">buttonText</span> <span class="o">=</span> <span class="s2">&quot;Reset Actors&quot;</span><span class="p">,</span>
+                            <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Button&quot;</span><span class="p">,</span>
+                            <span class="n">inGameOnly</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+                            <span class="n">callback</span> <span class="o">=</span> <span class="p">(</span>
+                                <span class="kr">function</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+                                    <span class="n">tes3</span><span class="p">.</span><span class="n">messageBox</span><span class="p">(</span><span class="s2">&quot;Resetting Actors&quot;</span><span class="p">)</span>
+                                    <span class="n">tes3</span><span class="p">.</span><span class="n">runLegacyScript</span><span class="p">({</span><span class="n">command</span> <span class="o">=</span> <span class="s2">&quot;ResetActors&quot;</span><span class="p">})</span>
+                                <span class="kr">end</span>
+                            <span class="p">),</span>
+                        <span class="p">},</span>
+                    <span class="p">}</span>
+                <span class="p">},</span>
+
+                <span class="p">{</span>
+                    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Sliders&quot;</span><span class="p">,</span>
+                    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Category&quot;</span><span class="p">,</span>
+                    <span class="n">components</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="p">{</span>
+                            <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Time Scale&quot;</span><span class="p">,</span>
+                            <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Slider&quot;</span><span class="p">,</span>
+                            <span class="n">min</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+                            <span class="n">max</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
+                            <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
+                                <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;timeScale&quot;</span><span class="p">,</span>
+                                <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Global&quot;</span><span class="p">,</span>
+                            <span class="p">},</span>
+                        <span class="p">},</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kr">return</span> <span class="n">mcmData</span>
+</pre></div>
+</div>
+<p>All we’ve done here is made two new categories, and placed our settings in
+each one. Now if you go back to your MCM, you will see your settings are
+indented, with labels above them. This is a good way to organise settings
+within a page.</p>
+</div>
+<div class="section" id="conclusion">
+<h4>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h4>
+<p>That’s pretty much the gist of EasyMCM! Have a look at the exampleModData.lua
+file for a comprehensive example of classes that you can use, and explore the
+documentation for details about how to use them.</p>
 </div>
 </div>
 </div>

@@ -15,18 +15,12 @@ your menu to selecta page to view. Pages must go in the
         }
 
 label
-#####
-
-The ``label`` field is displayed in the tab for that page at the top 
-of the menu.
+    The ``label`` field is displayed in the tab for that page at the top 
+    of the menu.
 
 class (Optional)
-################
-
-Can be set to custom page types. Defaults to "Page" for all entries in 
-the ``pages`` table in the template.
+    Can be set to custom page types. Defaults to "Page" for all entries in 
+    the ``pages`` table in the template.
 
 components
-#############
-
-A list of components to display
+    A list of components to display.

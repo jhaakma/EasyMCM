@@ -85,9 +85,6 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../components.html">Components</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Template</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#name">name</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#class-optional">class (Optional)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#headerimagepath-optional">headerImagePath (Optional)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#onclose-optional">onClose (Optional)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pages/Page.html">Page</a></li>
@@ -177,20 +174,14 @@ layout of the menu:</p>
 <h2>name<a class="headerlink" href="#name" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">name</span></code> field is the mod name, used to register the MCM,
 and is displayed in the mod list on the lefthand pane.</p>
-</div>
-<div class="section" id="class-optional">
-<h2>class (Optional)<a class="headerlink" href="#class-optional" title="Permalink to this headline">¶</a></h2>
-<p>Can be set to custom template types. Defaults to “Template” for the
+<dl>
+<dt>class (Optional)</dt><dd><p>Can be set to custom template types. Defaults to “Template” for the
 top level table in mcmData.</p>
-</div>
-<div class="section" id="headerimagepath-optional">
-<h2>headerImagePath (Optional)<a class="headerlink" href="#headerimagepath-optional" title="Permalink to this headline">¶</a></h2>
-<p>Set headerImagePath to display an image at the top of your menu.
+</dd>
+<dt>headerImagePath (Optional)</dt><dd><p>Set headerImagePath to display an image at the top of your menu.
 Path is relative to <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Files/</span></code></p>
-</div>
-<div class="section" id="onclose-optional">
-<h2>onClose (Optional)<a class="headerlink" href="#onclose-optional" title="Permalink to this headline">¶</a></h2>
-<p>Set this to a function which will be called when the menu is closed.
+</dd>
+<dt>onClose (Optional)</dt><dd><p>Set this to a function which will be called when the menu is closed.
 Useful for saving variables, such as <code class="docutils literal notranslate"><span class="pre">TableVariable</span></code>. For example:</p>
 <div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="n">onClose</span> <span class="o">=</span> <span class="p">(</span>
     <span class="kr">function</span><span class="p">()</span>
@@ -200,6 +191,8 @@ Useful for saving variables, such as <code class="docutils literal notranslate">
 <span class="p">),</span>
 </pre></div>
 </div>
+</dd>
+</dl>
 </div>
 </div>
 
