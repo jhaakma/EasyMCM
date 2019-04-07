@@ -88,13 +88,11 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#create-an-mcmdata-file">Create an mcmData file</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#registering-the-mcm">Registering the MCM</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#try-out-your-mcm">Try out your MCM</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#categories">Categories</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#conclusion">Conclusion</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#create-an-mcmdata-file">Create an mcmData file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#registering-the-mcm">Registering the MCM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#try-out-your-mcm">Try out your MCM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-categories">Adding Categories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a></li>
 </ul>
 </li>
 </ul>
@@ -275,8 +273,9 @@ mwscript and showing a message box.</p>
 </pre></div>
 </div>
 <p>Now let’s get it showing up in-game!</p>
+</div>
 <div class="section" id="registering-the-mcm">
-<h4>Registering the MCM<a class="headerlink" href="#registering-the-mcm" title="Permalink to this headline">¶</a></h4>
+<h3>Registering the MCM<a class="headerlink" href="#registering-the-mcm" title="Permalink to this headline">¶</a></h3>
 <p>Go back to your <code class="docutils literal notranslate"><span class="pre">main.lua</span></code> file. First thing we need to do is
 set a local variable <code class="docutils literal notranslate"><span class="pre">mcmDataPath</span></code> to point to the mcmData file
 we just made. It should be “{Your mod name}.mcmData”:</p>
@@ -330,7 +329,7 @@ exist, we instead create a very simple MCM that provides a link to the
 EasyMCM Nexus page.</p>
 </div>
 <div class="section" id="try-out-your-mcm">
-<h4>Try out your MCM<a class="headerlink" href="#try-out-your-mcm" title="Permalink to this headline">¶</a></h4>
+<h3>Try out your MCM<a class="headerlink" href="#try-out-your-mcm" title="Permalink to this headline">¶</a></h3>
 <p>You have your mcmData, and it’s been registered, so it should be ready to
 go! You can now boot up the game, open the Mod Config and click on your mod,
 and you should see a button that says “Reset Actors”. It will be greyed out,
@@ -339,8 +338,8 @@ click it and reset the actors in the cell.</p>
 <p>Congratulations! You now have a working MCM. Let’s explore some more settings
 and features.</p>
 </div>
-<div class="section" id="categories">
-<h4>Categories<a class="headerlink" href="#categories" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="adding-categories">
+<h3>Adding Categories<a class="headerlink" href="#adding-categories" title="Permalink to this headline">¶</a></h3>
 <p>Let’s add another setting to our menu. Back in mcmData, in the <code class="docutils literal notranslate"><span class="pre">components</span></code>
 table, add the following, after the button:</p>
 <div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
@@ -421,11 +420,10 @@ indented, with labels above them. This is a good way to organise settings
 within a page.</p>
 </div>
 <div class="section" id="conclusion">
-<h4>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h4>
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h3>
 <p>That’s pretty much the gist of EasyMCM! Have a look at the exampleModData.lua
 file for a comprehensive example of classes that you can use, and explore the
 documentation for details about how to use them.</p>
-</div>
 </div>
 </div>
 </div>

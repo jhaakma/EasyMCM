@@ -127,7 +127,7 @@ We'll come back to mcmData for now. Here is what it should look like so far::
 Now let's get it showing up in-game!
 
 Registering the MCM
-====================
+-----------------------
 
 Go back to your ``main.lua`` file. First thing we need to do is 
 set a local variable ``mcmDataPath`` to point to the mcmData file 
@@ -183,7 +183,7 @@ exist, we instead create a very simple MCM that provides a link to the
 EasyMCM Nexus page.
 
 Try out your MCM
-=================
+-----------------
 
 You have your mcmData, and it's been registered, so it should be ready to 
 go! You can now boot up the game, open the Mod Config and click on your mod, 
@@ -194,8 +194,8 @@ click it and reset the actors in the cell.
 Congratulations! You now have a working MCM. Let's explore some more settings 
 and features.
 
-Categories
-=============
+Adding Categories
+--------------------
 
 Let's add another setting to our menu. Back in mcmData, in the ``components`` 
 table, add the following, after the button::
@@ -279,7 +279,7 @@ indented, with labels above them. This is a good way to organise settings
 within a page. 
 
 Conclusion
-=============
+------------
 
 That's pretty much the gist of EasyMCM! Have a look at the exampleModData.lua 
 file for a comprehensive example of classes that you can use, and explore the 
