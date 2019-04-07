@@ -7,5 +7,6 @@ Component Types
    :glob:
 
    templates/*
-   pages/Page
+   pages/pages
+   settings/settings
 
