@@ -1,0 +1,9 @@
+{
+    "restructuredtext.confPath": "${workspaceFolder}",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "restructuredtext.linter.extraArgs": [
+        "--ignore D002",
+        "--ignore D004"
+    ]
+}

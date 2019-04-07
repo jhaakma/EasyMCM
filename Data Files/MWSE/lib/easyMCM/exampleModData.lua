@@ -1,20 +1,29 @@
-
+ 
 --[[
     Using EasyMCM
 ]]-- 
-    local mcmDataPath = "easyMCM.exampleModData"
+    --Add this to your main.lua
     --Change the mcmDataPath to point to your own mcmData file. 
-    --The rest you can leave exactly as it is
+    --The rest you can leave exactly as it is. 
+    local mcmDataPath = "easyMCM.exampleModData"
 
+    local function placeholderMCM(element)
+        element:createLabel{text="This mod requires the EasyMCM library to be installed."}
+        local link = element:createTextSelect{text="Go to EasyMCM Nexus Page"}
+        link.color = tes3ui.getPalette("link_color")
+        link.widget.idle = tes3ui.getPalette("link_color")
+        link.widget.over = tes3ui.getPalette("link_over_color")
+        link.widget.pressed = tes3ui.getPalette("link_pressed_color")
+        link:register("mouseClick", function()
+            os.execute("start https://www.nexusmods.com/morrowind/mods/46427?tab=files")
+        end)
+    end
+    
     local function registerModConfig()
-        --get easyMCM
-        local easyMCM = require("easyMCM.modConfig")
-        --get your MCM data file (put it somewhere in your own mod folder)
-        local mcmData = require (mcmDataPath)
-        --Create your MCM
-        local mcm = easyMCM.registerModData( mcmData ) 
-        --And register the config
-        mwse.registerModConfig(mcmData.name, mcm)
+        local easyMCM = include("easyMCM.modConfig")
+        local mcmData = require(mcmDataPath)
+        local modData = easyMCM and easyMCM.registerModData(mcmData)
+        mwse.registerModConfig(mcmData.name, modData or {onCreate=placeholderMCM})
     end
     --register mcm event
     event.register("modConfigReady", registerModConfig)

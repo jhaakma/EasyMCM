@@ -14,7 +14,6 @@ function Slider:updateValueLabel()
     self.elements.sliderValueLabel.text = ( ": " .. newValue )
 end
 
-
 function Slider:update()
     local newValue = self.elements.slider.widget.current + self.min
     self.variable.value = newValue
