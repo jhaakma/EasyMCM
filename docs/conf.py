@@ -53,4 +53,4 @@ html_static_path = ['_static']
 
 highlight_language = 'lua'
 
-master_doc ='index.rst'
+master_doc ='index'
