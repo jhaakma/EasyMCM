@@ -3,30 +3,30 @@ SideBarPage
 
 A SideBarPage is a special page type that includes an 
 additional container used to display mouseover 
-information for components::
+information for components
 
-        {   
-            label = "Page 1",
-            description = "Default sidebar text", --Optional
-            class = "SideBarPage",
-            components = {},
-            sidebarComponents = {}, --Optional, overwrites description
-        }
 
-label
+label (string)
     The ``label`` field is displayed in the tab for that page at the top 
     of the menu.
 
-class
+description (string)
+    Default sidebar text when no sidebarComponents is 
+    defined
+
+    *Optional.*
+
+class (string)
     The name of this class.
 
-components
+components (table)
     A list of components to display.
 
-sidebarComponents
+sidebarComponents (table)
     A list of components to display on the sidebar 
     when nothing is moused over. 
 
+    *Optional: Should have either this or a description.* 
 
 The Sidebar
 ------------
@@ -45,23 +45,10 @@ Example::
         description = "Default sidebar text",
         class = "SideBarPage",
         components = {
-            {
-                label = "An On Off Button",
-                description = "This will display in the sidebar when moused over"
-                class = "OnOffButton",
-                variable = {
-                    id = "variableID",
-                    class = "ConfigVariable",
-                    path = "path_to_config_file",
-                },
-            }
+            ...
         },
         sidebarComponents = {
-            {
-                label = "Info Label",
-                class = "Info",
-                text = "This will display instead of description.",
-            }
+            ...
         }
     }
 
