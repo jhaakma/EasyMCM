@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Variables &mdash; EasyMCM  documentation</title>
+  <title>Global &mdash; EasyMCM  documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="ConfigVariable" href="classes/ConfigVariable.html" />
+    <link rel="next" title="Variables" href="variables.html" />
     <link rel="prev" title="YesNoButton" href="../components/settings/classes/YesNoButton.html" /> 
 </head>
 
@@ -82,13 +82,12 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../components/components.html">Components</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Variables</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="classes/ConfigVariable.html">ConfigVariable</a></li>
-<li class="toctree-l2"><a class="reference internal" href="classes/Global.html">Global</a></li>
-<li class="toctree-l2"><a class="reference internal" href="classes/GlobalBoolean.html">GlobalBoolean</a></li>
-<li class="toctree-l2"><a class="reference internal" href="classes/Variable.html">Variable</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Global</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#global-subclasses">Global Subclasses:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fields">Fields</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="variables.html">Variables</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../example.html">MCMData Example</a></li>
 </ul>
@@ -136,13 +135,13 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Variables</li>
+      <li>Global</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/variables/variables.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/variables/Global.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -155,18 +154,40 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="variables">
-<h1>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h1>
-<p>Variable Classes:</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="classes/ConfigVariable.html">ConfigVariable</a></li>
-<li class="toctree-l1"><a class="reference internal" href="classes/Global.html">Global</a></li>
-<li class="toctree-l1"><a class="reference internal" href="classes/GlobalBoolean.html">GlobalBoolean</a></li>
-<li class="toctree-l1"><a class="reference internal" href="classes/Variable.html">Variable</a></li>
+  <div class="section" id="global">
+<h1>Global<a class="headerlink" href="#global" title="Permalink to this headline">¶</a></h1>
+<p>A vairable connected to a Morrowind Global.</p>
+<p>Base Class: <a class="reference external" href="Variable.html">Variable</a></p>
+<div class="section" id="global-subclasses">
+<h2>Global Subclasses:<a class="headerlink" href="#global-subclasses" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="GlobalBoolean.html">GlobalBoolean</a></p></li>
 </ul>
 </div>
-<p>Base class: <a class="reference external" href="classes/Variable.html">Variable</a></p>
+<div class="section" id="fields">
+<h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>class (string)</dt><dd><p>The name of this class.</p>
+</dd>
+<dt>id (string)</dt><dd><p>The id of the Morrowind Global.</p>
+</dd>
+<dt>inGameOnly (Boolean)</dt><dd><p>If true, the setting containing this variable will
+be disabled in the main menu.</p>
+</dd>
+<dt>restartRequired</dt><dd><p>If true, updating the setting containing this variable
+will notify the player to restart the game.</p>
+</dd>
+<dt>restartRequiredMessage</dt><dd><p>The message shown if restartRequired is triggered.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;timeScale&quot;</span><span class="p">,</span>
+    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Global&quot;</span><span class="p">,</span>
+<span class="p">},</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -177,7 +198,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="classes/ConfigVariable.html" class="btn btn-neutral float-right" title="ConfigVariable" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="variables.html" class="btn btn-neutral float-right" title="Variables" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../components/settings/classes/YesNoButton.html" class="btn btn-neutral float-left" title="YesNoButton" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

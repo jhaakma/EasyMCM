@@ -5,29 +5,25 @@ Tutorial
 This tutorial will demonstrate how to create a mod config menu 
 using EasyMCM. 
 
-****************
 Prerequisites
-****************
+==============
 
 MWSE
------
-
-MWSE dev version >2.1 is required for EasyMCM. 
-You can find documentation on MWSE 
-`here <https://mwse.readthedocs.io/en/latest/installation.html>`_.
+    MWSE dev version >2.1 is required for EasyMCM. 
+    You can find documentation on MWSE 
+    `here <https://mwse.readthedocs.io/en/latest/installation.html>`_.
 
 A Mod folder
---------------
+    If you have an MWSE mod you want to add a menu to, then great! 
+    If not, create a new folder in ``Data Files/MWSE/mods``, and 
+    call it the name of your mod. Then in your new folder, 
+    create a file called ``main.lua``. Leave it empty for 
+    now, we'll add to it in the next section. 
 
-If you have an MWSE mod you want to add a menu to, then great! 
-If not, create a new folder in ``Data Files/MWSE/mods``, and 
-call it the name of your mod. Then in your new folder, 
-create a file called ``main.lua``. Leave it empty for 
-now, we'll add to it in the next section. 
 
-****************
 Getting Started
-****************
+================
+
 
 Create an mcmData file
 --------------------------

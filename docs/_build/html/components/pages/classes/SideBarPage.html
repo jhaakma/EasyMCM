@@ -89,7 +89,6 @@
 <li class="toctree-l3"><a class="reference internal" href="Page.html">Page</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">SideBarPage</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#fields">Fields:</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#the-sidebar">The Sidebar</a></li>
 </ul>
 </li>
 </ul>
@@ -174,6 +173,12 @@
 <p>A SideBarPage is a special page type that includes an
 additional container used to display mouseover
 information for components</p>
+<p>Children in the <cite>components</cite> list can have a <cite>description</cite>
+text field, which will display in the sidebar when that component
+is moused over. When no component is moused over, the sidebar will
+either display the text in the <cite>description</cite> field of the page,
+unless the sidebarComponents table exists, in which case it will
+display those components instead.</p>
 <div class="section" id="fields">
 <h2>Fields:<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
 <dl>
@@ -193,15 +198,6 @@ when nothing is moused over.</p>
 <p><em>Optional: Should have either this or a description.</em></p>
 </dd>
 </dl>
-</div>
-<div class="section" id="the-sidebar">
-<h2>The Sidebar<a class="headerlink" href="#the-sidebar" title="Permalink to this headline">¶</a></h2>
-<p>Children in the <cite>components</cite> list can have a <cite>description</cite>
-text field, which will display in the sidebar when that component
-is moused over. When no component is moused over, the sidebar will
-either display the text in the <cite>description</cite> field of the page,
-unless the sidebarComponents table exists, in which case it will
-display those components instead.</p>
 <p>Example:</p>
 <div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;SideBar Page&quot;</span><span class="p">,</span>

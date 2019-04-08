@@ -5,6 +5,13 @@ A SideBarPage is a special page type that includes an
 additional container used to display mouseover 
 information for components
 
+Children in the `components` list can have a `description` 
+text field, which will display in the sidebar when that component 
+is moused over. When no component is moused over, the sidebar will 
+either display the text in the `description` field of the page, 
+unless the sidebarComponents table exists, in which case it will 
+display those components instead. 
+
 Fields:
 -------
 
@@ -30,15 +37,6 @@ sidebarComponents (table)
 
     *Optional: Should have either this or a description.* 
 
-The Sidebar
-------------
-
-Children in the `components` list can have a `description` 
-text field, which will display in the sidebar when that component 
-is moused over. When no component is moused over, the sidebar will 
-either display the text in the `description` field of the page, 
-unless the sidebarComponents table exists, in which case it will 
-display those components instead. 
 
 Example::
 

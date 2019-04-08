@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Categories &mdash; EasyMCM  documentation</title>
+  <title>GlobalBoolean &mdash; EasyMCM  documentation</title>
   
 
   
@@ -35,8 +35,8 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Category" href="classes/Category.html" />
-    <link rel="prev" title="SideBarPage" href="../pages/classes/SideBarPage.html" /> 
+    <link rel="next" title="Variable" href="Variable.html" />
+    <link rel="prev" title="Global" href="Global.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -81,18 +81,17 @@
             
             
               <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../components.html">Components</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../templates/templates.html">Templates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../pages/pages.html">Pages</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Categories</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="classes/Category.html">Category</a></li>
-<li class="toctree-l3"><a class="reference internal" href="classes/SideBySideBlock.html">SideBySideBlock</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../components/components.html">Components</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../variables.html">Variables</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ConfigVariable.html">ConfigVariable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Global.html">Global</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">GlobalBoolean</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fields">Fields</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../settings/settings.html">Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Variable.html">Variable</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../variables/variables.html">Variables</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../example.html">MCMData Example</a></li>
 </ul>
@@ -140,15 +139,15 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../components.html">Components</a> &raquo;</li>
+          <li><a href="../variables.html">Variables</a> &raquo;</li>
         
-      <li>Categories</li>
+      <li>GlobalBoolean</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../_sources/components/categories/categories.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/variables/classes/GlobalBoolean.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -161,15 +160,47 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="categories">
-<h1>Categories<a class="headerlink" href="#categories" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="classes/Category.html">Category</a></li>
-<li class="toctree-l1"><a class="reference internal" href="classes/SideBySideBlock.html">SideBySideBlock</a></li>
-</ul>
+  <div class="section" id="globalboolean">
+<h1>GlobalBoolean<a class="headerlink" href="#globalboolean" title="Permalink to this headline">¶</a></h1>
+<p>A variable connected to a Morrowind Global.
+Treats 0 as false and &gt;=1 as true.</p>
+<p>Base Class: <a class="reference external" href="Global.html">Global</a></p>
+<div class="section" id="fields">
+<h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>class (string)</dt><dd><p>The name of this class.</p>
+</dd>
+<dt>id (string)</dt><dd><p>The id of the Morrowind Global.</p>
+</dd>
+</dl>
+<p>inGameOnly (boolean)</p>
+<blockquote>
+<div><p>If true, the setting containing this variable will
+be disabled in the main menu.</p>
+<p><em>Optional.</em></p>
+</div></blockquote>
+<dl>
+<dt>restartRequired</dt><dd><p>If true, updating the setting containing this variable
+will notify the player to restart the game.</p>
+<p><em>Optional.</em></p>
+</dd>
+<dt>restartRequiredMessage</dt><dd><p>The message shown if restartRequired is triggered.</p>
+<p><em>Optional.</em></p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Button Setting&quot;</span><span class="p">,</span>
+    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;YesNoButton&quot;</span><span class="p">,</span>
+    <span class="n">restartRequired</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;HeartDestroyed&quot;</span><span class="p">,</span>
+        <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;GlobalBoolean&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">},</span>
+</pre></div>
 </div>
-<p>Base class: <a class="reference external" href="classes/Category.html">Category</a></p>
+</div>
 </div>
 
 
@@ -180,10 +211,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="classes/Category.html" class="btn btn-neutral float-right" title="Category" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Variable.html" class="btn btn-neutral float-right" title="Variable" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../pages/classes/SideBarPage.html" class="btn btn-neutral float-left" title="SideBarPage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="Global.html" class="btn btn-neutral float-left" title="Global" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

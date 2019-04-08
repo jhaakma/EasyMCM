@@ -24,7 +24,7 @@ Fields:
 -------
 
 class (string)
-    The name of this class
+    The name of this class.
 
 label (string)
     Text shown next to the button.
@@ -36,7 +36,8 @@ description
 
     *Optional.*
 
-allowCombinations (Boolean)
+allowCombinations (boolean)
+
     If true, keybinds can allow combos of Shift+x, Alt+x or Ctrl+x
 
     *Optional.*
@@ -44,21 +45,28 @@ allowCombinations (Boolean)
 variable (`Variable`_)
     The Boolean variable being toggled.
 
-inGameOnly (Boolean)
+inGameOnly (boolean)
+
     If true, this setting is disabled in main menu.
 
     *Optional.*
 
-restartRequired (Boolean)
+restartRequired (boolean)
+
     If true, a message will display prompting the user 
     to restart their game when the setting changes. 
+
+    *Optional.*
+
+restartRequiredMessage
+    The message shown if restartRequired is triggered.
 
     *Optional.*
 
 callback (function)
     Function that is called when the button is pressed.
 
-*Optional.*
+    *Optional.*
 
 
 Example::

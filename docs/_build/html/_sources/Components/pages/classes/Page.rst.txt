@@ -10,6 +10,13 @@ pages table in your template.
 The default page is a simple container, it is recommended you use 
 the `SideBarPage`_ for basic settings.
 
+Page Subclasses:
+-----------------
+* `SideBarPage`_
+* `FilterPage`_
+* `ExclusionsPage`_
+
+
 Fields:
 -------
 
@@ -36,3 +43,5 @@ Example::
 
 
 .. _`SideBarPage`: SideBarPage.html
+.. _`FilterPage`: FilterPage.html
+.. _`ExclusionsPage`: ExclusionsPage.html
