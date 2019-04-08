@@ -1,0 +1,11 @@
+Setting
+=============
+
+A setting is a component that the player interacts with 
+in some way. Interacting with a setting may update a 
+`Variable`_, or it may call a custom function. 
+
+The Setting class does nothing on it's own, but acts 
+as the base class or other settings.
+
+.. _`Variable`: ../../../variables/Variable.html

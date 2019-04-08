@@ -1,7 +1,7 @@
 Pages
 ==============
 
-Page Types:
+Page Classes:
 
 .. toctree::
    :maxdepth: 1

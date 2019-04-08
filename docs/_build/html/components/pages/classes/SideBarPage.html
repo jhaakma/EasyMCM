@@ -34,7 +34,9 @@
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Categories" href="../../categories/categories.html" />
+    <link rel="prev" title="Page" href="Page.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -78,9 +80,26 @@
               
             
             
-              <ul>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../components.html">Component Types</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../templates/Template.html">Template</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../pages.html">Pages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ExclusionsPage.html">ExclusionsPage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FilterPage.html">FilterPage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Page.html">Page</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">SideBarPage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#fields">Fields:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-sidebar">The Sidebar</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../categories/categories.html">Categories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../settings/settings.html">Settings</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../components.html">Component Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../example.html">MCMData Example</a></li>
 </ul>
 
             
@@ -126,6 +145,10 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
+          <li><a href="../../components.html">Component Types</a> &raquo;</li>
+        
+          <li><a href="../pages.html">Pages</a> &raquo;</li>
+        
       <li>SideBarPage</li>
     
     
@@ -150,15 +173,17 @@
 <p>A SideBarPage is a special page type that includes an
 additional container used to display mouseover
 information for components</p>
+<div class="section" id="fields">
+<h2>Fields:<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
 <dl>
+<dt>class (string)</dt><dd><p>The name of this class.</p>
+</dd>
 <dt>label (string)</dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">label</span></code> field is displayed in the tab for that page at the top
 of the menu.</p>
 </dd>
 <dt>description (string)</dt><dd><p>Default sidebar text when no sidebarComponents is
 defined</p>
 <p><em>Optional.</em></p>
-</dd>
-<dt>class (string)</dt><dd><p>The name of this class.</p>
 </dd>
 <dt>components (table)</dt><dd><p>A list of components to display.</p>
 </dd>
@@ -167,6 +192,7 @@ when nothing is moused over.</p>
 <p><em>Optional: Should have either this or a description.</em></p>
 </dd>
 </dl>
+</div>
 <div class="section" id="the-sidebar">
 <h2>The Sidebar<a class="headerlink" href="#the-sidebar" title="Permalink to this headline">¶</a></h2>
 <p>Children in the <code class="docutils literal notranslate"><span class="pre">components</span></code> list can have a <code class="docutils literal notranslate"><span class="pre">description</span></code>
@@ -197,6 +223,15 @@ display those components instead.</p>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../categories/categories.html" class="btn btn-neutral float-right" title="Categories" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Page.html" class="btn btn-neutral float-left" title="Page" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

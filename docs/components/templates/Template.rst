@@ -5,13 +5,16 @@ Template
 ``Template`` is the top level component in mcmData. It determines the overall 
 layout of the menu
 
-name
-    The ``name`` field is the mod name, used to register the MCM, 
-    and is displayed in the mod list on the lefthand pane.
+Fields:
+-------
 
 class (Optional)
     Can be set to custom template types. Defaults to "Template" for the 
     top level table in mcmData.
+
+name
+    The ``name`` field is the mod name, used to register the MCM, 
+    and is displayed in the mod list on the lefthand pane.
 
 headerImagePath (Optional)
     Set headerImagePath to display an image at the top of your menu. 

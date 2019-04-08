@@ -1,7 +1,7 @@
 Categories
 ==============
 
-Category Types:
+Category Classes:
 
 .. toctree::
    :maxdepth: 1
@@ -12,4 +12,4 @@ Category Types:
 Base class: `Category`_
 
 
-.. _`Category`: Category.html
+.. _`Category`: classes/Category.html

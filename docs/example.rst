@@ -405,7 +405,7 @@ you can view the whole menu in-game::
                 filters = {
 
                     --Filter by plugins to exclude entire mods
-                    --[[{
+                    {
                         label = "Plugins",
                         type = "Plugin",
                     },
@@ -445,7 +445,7 @@ you can view the whole menu in-game::
                         label = "Statics",
                         type = "Object",
                         objectType = tes3.objectType.static,
-                    },]]--
+                    },
                     --Finally, define your own callback for a purely custom filter
                     {
                         label = "GMSTs",

@@ -6,6 +6,12 @@ The components container is a vertical scroll pane with a searchbar.
 This is expecially useful if you have a large or unknown number 
 of settings. 
 
+Fields:
+-------
+
+class (string)
+    The name of this class.
+
 label (string)
     The ``label`` field is displayed in the tab for that page at the top 
     of the menu.
@@ -15,9 +21,6 @@ description (string)
     defined
 
     *Optional.*
-
-class (string)
-    The name of this class.
 
 components (table)
     A list of components to display.

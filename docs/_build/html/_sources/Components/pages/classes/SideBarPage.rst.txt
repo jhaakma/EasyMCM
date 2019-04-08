@@ -5,6 +5,11 @@ A SideBarPage is a special page type that includes an
 additional container used to display mouseover 
 information for components
 
+Fields:
+-------
+
+class (string)
+    The name of this class.
 
 label (string)
     The ``label`` field is displayed in the tab for that page at the top 
@@ -15,9 +20,6 @@ description (string)
     defined
 
     *Optional.*
-
-class (string)
-    The name of this class.
 
 components (table)
     A list of components to display.

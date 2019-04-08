@@ -34,7 +34,8 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Tutorial" href="tutorial.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -78,9 +79,10 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="components/components.html">Component Types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MCMData Example</a></li>
 </ul>
 
             
@@ -132,7 +134,7 @@
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/Example.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/example.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -549,47 +551,47 @@ you can view the whole menu in-game:</p>
             <span class="n">filters</span> <span class="o">=</span> <span class="p">{</span>
 
                 <span class="c1">--Filter by plugins to exclude entire mods</span>
-                <span class="cm">--[[{</span>
-<span class="cm">                    label = &quot;Plugins&quot;,</span>
-<span class="cm">                    type = &quot;Plugin&quot;,</span>
-<span class="cm">                },</span>
-<span class="cm">                --Filter by object type</span>
-<span class="cm">                {</span>
-<span class="cm">                    label = &quot;Ingredients&quot;,</span>
-<span class="cm">                    type = &quot;Object&quot;,</span>
-<span class="cm">                    objectType = tes3.objectType.ingredient,</span>
-<span class="cm">                },</span>
+                <span class="p">{</span>
+                    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Plugins&quot;</span><span class="p">,</span>
+                    <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Plugin&quot;</span><span class="p">,</span>
+                <span class="p">},</span>
+                <span class="c1">--Filter by object type</span>
+                <span class="p">{</span>
+                    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Ingredients&quot;</span><span class="p">,</span>
+                    <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Object&quot;</span><span class="p">,</span>
+                    <span class="n">objectType</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">objectType</span><span class="p">.</span><span class="n">ingredient</span><span class="p">,</span>
+                <span class="p">},</span>
 
-<span class="cm">                --Define object filters for more specific filters</span>
-<span class="cm">                {</span>
-<span class="cm">                    label = &quot;Helmets&quot;,</span>
-<span class="cm">                    type = &quot;Object&quot;,</span>
-<span class="cm">                    objectType = tes3.objectType.armor,</span>
-<span class="cm">                    objectFilters = {</span>
-<span class="cm">                        slot = tes3.armorSlot.helmet</span>
-<span class="cm">                    }</span>
-<span class="cm">                },</span>
-<span class="cm">                {</span>
-<span class="cm">                    label = &quot;Blunt Weapons&quot;,</span>
-<span class="cm">                    type = &quot;Object&quot;,</span>
-<span class="cm">                    objectType = tes3.objectType.weapon,</span>
-<span class="cm">                    objectFilters = {</span>
-<span class="cm">                        type = tes3.weaponType.bluntOneHand</span>
-<span class="cm">                    }</span>
-<span class="cm">                },</span>
-<span class="cm">                {</span>
-<span class="cm">                    label = &quot;Essential NPCs&quot;,</span>
-<span class="cm">                    type = &quot;Object&quot;,</span>
-<span class="cm">                    objectType = tes3.objectType.npc,</span>
-<span class="cm">                    objectFilters = {</span>
-<span class="cm">                        isEssential = true</span>
-<span class="cm">                    }</span>
-<span class="cm">                },</span>
-<span class="cm">                {</span>
-<span class="cm">                    label = &quot;Statics&quot;,</span>
-<span class="cm">                    type = &quot;Object&quot;,</span>
-<span class="cm">                    objectType = tes3.objectType.static,</span>
-<span class="cm">                },]]</span><span class="c1">--</span>
+                <span class="c1">--Define object filters for more specific filters</span>
+                <span class="p">{</span>
+                    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Helmets&quot;</span><span class="p">,</span>
+                    <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Object&quot;</span><span class="p">,</span>
+                    <span class="n">objectType</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">objectType</span><span class="p">.</span><span class="n">armor</span><span class="p">,</span>
+                    <span class="n">objectFilters</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="n">slot</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">armorSlot</span><span class="p">.</span><span class="n">helmet</span>
+                    <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Blunt Weapons&quot;</span><span class="p">,</span>
+                    <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Object&quot;</span><span class="p">,</span>
+                    <span class="n">objectType</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">objectType</span><span class="p">.</span><span class="n">weapon</span><span class="p">,</span>
+                    <span class="n">objectFilters</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="nb">type</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">weaponType</span><span class="p">.</span><span class="n">bluntOneHand</span>
+                    <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Essential NPCs&quot;</span><span class="p">,</span>
+                    <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Object&quot;</span><span class="p">,</span>
+                    <span class="n">objectType</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">objectType</span><span class="p">.</span><span class="n">npc</span><span class="p">,</span>
+                    <span class="n">objectFilters</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="n">isEssential</span> <span class="o">=</span> <span class="kc">true</span>
+                    <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Statics&quot;</span><span class="p">,</span>
+                    <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Object&quot;</span><span class="p">,</span>
+                    <span class="n">objectType</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">objectType</span><span class="p">.</span><span class="n">static</span><span class="p">,</span>
+                <span class="p">},</span>
                 <span class="c1">--Finally, define your own callback for a purely custom filter</span>
                 <span class="p">{</span>
                     <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;GMSTs&quot;</span><span class="p">,</span>
@@ -664,6 +666,13 @@ you can view the whole menu in-game:</p>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="tutorial.html" class="btn btn-neutral float-left" title="Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
