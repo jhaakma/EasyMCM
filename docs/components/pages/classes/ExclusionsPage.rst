@@ -14,11 +14,11 @@ Fields:
 -------
 
 class (string)
-    Defaults to "Page" for all entries in the ``pages`` 
+    Defaults to "Page" for all entries in the pages 
     table in the template.
 
 label (string)
-    The ``label`` field is displayed in the tab for that page at the top 
+    The label field is displayed in the tab for that page at the top 
     of the menu.
 
 description (string)

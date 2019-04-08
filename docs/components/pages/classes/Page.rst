@@ -14,7 +14,7 @@ Fields:
 -------
 
 class (string)
-    Defaults to "Page" for all entries in the ``pages`` 
+    Defaults to "Page" for all entries in the pages 
     table in the template.
 
 label (string)

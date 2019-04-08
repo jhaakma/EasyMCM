@@ -13,7 +13,7 @@ class (string)
     The name of this class.
 
 label (string)
-    The ``label`` field is displayed in the tab for that page at the top 
+    The label field is displayed in the tab for that page at the top 
     of the menu.
 
 description (string)

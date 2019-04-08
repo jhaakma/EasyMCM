@@ -2,7 +2,7 @@
 Template
 ==========
 
-``Template`` is the top level component in mcmData. It determines the overall 
+A Template is the top level component in mcmData. It determines the overall 
 layout of the menu
 
 Fields:
