@@ -61,4 +61,4 @@ Example::
 .. _`Button`: Button.html
 .. _`Setting`: ../settings.html
 .. _`SideBarPage`: ../../pages/SideBarPage.html
-.. _`Variable`: ../../../variables/Variable.html
+.. _`Variable`: ../../../variables/classes/Variable.html

@@ -11,4 +11,4 @@ in some way. Interacting with a setting may update a
 
    classes/*
 
-.. _`Variable`: ../../../variables/Variable.html
+.. _`Variable`: ../../variables/classes/Variable.html
