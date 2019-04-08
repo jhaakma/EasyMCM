@@ -6,8 +6,8 @@ Components
    :maxdepth: 2
    :glob:
 
-   templates/Template
-   pages/pages
-   categories/categories
-   settings/settings
+   templates/*
+   pages/*
+   categories/*
+   settings/*
 
