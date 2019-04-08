@@ -21,7 +21,7 @@ class (string)
 id (string)
     Key of entry used on the Player data table. 
 
-path
+path (string)
     Path to ``id`` relative to ``tes3.player.data``. 
     It's best to at least store all your PlayerData fields in 
     a table named after your mod to avoid conflicts. 

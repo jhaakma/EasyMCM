@@ -30,10 +30,10 @@ Fields
 class (string)
     The name of this class.
 
-id
+id (string)
     Key in the config file used to store the variable.
 
-table
+table (table)
     The table to save the data to.
 
 defaultSetting(any)

@@ -31,7 +31,6 @@ callback (function)
     *Optional.*
 
 inGameOnly (boolean)
-
     If true, this setting is disabled in main menu.
 
     *Optional.*

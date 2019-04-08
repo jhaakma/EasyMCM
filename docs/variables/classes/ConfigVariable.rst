@@ -21,10 +21,10 @@ Fields
 class (string)
     The name of this class.
 
-id
+id (string)
     Key in the config file used to store the variable.
 
-path
+path (string)
     Location of the config file relative to ``MWSE/config/``.
 
 defaultSetting(any)
