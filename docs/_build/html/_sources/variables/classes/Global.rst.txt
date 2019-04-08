@@ -21,7 +21,6 @@ id (string)
     The id of the Morrowind Global.
 
 inGameOnly (boolean)
-
     If true, the setting containing this variable will 
     be disabled in the main menu.
 

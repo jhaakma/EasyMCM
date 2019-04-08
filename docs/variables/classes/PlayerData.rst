@@ -30,18 +30,18 @@ defaultSetting (any)
     If ``id`` does not exist in on the playerData field, it will 
     be initialised to this value.
 
-    *Optional*
+    *Optional.*
 
 restartRequired (boolean)
     If true, updating the setting containing this variable 
     will notify the player to restart the game. 
 
-    *Optional*
+    *Optional.*
 
 restartRequiredMessage (string)
     The message shown if restartRequired is triggered.
 
-    *Optional*
+    *Optional.*
 
 Example::
 

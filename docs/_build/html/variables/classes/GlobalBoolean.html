@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Variable" href="Variable.html" />
+    <link rel="next" title="PlayerData" href="PlayerData.html" />
     <link rel="prev" title="Global" href="Global.html" /> 
 </head>
 
@@ -89,6 +89,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#fields">Fields</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="PlayerData.html">PlayerData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TableVariable.html">TableVariable</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Variable.html">Variable</a></li>
 </ul>
 </li>
@@ -167,19 +169,15 @@ Treats 0 as false and &gt;=1 as true.</p>
 <p>Base Class: <a class="reference external" href="Global.html">Global</a></p>
 <div class="section" id="fields">
 <h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
-<dl class="simple">
+<dl>
 <dt>class (string)</dt><dd><p>The name of this class.</p>
 </dd>
 <dt>id (string)</dt><dd><p>The id of the Morrowind Global.</p>
 </dd>
-</dl>
-<p>inGameOnly (boolean)</p>
-<blockquote>
-<div><p>If true, the setting containing this variable will
+<dt>inGameOnly (boolean)</dt><dd><p>If true, the setting containing this variable will
 be disabled in the main menu.</p>
 <p><em>Optional.</em></p>
-</div></blockquote>
-<dl>
+</dd>
 <dt>restartRequired</dt><dd><p>If true, updating the setting containing this variable
 will notify the player to restart the game.</p>
 <p><em>Optional.</em></p>
@@ -211,7 +209,7 @@ will notify the player to restart the game.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Variable.html" class="btn btn-neutral float-right" title="Variable" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="PlayerData.html" class="btn btn-neutral float-right" title="PlayerData" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="Global.html" class="btn btn-neutral float-left" title="Global" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

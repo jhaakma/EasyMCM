@@ -38,18 +38,18 @@ inGameOnly (boolean)
     If true, the setting containing this variable will 
     be disabled in the main menu.
 
-    *Optional*
+    *Optional.*
 
 restartRequired (boolean)
     If true, updating the setting containing this variable 
     will notify the player to restart the game. 
 
-    *Optional*
+    *Optional.*
 
 restartRequiredMessage (string)
     The message shown if restartRequired is triggered.
 
-    *Optional*
+    *Optional.*
 
 Example::
 
