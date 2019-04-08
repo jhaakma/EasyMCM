@@ -1,25 +1,15 @@
-Variable
-==========
+PlayerData
+===========
 
-A Variable is an object which determines the type and location 
-of the value being set by a setting. It could be a field on a 
-table, or inside a config file, etc. 
+Stores the variable on the Player reference. This results 
+in the value of the variable being local to the loaded save file. 
+If users may want different values set for different games, this 
+is a good Variable to use.
 
-The Variable base class can be used for custom variables by 
-defining the `get` and `set` fields to retrieve and save the 
-value to a specified location. Variable subclasses exist for 
-default behaviour.
+Settings using PlayerData are in-game only by default, as the 
+Player reference can only be accessed while a game is loaded. 
 
-Variable Subclasses:
----------------------
-
-* `Global`_
-
-* `PlayerData`_
-
-* `ConfigVariable`_
-
-* `TableVariable`_
+Parent Class: `Variable`_
 
 
 Fields
@@ -28,15 +18,17 @@ Fields
 class (string)
     The name of this class.
 
-get (function)
-    Function to retrieve the variable value.
+id (string)
+    Key of entry used on the Player data table. 
 
-set (function)
-    Function to save the variable value.
+path
+    Path to ``id`` relative to ``tes3.player.data``. 
+    It's best to at least store all your PlayerData fields in 
+    a table named after your mod to avoid conflicts. 
 
-inGameOnly (boolean)
-    If true, the setting containing this variable will 
-    be disabled in the main menu.
+defaultSetting (any)
+    If ``id`` does not exist in on the playerData field, it will 
+    be initialised to this value.
 
     *Optional*
 
@@ -75,3 +67,4 @@ Example::
 .. _`PlayerData`: PlayerData.html
 .. _`ConfigVariable`: ConfigVariable.html
 .. _`TableVariable`: TableVariable.html
+.. _`Variable`: Variable.html

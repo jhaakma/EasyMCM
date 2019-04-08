@@ -89,6 +89,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="Global.html">Global</a></li>
 <li class="toctree-l2"><a class="reference internal" href="GlobalBoolean.html">GlobalBoolean</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TableVariable.html">TableVariable</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Variable.html">Variable</a></li>
 </ul>
 </li>
@@ -164,7 +165,8 @@
 <h1>ConfigVariable<a class="headerlink" href="#configvariable" title="Permalink to this headline">¶</a></h1>
 <p>A ConfigVariable fetches a json file from a given
 path and stores the variable in the <code class="docutils literal notranslate"><span class="pre">id</span></code> field
-in that file.</p>
+in that file. If no config file of that name exists yet,
+it will create it.</p>
 <p>The ConfigVariable saves to the config file every time the setting
 is updated. It is generally recommended you use <a class="reference external" href="TableVariable.html">TableVariable</a> and
 save the config in the onClose() function in the template instead,
@@ -173,20 +175,27 @@ such as with sliders.</p>
 <p>Parent Class: <a class="reference external" href="Variable.html">Variable</a></p>
 <div class="section" id="fields">
 <h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
-<dl class="simple">
+<dl>
 <dt>class (string)</dt><dd><p>The name of this class.</p>
 </dd>
 <dt>id</dt><dd><p>Key in the config file used to store the variable.</p>
 </dd>
 <dt>path</dt><dd><p>Location of the config file relative to <code class="docutils literal notranslate"><span class="pre">MWSE/config/</span></code>.</p>
 </dd>
+<dt>defaultSetting(any)</dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">id</span></code> does not exist in the config file, it will
+be initialised to this value.</p>
+<p><em>Optional</em></p>
+</dd>
 <dt>inGameOnly (boolean)</dt><dd><p>If true, the setting containing this variable will
 be disabled in the main menu.</p>
+<p><em>Optional</em></p>
 </dd>
 <dt>restartRequired (boolean)</dt><dd><p>If true, updating the setting containing this variable
 will notify the player to restart the game.</p>
+<p><em>Optional</em></p>
 </dd>
 <dt>restartRequiredMessage (string)</dt><dd><p>The message shown if restartRequired is triggered.</p>
+<p><em>Optional</em></p>
 </dd>
 </dl>
 <p>Example:</p>

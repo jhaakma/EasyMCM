@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Variable &mdash; EasyMCM  documentation</title>
+  <title>PlayerData &mdash; EasyMCM  documentation</title>
   
 
   
@@ -35,8 +35,8 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Tutorial" href="../../tutorial.html" />
-    <link rel="prev" title="TableVariable" href="TableVariable.html" /> 
+    <link rel="next" title="TableVariable" href="TableVariable.html" />
+    <link rel="prev" title="GlobalBoolean" href="GlobalBoolean.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,13 +86,12 @@
 <li class="toctree-l2"><a class="reference internal" href="ConfigVariable.html">ConfigVariable</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Global.html">Global</a></li>
 <li class="toctree-l2"><a class="reference internal" href="GlobalBoolean.html">GlobalBoolean</a></li>
-<li class="toctree-l2"><a class="reference internal" href="PlayerData.html">PlayerData</a></li>
-<li class="toctree-l2"><a class="reference internal" href="TableVariable.html">TableVariable</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Variable</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#variable-subclasses">Variable Subclasses:</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">PlayerData</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#fields">Fields</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="TableVariable.html">TableVariable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Variable.html">Variable</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
@@ -144,13 +143,13 @@
         
           <li><a href="../variables.html">Variables</a> &raquo;</li>
         
-      <li>Variable</li>
+      <li>PlayerData</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../_sources/variables/classes/Variable.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/variables/classes/PlayerData.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -163,35 +162,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="variable">
-<h1>Variable<a class="headerlink" href="#variable" title="Permalink to this headline">¶</a></h1>
-<p>A Variable is an object which determines the type and location
-of the value being set by a setting. It could be a field on a
-table, or inside a config file, etc.</p>
-<p>The Variable base class can be used for custom variables by
-defining the <cite>get</cite> and <cite>set</cite> fields to retrieve and save the
-value to a specified location. Variable subclasses exist for
-default behaviour.</p>
-<div class="section" id="variable-subclasses">
-<h2>Variable Subclasses:<a class="headerlink" href="#variable-subclasses" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="Global.html">Global</a></p></li>
-<li><p><a class="reference external" href="PlayerData.html">PlayerData</a></p></li>
-<li><p><a class="reference external" href="ConfigVariable.html">ConfigVariable</a></p></li>
-<li><p><a class="reference external" href="TableVariable.html">TableVariable</a></p></li>
-</ul>
-</div>
+  <div class="section" id="playerdata">
+<h1>PlayerData<a class="headerlink" href="#playerdata" title="Permalink to this headline">¶</a></h1>
+<p>Stores the variable on the Player reference. This results
+in the value of the variable being local to the loaded save file.
+If users may want different values set for different games, this
+is a good Variable to use.</p>
+<p>Settings using PlayerData are in-game only by default, as the
+Player reference can only be accessed while a game is loaded.</p>
+<p>Parent Class: <a class="reference external" href="Variable.html">Variable</a></p>
 <div class="section" id="fields">
 <h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
 <dl>
 <dt>class (string)</dt><dd><p>The name of this class.</p>
 </dd>
-<dt>get (function)</dt><dd><p>Function to retrieve the variable value.</p>
+<dt>id (string)</dt><dd><p>Key of entry used on the Player data table.</p>
 </dd>
-<dt>set (function)</dt><dd><p>Function to save the variable value.</p>
+<dt>path</dt><dd><p>Path to <code class="docutils literal notranslate"><span class="pre">id</span></code> relative to <code class="docutils literal notranslate"><span class="pre">tes3.player.data</span></code>.
+It’s best to at least store all your PlayerData fields in
+a table named after your mod to avoid conflicts.</p>
 </dd>
-<dt>inGameOnly (boolean)</dt><dd><p>If true, the setting containing this variable will
-be disabled in the main menu.</p>
+<dt>defaultSetting (any)</dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">id</span></code> does not exist in on the playerData field, it will
+be initialised to this value.</p>
 <p><em>Optional</em></p>
 </dd>
 <dt>restartRequired (boolean)</dt><dd><p>If true, updating the setting containing this variable
@@ -231,10 +223,10 @@ will notify the player to restart the game.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../tutorial.html" class="btn btn-neutral float-right" title="Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="TableVariable.html" class="btn btn-neutral float-right" title="TableVariable" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="TableVariable.html" class="btn btn-neutral float-left" title="TableVariable" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="GlobalBoolean.html" class="btn btn-neutral float-left" title="GlobalBoolean" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

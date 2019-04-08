@@ -1,16 +1,25 @@
-ConfigVariable
+TableVariable
 ===============
 
-A ConfigVariable fetches a json file from a given 
-path and stores the variable in the ``id`` field 
-in that file. If no config file of that name exists yet, 
-it will create it. 
+A TableVariable takes a lua table and stores the variable in the ``id`` field 
+in that table. 
 
-The ConfigVariable saves to the config file every time the setting 
-is updated. It is generally recommended you use `TableVariable`_ and 
-save the config in the onClose() function in the template instead, 
-especially if you are using a setting where updates happen frequently 
-such as with sliders. 
+The TableVariable can be used to save multiple changes to a config file only 
+when the menu is closed. Load the config file with mwse.loadConfig(), pass it
+to any TableVariables in your MCM, then save it inside the onClose() function 
+in your template, like so::
+
+    local configPath = "path.to.config"
+    local myConfig = mwse.loadConfig(configPath)
+    {
+        name = "MyMod",
+        class = "Template",
+        pages = {...},
+        onClose = function()
+            mwse.saveConfig(configPath, myConfig)
+        end
+    }
+
 
 Parent Class: `Variable`_
 
@@ -24,11 +33,11 @@ class (string)
 id
     Key in the config file used to store the variable.
 
-path
-    Location of the config file relative to ``MWSE/config/``.
+table
+    The table to save the data to.
 
 defaultSetting(any)
-    If ``id`` does not exist in the config file, it will 
+    If ``id`` does not exist in the table, it will 
     be initialised to this value.
 
     *Optional*
@@ -37,18 +46,12 @@ inGameOnly (boolean)
     If true, the setting containing this variable will 
     be disabled in the main menu.
 
-    *Optional*
-
 restartRequired (boolean)
     If true, updating the setting containing this variable 
     will notify the player to restart the game. 
 
-    *Optional*
-
 restartRequiredMessage (string)
     The message shown if restartRequired is triggered.
-
-    *Optional*
 
 Example::
 
