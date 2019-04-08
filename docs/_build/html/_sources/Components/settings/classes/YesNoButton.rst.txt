@@ -37,7 +37,6 @@ inGameOnly (boolean)
     *Optional.*
 
 restartRequired (boolean)
-
     If true, a message will display prompting the user 
     to restart their game when the setting changes. 
 

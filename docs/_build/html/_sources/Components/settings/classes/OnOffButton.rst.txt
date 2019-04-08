@@ -29,13 +29,11 @@ callback (function)
     Function that is called when the button is pressed.
 
 inGameOnly (boolean)
-
     If true, this setting is disabled in main menu.
 
     *Optional.*
 
 restartRequired (boolean)
-
     If true, a message will display prompting the user 
     to restart their game when the setting changes. 
 
