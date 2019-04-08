@@ -1,8 +1,6 @@
 Pages
 ==============
 
-Page Classes:
-
 .. toctree::
    :maxdepth: 1
    :glob:
@@ -12,4 +10,4 @@ Page Classes:
 Base class: `Page`_
 
 
-.. _`Page`: Page.html
+.. _`Page`: classes/Page.html

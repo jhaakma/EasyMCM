@@ -12,6 +12,7 @@ EasyMCM
    :glob:
 
    components/*
+   variables/*
    tutorial
    example
    

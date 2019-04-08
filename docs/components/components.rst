@@ -1,5 +1,5 @@
 ###################
-Component Types
+Components
 ###################
 
 .. toctree::
