@@ -168,20 +168,22 @@
   <div class="section" id="template">
 <h1>Template<a class="headerlink" href="#template" title="Permalink to this headline">¶</a></h1>
 <p>A Template is the top level component in mcmData. It determines the overall
-layout of the menu</p>
+layout of the menu.</p>
 <div class="section" id="fields">
 <h2>Fields:<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
 <dl>
-<dt>class (Optional)</dt><dd><p>Can be set to custom template types. Defaults to “Template” for the
-top level table in mcmData.</p>
+<dt>class (string)</dt><dd><p>Can be set to custom template types.</p>
+<p><em>Optional: Defaults to “Template” for the
+top level table in mcmData.</em></p>
 </dd>
-<dt>name</dt><dd><p>The name field is the mod name, used to register the MCM,
+<dt>name (string)</dt><dd><p>The name field is the mod name, used to register the MCM,
 and is displayed in the mod list on the lefthand pane.</p>
 </dd>
-<dt>headerImagePath (Optional)</dt><dd><p>Set headerImagePath to display an image at the top of your menu.
+<dt>headerImagePath (string)</dt><dd><p>Set headerImagePath to display an image at the top of your menu.
 Path is relative to <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Files/</span></code></p>
+<p><em>Optional.</em></p>
 </dd>
-<dt>onClose (Optional)</dt><dd><p>Set this to a function which will be called when the menu is closed.
+<dt>onClose (function)</dt><dd><p>Set this to a function which will be called when the menu is closed.
 Useful for saving variables, such as <code class="docutils literal notranslate"><span class="pre">TableVariable</span></code>. For example:</p>
 <div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="n">onClose</span> <span class="o">=</span> <span class="p">(</span>
     <span class="kr">function</span><span class="p">()</span>
@@ -191,6 +193,7 @@ Useful for saving variables, such as <code class="docutils literal notranslate">
 <span class="p">),</span>
 </pre></div>
 </div>
+<p><em>Optional.</em></p>
 </dd>
 </dl>
 <p>Example:</p>

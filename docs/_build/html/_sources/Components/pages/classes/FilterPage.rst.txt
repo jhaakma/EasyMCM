@@ -6,6 +6,8 @@ The components container is a vertical scroll pane with a searchbar.
 This is expecially useful if you have a large or unknown number 
 of settings. 
 
+Parent Class: `Page`_
+
 Fields:
 -------
 
@@ -49,3 +51,4 @@ Example::
 
 
 .. _`SideBarPage`: SideBarPage.html
+.. _`Page`: Page.html

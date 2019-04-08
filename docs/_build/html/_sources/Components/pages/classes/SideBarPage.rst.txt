@@ -12,6 +12,8 @@ either display the text in the `description` field of the page,
 unless the sidebarComponents table exists, in which case it will 
 display those components instead. 
 
+Parent Class: `Page`_
+
 Fields:
 -------
 
@@ -52,3 +54,4 @@ Example::
         }
     }
 
+.. _`Page`: Page.html

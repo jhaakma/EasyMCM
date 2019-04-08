@@ -3,24 +3,29 @@ Template
 ==========
 
 A Template is the top level component in mcmData. It determines the overall 
-layout of the menu
+layout of the menu.
+
 
 Fields:
 -------
 
-class (Optional)
-    Can be set to custom template types. Defaults to "Template" for the 
-    top level table in mcmData.
+class (string)
+    Can be set to custom template types. 
 
-name
+    *Optional: Defaults to "Template" for the 
+    top level table in mcmData.*
+
+name (string)
     The name field is the mod name, used to register the MCM, 
     and is displayed in the mod list on the lefthand pane.
 
-headerImagePath (Optional)
+headerImagePath (string)
     Set headerImagePath to display an image at the top of your menu. 
     Path is relative to ``Data Files/``
+    
+    *Optional.*
 
-onClose (Optional)
+onClose (function)
     Set this to a function which will be called when the menu is closed. 
     Useful for saving variables, such as ``TableVariable``. For example::
 
@@ -30,6 +35,8 @@ onClose (Optional)
                 mwse.saveConfig(configPath, localConfig)
             end
         ),
+
+    *Optional.*
 
 Example::
 

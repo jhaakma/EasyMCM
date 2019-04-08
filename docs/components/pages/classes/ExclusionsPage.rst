@@ -10,6 +10,8 @@ and is also added to a config table. Both lists can be searched using
 searchbars, and buttons can be added for different filters to appear 
 in the lefthand list
 
+Parent Class: `Page`
+
 Fields:
 -------
 
@@ -126,3 +128,5 @@ Example::
     }
 
 .. _`Variable`: /variables/classes/Variable.html
+.. _`Page`: Page.html
+
