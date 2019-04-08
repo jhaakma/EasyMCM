@@ -13,7 +13,7 @@ class (Optional)
     top level table in mcmData.
 
 name
-    The ``name`` field is the mod name, used to register the MCM, 
+    The name field is the mod name, used to register the MCM, 
     and is displayed in the mod list on the lefthand pane.
 
 headerImagePath (Optional)

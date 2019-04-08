@@ -3,7 +3,7 @@ Components
 ###################
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :glob:
 
    templates/Template
