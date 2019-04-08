@@ -6,7 +6,8 @@ Component Types
    :maxdepth: 1
    :glob:
 
-   templates/*
+   templates/Template
    pages/pages
+   categories/categories
    settings/settings
 
