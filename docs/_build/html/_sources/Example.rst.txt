@@ -1,10 +1,13 @@
-Example mcmData
-================
+MCMData Example
+======================
 
-This is a **comprehensive** example of mcmData. It can be used as a quick 
-reference for how to use a given EasyMCM class. It is also fully functional, 
-so if you register your MCM to use "easyMCM.exampleModData" you can view the 
-whole thing in-game::
+This is a **comprehensive** example of an mcmData table. 
+It can be used as a quick reference for how to use a 
+given EasyMCM class. 
+
+It is also fully functional, 
+so if you register your MCM to use "easyMCM.exampleModData" 
+you can view the whole menu in-game::
 
     --Add this to your main.lua
 

@@ -32,4 +32,5 @@ Example::
         }
     }
 
+
 .. _`SideBarPage`: SideBarPage.html

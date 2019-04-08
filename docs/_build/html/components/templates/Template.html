@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Pages" href="../pages/pages.html" />
     <link rel="prev" title="Component Types" href="../components.html" /> 
 </head>
 
@@ -83,6 +84,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../components.html">Component Types</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/pages.html">Pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../settings/settings.html">Settings</a></li>
 </ul>
 </li>
 </ul>
@@ -154,17 +157,7 @@
   <div class="section" id="template">
 <h1>Template<a class="headerlink" href="#template" title="Permalink to this headline">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">Template</span></code> is the top level component in mcmData. It determines the overall
-layout of the menu:</p>
-<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="c1">--Template fields:</span>
-<span class="p">{</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Mod Name&quot;</span><span class="p">,</span> <span class="c1">--Displayed in mod list on lefthand side of MCM</span>
-    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Template&quot;</span><span class="p">,</span> <span class="c1">--Optional, defaults to &quot;Template&quot; class</span>
-    <span class="n">headerImagePath</span> <span class="o">=</span> <span class="s2">&quot;Path/to/image&quot;</span><span class="p">,</span> <span class="c1">--Optional, shows image at top of menu</span>
-    <span class="n">onClose</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span> <span class="p">...</span> <span class="kr">end</span><span class="p">,</span> <span class="c1">--Optional, called when menu is closed</span>
-    <span class="n">pages</span> <span class="o">=</span> <span class="p">{},</span> <span class="c1">--List of pages that contain your components</span>
-<span class="p">}</span>
-</pre></div>
-</div>
+layout of the menu</p>
 <dl>
 <dt>name</dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">name</span></code> field is the mod name, used to register the MCM,
 and is displayed in the mod list on the lefthand pane.</p>
@@ -187,6 +180,16 @@ Useful for saving variables, such as <code class="docutils literal notranslate">
 </div>
 </dd>
 </dl>
+<p>Example:</p>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Mod Name&quot;</span><span class="p">,</span> <span class="c1">--Displayed in mod list on lefthand side of MCM</span>
+    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Template&quot;</span><span class="p">,</span> <span class="c1">--Optional, defaults to &quot;Template&quot; class</span>
+    <span class="n">headerImagePath</span> <span class="o">=</span> <span class="s2">&quot;Path/to/image&quot;</span><span class="p">,</span> <span class="c1">--Optional, shows image at top of menu</span>
+    <span class="n">onClose</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span> <span class="p">...</span> <span class="kr">end</span><span class="p">,</span> <span class="c1">--Optional, called when menu is closed</span>
+    <span class="n">pages</span> <span class="o">=</span> <span class="p">{},</span> <span class="c1">--List of pages that contain your components</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 
 
@@ -196,6 +199,8 @@ Useful for saving variables, such as <code class="docutils literal notranslate">
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../pages/pages.html" class="btn btn-neutral float-right" title="Pages" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../components.html" class="btn btn-neutral float-left" title="Component Types" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

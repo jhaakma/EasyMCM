@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Page &mdash; EasyMCM  documentation</title>
+  <title>Category &mdash; EasyMCM  documentation</title>
   
 
   
@@ -34,9 +34,7 @@
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="SideBarPage" href="SideBarPage.html" />
-    <link rel="prev" title="FilterPage" href="FilterPage.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -80,20 +78,9 @@
               
             
             
-              <ul class="current">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../components.html">Component Types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../components.html">Component Types</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../templates/Template.html">Template</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../pages.html">Pages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="ExclusionsPage.html">ExclusionsPage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FilterPage.html">FilterPage</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Page</a></li>
-<li class="toctree-l3"><a class="reference internal" href="SideBarPage.html">SideBarPage</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../settings/settings.html">Settings</a></li>
-</ul>
-</li>
 </ul>
 
             
@@ -139,17 +126,13 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../../components.html">Component Types</a> &raquo;</li>
-        
-          <li><a href="../pages.html">Pages</a> &raquo;</li>
-        
-      <li>Page</li>
+      <li>Category</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../../_sources/components/pages/classes/Page.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../../_sources/components/categories/classes/Category.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -162,28 +145,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="page">
-<h1>Page<a class="headerlink" href="#page" title="Permalink to this headline">¶</a></h1>
-<p>A Page is a container that holds other components. It acts a bit like a
-page on your web browser, in that you have tabs across the top of
-your menu to selecta page to view. Pages must go in the
-<code class="docutils literal notranslate"><span class="pre">pages</span></code> table in your template.</p>
-<p>The default page is a simple container, it is recommended you use
-the <a class="reference external" href="SideBarPage.html">SideBarPage</a> for basic settings.</p>
-<dl class="simple">
-<dt>label (string)</dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">label</span></code> field is displayed in the tab for that page at the top
+  <div class="section" id="category">
+<h1>Category<a class="headerlink" href="#category" title="Permalink to this headline">¶</a></h1>
+<p>A Category has a header and a list of
+components. Components within a category are indented. Categories can
+be nested indefinitely. A category is a good way to organise settings
+within a page.</p>
+<dl>
+<dt>label (string)</dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">label</span></code> field is displayed in the tab for that Category at the top
 of the menu.</p>
 </dd>
-<dt>class (string)</dt><dd><p>Defaults to “Page” for all entries in the <code class="docutils literal notranslate"><span class="pre">pages</span></code>
-table in the template.</p>
+<dt>description (string)</dt><dd><p>If in a <a class="reference external" href="../../pages/classes/SideBarPage.html">SideBarPage</a>, description will be shown on mouseover.</p>
+<p><em>Optional.</em></p>
+</dd>
+<dt>class (string)</dt><dd><p>The name of this class.</p>
 </dd>
 <dt>components (table)</dt><dd><p>A list of components to display.</p>
 </dd>
 </dl>
 <p>Example:</p>
 <div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Page 1&quot;</span><span class="p">,</span>
-    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Page&quot;</span><span class="p">,</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;General Settings&quot;</span><span class="p">,</span>
+    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Category&quot;</span><span class="p">,</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;A list of general settings for this mod.&quot;</span>
     <span class="n">components</span> <span class="o">=</span> <span class="p">{</span>
         <span class="p">...</span>
     <span class="p">}</span>
@@ -197,15 +181,6 @@ table in the template.</p>
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="SideBarPage.html" class="btn btn-neutral float-right" title="SideBarPage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="FilterPage.html" class="btn btn-neutral float-left" title="FilterPage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

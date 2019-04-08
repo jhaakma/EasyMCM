@@ -11,8 +11,10 @@ EasyMCM
    :maxdepth: 1
    :glob:
 
-   tutorial
    components/*
+   tutorial
+   example
+   
 
 EasyMCM is a UI Library for Morrowind, 
 allowing modders to quickly generate Mod Config 

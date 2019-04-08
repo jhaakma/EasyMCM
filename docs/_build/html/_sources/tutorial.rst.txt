@@ -3,9 +3,7 @@ Tutorial
 ######################
 
 This tutorial will demonstrate how to create a mod config menu 
-using EasyMCM. First thing we'll do is get an MCM into your game 
-so you can see what it looks like. Then we'll explain step by
-step how it works. 
+using EasyMCM. 
 
 ****************
 Prerequisites
@@ -286,9 +284,9 @@ file for a comprehensive example of classes that you can use, and explore the
 documentation for details about how to use them.
 
 .. _`Template`: components/templates/Template.html
-.. _`Page`: components/pages/Page.html
-.. _`Pages`: components/pages/Page.html
-.. _`Setting`: components/settings/Setting.html
-.. _`Slider`: components/settings/Slider.html
+.. _`Page`: components/classes/Page.html
+.. _`Pages`: components/classes/Page.html
+.. _`Setting`: components/settings/classes/Setting.html
+.. _`Slider`: components/settings/classes/Slider.html
 .. _`Category`: components/categories/Category.html
 .. _`Categories`: components/categories/Category.html

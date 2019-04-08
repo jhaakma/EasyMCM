@@ -165,9 +165,7 @@
   <div class="section" id="tutorial">
 <h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
 <p>This tutorial will demonstrate how to create a mod config menu
-using EasyMCM. First thing we’ll do is get an MCM into your game
-so you can see what it looks like. Then we’ll explain step by
-step how it works.</p>
+using EasyMCM.</p>
 <div class="section" id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="mwse">
@@ -206,7 +204,7 @@ The <code class="docutils literal notranslate"><span class="pre">class</span></c
 we are using.
 Go ahead and change the <code class="docutils literal notranslate"><span class="pre">name</span></code> field to
 the name of your mod.</p>
-<p>Now we will add a <a class="reference external" href="components/pages/Page.html">Page</a> to the <code class="docutils literal notranslate"><span class="pre">pages</span></code> table in our templates:</p>
+<p>Now we will add a <a class="reference external" href="components/classes/Page.html">Page</a> to the <code class="docutils literal notranslate"><span class="pre">pages</span></code> table in our templates:</p>
 <div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="n">pages</span> <span class="o">=</span> <span class="p">{</span>
     <span class="p">{</span>
         <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Page 1&quot;</span><span class="p">,</span>
@@ -216,7 +214,7 @@ the name of your mod.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>A <a class="reference external" href="components/pages/Page.html">Page</a> is a bit like a webpage in your browser. you can select pages
+<p>A <a class="reference external" href="components/classes/Page.html">Page</a> is a bit like a webpage in your browser. you can select pages
 by clicking on tabs at the top of your menu. The <code class="docutils literal notranslate"><span class="pre">name</span></code> field
 determines the text shown in the tab for this page. Rename it if you
 like.</p>
@@ -354,7 +352,7 @@ table, add the following, after the button:</p>
 <span class="p">},</span>
 </pre></div>
 </div>
-<p>This is a <a class="reference external" href="components/settings/Slider.html">Slider</a>. Take note of the
+<p>This is a <a class="reference external" href="components/settings/classes/Slider.html">Slider</a>. Take note of the
 <code class="docutils literal notranslate"><span class="pre">variable</span></code> field. Here we have defined our variable as a “Global” class,
 which means it will point to a global in the game. The global we are pointing
 to is the vanilla global, “timeScale”, which determines how fast time passes

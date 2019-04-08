@@ -3,16 +3,7 @@ Template
 ==========
 
 ``Template`` is the top level component in mcmData. It determines the overall 
-layout of the menu::
-
-    --Template fields:
-    {
-        name = "Mod Name", --Displayed in mod list on lefthand side of MCM
-        class = "Template", --Optional, defaults to "Template" class
-        headerImagePath = "Path/to/image", --Optional, shows image at top of menu
-        onClose = function() ... end, --Optional, called when menu is closed
-        pages = {}, --List of pages that contain your components
-    }
+layout of the menu
 
 name
     The ``name`` field is the mod name, used to register the MCM, 
@@ -36,3 +27,13 @@ onClose (Optional)
                 mwse.saveConfig(configPath, localConfig)
             end
         ),
+
+Example::
+
+    {
+        name = "Mod Name", --Displayed in mod list on lefthand side of MCM
+        class = "Template", --Optional, defaults to "Template" class
+        headerImagePath = "Path/to/image", --Optional, shows image at top of menu
+        onClose = function() ... end, --Optional, called when menu is closed
+        pages = {}, --List of pages that contain your components
+    }
