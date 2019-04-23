@@ -20,26 +20,23 @@ Page Subclasses:
 Fields:
 -------
 
-class (string)
-    Defaults to "Page" for all entries in the pages 
-    table in the template.
-
 label (string)
     The label field is displayed in the tab for that page at the top 
     of the menu.
 
-components (table)
-    A list of components to display.
+    *Optional: defaults to "Page {number}"*
 
 Example::
 
-    {
-        label = "Page 1",
-        class = "Page",
-        components = {
-            ...
-        }
-    }
+    EasyMCM.createTemplate("My mod")
+
+    template:createPage() --sets name to "Page 1"
+
+    template:createPage("Page two")
+
+    template:createPage() --sets name to "Page 3"
+
+    template:createPage{ label = "Page 4" }
 
 
 .. _`SideBarPage`: SideBarPage.html

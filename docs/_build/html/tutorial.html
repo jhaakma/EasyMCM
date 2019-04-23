@@ -35,7 +35,6 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="MCMData Example" href="example.html" />
     <link rel="prev" title="Variable" href="variables/classes/Variable.html" /> 
 </head>
 
@@ -89,10 +88,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#an-mwse-mod">An MWSE Mod</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-an-mcm">Creating an MCM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-components">Creating Components</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="example.html">MCMData Example</a></li>
 </ul>
 
             
@@ -159,8 +158,6 @@
             
   <div class="section" id="tutorial">
 <h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
-<p>This tutorial will demonstrate how to create a mod config menu
-using EasyMCM.</p>
 <div class="section" id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="mwse">
@@ -174,22 +171,131 @@ You can find documentation on MWSE
 <p>If you have an MWSE mod you want to add a menu to, then great!
 If not, create a new folder in <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Files/MWSE/mods</span></code>, and
 call it the name of your mod. Then in your new folder,
-create a file called <code class="docutils literal notranslate"><span class="pre">main.lua</span></code>. Leave it empty for
-now, we’ll add to it in the next section.</p>
+create a file called <code class="docutils literal notranslate"><span class="pre">main.lua</span></code>. This is where we will
+create our new MCM.</p>
 </div>
 </div>
-<div class="section" id="getting-started">
-<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
-<p>Example:</p>
+<div class="section" id="creating-an-mcm">
+<h2>Creating an MCM<a class="headerlink" href="#creating-an-mcm" title="Permalink to this headline">¶</a></h2>
+<p>Add the following to your <cite>main.lua</cite>:</p>
 <div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">registerModConfig</span><span class="p">()</span>
     <span class="n">EasyMCM</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;easyMCM.EasyMCM&quot;</span><span class="p">)</span>
-    <span class="kd">local</span> <span class="n">template</span> <span class="o">=</span> <span class="n">EasyMCM</span><span class="p">.</span><span class="n">createTemplate</span><span class="p">{</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;My Mod&quot;</span> <span class="p">}</span>
+    <span class="kd">local</span> <span class="n">template</span> <span class="o">=</span> <span class="n">EasyMCM</span><span class="p">.</span><span class="n">createTemplate</span><span class="p">{</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Basic MCM&quot;</span> <span class="p">}</span>
     <span class="kd">local</span> <span class="n">page</span> <span class="o">=</span> <span class="n">template</span><span class="p">:</span><span class="n">createPage</span><span class="p">()</span>
     <span class="kd">local</span> <span class="n">category</span> <span class="o">=</span> <span class="n">page</span><span class="p">:</span><span class="n">createCategory</span><span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Settings&quot;</span> <span class="p">}</span>
-    <span class="kd">local</span> <span class="n">button</span> <span class="o">=</span> <span class="n">page</span><span class="p">:</span><span class="n">createButton</span><span class="p">{</span> <span class="n">buttonText</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span> <span class="p">}</span>
+    <span class="n">category</span><span class="p">:</span><span class="n">createButton</span><span class="p">{</span> <span class="n">buttonText</span> <span class="o">=</span> <span class="s2">&quot;Press&quot;</span> <span class="p">}</span>
     <span class="n">EasyMCM</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
 <span class="kr">end</span>
 <span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="s2">&quot;modConfigReady&quot;</span><span class="p">,</span> <span class="n">registerModConfig</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>An MCM needs, at minimum, a template, at least one page, and
+probably a setting or two.</p>
+<p>Check out the list of <a class="reference external" href="components/components.html">Components</a> that you can build your MCM
+out of, and the types of <a class="reference external" href="variables/variables.html">Variables</a> that can be attached to settings.</p>
+<p>Advanced Example:</p>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span>--fetch config file
+local confPath = &quot;config_test&quot;
+local config = mwse.loadConfig(confPath)
+if not config then
+    config = { blocked = {} }
+end
+
+local function registerModConfig()
+    --get EasyMCM
+    local EasyMCM = require(&quot;easyMCM.EasyMCM&quot;)
+    --create template
+    local template = EasyMCM.createTemplate(&quot;Advanced MCM&quot;)
+    --Have our config file save when MCM is closed
+    template:saveOnClose(confPath, config)
+    --Make a page
+    local page = template:createSideBarPage{
+        sidebarComponents = {
+            EasyMCM.createInfo{ text = &quot;An info field in the sidebar&quot; },
+            EasyMCM.createButton{ buttonText = &quot;Press this button }
+        }
+    }
+    --Make a category inside our page
+    local category = page:createCategory(&quot;Settings&quot;)
+
+    --Make some settings
+    category:createButton({
+        buttonText = &quot;Hello&quot;,
+        description = &quot;A useless button&quot;,
+        callback = function(self)
+            tes3.messageBox(&quot;Button pressed!&quot;)
+        end
+    })
+
+    category:createSlider{
+        label = &quot;Time Scale&quot;,
+        description = &quot;Changes the speed of the day/night cycle.&quot;,
+        variable = EasyMCM:createGlobal{ id = &quot;timeScale&quot; }
+    }
+
+    --Make an exclusions page
+    local exclusionsPage = template:createExclusionsPage{
+        label = &quot;Exclusions&quot;,
+        description = (
+            &quot;Use an exclusions page to add items to a blacklist&quot;
+        ),
+        variable = EasyMCM:createTableVariable{
+            id = &quot;blocked&quot;,
+            table = config,
+        },
+        filters = {
+            {
+                label = &quot;Plugins&quot;,
+                type = &quot;Plugin&quot;,
+            },
+            {
+                label = &quot;Food&quot;,
+                type = &quot;Object&quot;,
+                objectType = tes3.objectType.ingredient,
+            }
+        }
+    }
+
+    --Register our MCM
+    EasyMCM.register(template)
+end
+
+--register our mod when mcm is ready for it
+event.register(&quot;modConfigReady&quot;, registerModConfig)
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-components">
+<h2>Creating Components<a class="headerlink" href="#creating-components" title="Permalink to this headline">¶</a></h2>
+<p>There are three ways to create a component with EasyMCM.</p>
+<p>You can add the component to another EasyMCM object:</p>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">page</span> <span class="o">=</span> <span class="n">template</span><span class="p">:</span><span class="n">createPage</span><span class="p">()</span>
+<span class="n">page</span><span class="p">:</span><span class="n">createButton</span><span class="p">{</span> <span class="n">buttonText</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>You can add the component to a vanilla element. Be warned
+that easyMCM components require the parent
+element to have the correct formatting to appear. They tend to
+work best with menus that utilise widthProportional and
+autoHeight:</p>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">block</span> <span class="o">=</span> <span class="n">e</span><span class="p">:</span><span class="n">createThinBorder</span><span class="p">()</span>
+<span class="c1">--note the `.` instead of `:`, very important:</span>
+<span class="n">EasyMCM</span><span class="p">.</span><span class="n">createButton</span><span class="p">{</span>
+    <span class="n">block</span><span class="p">,</span>
+    <span class="p">{</span> <span class="n">buttonText</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>And you can construct the component object without creating the UI elements,
+then use the create() function later to create the element itself.
+You can see an example of this method in the advanced Example above,
+where we define a <cite>sidebarComponents</cite> table with an info and button,
+but we don’t actually create those components yet:</p>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">button</span> <span class="o">=</span> <span class="n">EasyMCM</span><span class="p">.</span><span class="n">createButton</span><span class="p">{</span> <span class="n">buttonText</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span> <span class="p">}</span>
+
+<span class="c1">--Then create the component element as a child of some vanilla element:</span>
+<span class="kd">local</span> <span class="n">block</span> <span class="o">=</span> <span class="n">e</span><span class="p">:</span><span class="n">createThinBorder</span><span class="p">()</span>
+<span class="n">button</span><span class="p">:</span><span class="n">create</span><span class="p">(</span> <span class="n">block</span> <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -202,8 +308,6 @@ now, we’ll add to it in the next section.</p>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="example.html" class="btn btn-neutral float-right" title="MCMData Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="variables/classes/Variable.html" class="btn btn-neutral float-left" title="Variable" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

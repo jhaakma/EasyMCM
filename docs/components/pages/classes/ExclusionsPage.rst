@@ -15,10 +15,6 @@ Parent Class: `Page`_
 Fields:
 -------
 
-class (string)
-    Defaults to "Page" for all entries in the pages 
-    table in the template.
-
 label (string)
     The label field is displayed in the tab for that page at the top 
     of the menu.
@@ -44,6 +40,11 @@ rightListLabel (string)
 
     *Optional: defaults to "Allowed".*
 
+showAllBlocked (boolean)
+    When set to true, the left list shows all items
+    in the blocked table, regardless of the filter being 
+    used. 
+
 variable (`Variable`_)
     The `Variable`_ used to store blocked list entries. 
 
@@ -55,17 +56,15 @@ filters (table)
 
 Example::
 
-    {
+    template:createExclusionsPage{
         label = "Exclusions Page",
-        class = "ExclusionsPage",         
         description = "Description",
         toggleText = "Toggle", --Optional: default "Toggle Filtered"
         leftListLabel = "Blacklist", --Optional: default "Blocked"
         rightListLabel = "Whitelist", --Optional: default = "Allowed"
-
-        variable = {
+        showAllBlocked = false, --OptionalL default = false
+        variable = EasyMCM.createTableVariable{
             id = "blocked",
-            class = "TableVariable", 
             table = config,
         },  
         

@@ -98,8 +98,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../variables/variables.html">Variables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../example.html">MCMData Example</a></li>
 </ul>
 
             
@@ -178,8 +176,6 @@ of settings.</p>
 <div class="section" id="fields">
 <h2>Fields:<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
 <dl>
-<dt>class (string)</dt><dd><p>The name of this class.</p>
-</dd>
 <dt>label (string)</dt><dd><p>The label field is displayed in the tab for that page at the top
 of the menu.</p>
 </dd>
@@ -187,24 +183,20 @@ of the menu.</p>
 defined</p>
 <p><em>Optional.</em></p>
 </dd>
-<dt>components (table)</dt><dd><p>A list of components to display.</p>
-</dd>
 <dt>sidebarComponents (table)</dt><dd><p>A list of components to display on the sidebar
 when nothing is moused over.</p>
 <p><em>Optional: Should have either this or a description.</em></p>
 </dd>
 </dl>
 <p>Example:</p>
-<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">sidebar</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">EasyMCM</span><span class="p">.</span><span class="n">createButton</span><span class="p">({</span> <span class="n">buttonText</span> <span class="o">=</span> <span class="s2">&quot;press button&quot;</span> <span class="p">})</span>
+<span class="p">}</span>
+
+<span class="n">template</span><span class="p">:</span><span class="n">createFilterPage</span><span class="p">{</span>
     <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Filter Page&quot;</span><span class="p">,</span>
     <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Default sidebar text&quot;</span><span class="p">,</span>
-    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;FilterPage&quot;</span><span class="p">,</span>
-    <span class="n">components</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="p">...</span>
-    <span class="p">},</span>
-    <span class="n">sidebarComponents</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="p">...</span>
-    <span class="p">}</span>
+    <span class="n">sidebarComponents</span> <span class="o">=</span> <span class="n">sidebar</span>
 <span class="p">}</span>
 </pre></div>
 </div>

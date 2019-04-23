@@ -7,9 +7,6 @@ components. Components within a category are indented. Categories can
 be nested indefinitely. A category is a good way to organise settings 
 within a page. 
 
-class (string)
-    The name of this class.
-
 label (string)
     The label field is displayed in the tab for that Category at the top 
     of the menu.
@@ -19,18 +16,13 @@ description (string)
 
     *Optional.*
 
-components (table)
-    A list of components to display.
-
 Example::
 
-    {
-        label = "General Settings",
-        class = "Category",
-        description = "A list of general settings for this mod."
-        components = {
-            ...
-        }
+    page:createCategory("Category name")
+
+    page:createCategory{
+        label = "Settings",
+        description = "A bunch of settings"
     }
 
 

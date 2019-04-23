@@ -98,8 +98,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../variables/variables.html">Variables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../example.html">MCMData Example</a></li>
 </ul>
 
             
@@ -176,8 +174,6 @@ switching between the strings “On” and “Off”.</p>
 <div class="section" id="fields">
 <h2>Fields:<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
 <dl>
-<dt>class (string)</dt><dd><p>The name of this class.</p>
-</dd>
 <dt>label (string)</dt><dd><p>Text shown next to the button.</p>
 <p><em>Optional.</em></p>
 </dd>
@@ -200,18 +196,27 @@ to restart their game when the setting changes.</p>
 </dd>
 </dl>
 <p>Example:</p>
-<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Button Setting&quot;</span><span class="p">,</span>
-    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;OnOffButton&quot;</span><span class="p">,</span>
-    <span class="n">restartRequired</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="c1">--EasyMCM:</span>
+<span class="kd">local</span> <span class="n">template</span> <span class="o">=</span> <span class="n">EasyMCM</span><span class="p">.</span><span class="n">createTemplate</span><span class="p">(</span><span class="s2">&quot;My mod&quot;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">page</span> <span class="o">=</span> <span class="n">template</span><span class="p">:</span><span class="n">createPage</span><span class="p">()</span>
+<span class="n">page</span><span class="p">:</span><span class="n">createOnOffButton</span><span class="p">{</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Turn on and off?&quot;</span><span class="p">,</span>
+    <span class="n">variable</span> <span class="o">=</span> <span class="n">EasyMCM</span><span class="p">.</span><span class="n">createTableVariable</span><span class="p">{</span>
         <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;enabled&quot;</span><span class="p">,</span>
-        <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;TableVariable&quot;</span><span class="p">,</span>
-        <span class="n">table</span> <span class="o">=</span> <span class="n">localConfig</span><span class="p">,</span>
-        <span class="n">defaultSetting</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="p">},</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">config</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-<span class="p">},</span>
+<span class="c1">--Adding to a non-easyMCM element</span>
+<span class="n">block</span> <span class="o">=</span> <span class="n">e</span><span class="p">:</span><span class="n">createBlock</span><span class="p">()</span>
+<span class="n">EasyMCM</span><span class="p">.</span><span class="n">createOnOffButton</span><span class="p">{</span>
+    <span class="n">block</span><span class="p">,</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Turn on and off?&quot;</span><span class="p">,</span>
+    <span class="n">variable</span> <span class="o">=</span> <span class="n">EasyMCM</span><span class="p">.</span><span class="n">createTableVariable</span><span class="p">{</span>
+        <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;enabled&quot;</span><span class="p">,</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">config</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>

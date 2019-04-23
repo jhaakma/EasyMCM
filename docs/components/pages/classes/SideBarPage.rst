@@ -15,10 +15,7 @@ display those components instead.
 Parent Class: `Page`_
 
 Fields:
--------
-
-class (string)
-    The name of this class.
+-------.
 
 label (string)
     The label field is displayed in the tab for that page at the top 
@@ -30,9 +27,6 @@ description (string)
 
     *Optional.*
 
-components (table)
-    A list of components to display.
-
 sidebarComponents (table)
     A list of components to display on the sidebar 
     when nothing is moused over. 
@@ -42,16 +36,19 @@ sidebarComponents (table)
 
 Example::
 
-    {
-        label = "SideBar Page",
-        description = "Default sidebar text",
-        class = "SideBarPage",
-        components = {
-            ...
-        },
-        sidebarComponents = {
-            ...
-        }
+    EasyMCM.createTemplate("My Mod")
+
+    local sidebar = { EasyMCM.createButton{ buttonText = "press button" } }
+    local page = template:createSideBarPage{ sidebarComponents = sidebar }
+    page:createButton{
+        buttonText = "Button",
+        description = "When hovering over the button, this text will be shown in the sidebar"
     }
+
+    template:createSideBarPage{
+        label = "Sidebar Page",
+        description = "Default sidebar text"
+    }
+
 
 .. _`Page`: Page.html

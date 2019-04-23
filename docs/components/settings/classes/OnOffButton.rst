@@ -9,9 +9,6 @@ Parent Class: `Button`_
 Fields:
 -------
 
-class (string)
-    The name of this class.
-
 label (string)
     Text shown next to the button.
 
@@ -46,18 +43,27 @@ restartRequiredMessage
 
 Example::
 
-    {
-        label = "Button Setting",
-        class = "OnOffButton",
-        restartRequired = true,
-        variable = {
+    --EasyMCM:
+    local template = EasyMCM.createTemplate("My mod")
+    local page = template:createPage()
+    page:createOnOffButton{
+        label = "Turn on and off?",
+        variable = EasyMCM.createTableVariable{
             id = "enabled",
-            class = "TableVariable",
-            table = localConfig,
-            defaultSetting = true,
-        },                            
+            table = config
+        }
+    }
 
-    },
+    --Adding to a non-easyMCM element
+    block = e:createBlock()
+    EasyMCM.createOnOffButton{
+        block,
+        label = "Turn on and off?",
+        variable = EasyMCM.createTableVariable{
+            id = "enabled",
+            table = config
+        }
+    }
 
 .. _`Button`: Button.html
 .. _`Setting`: ../settings.html

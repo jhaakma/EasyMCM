@@ -9,9 +9,6 @@ Parent Class: `Button`_
 Fields:
 -------
 
-class (string)
-    The name of this class.
-
 label (string)
     Text shown next to the button.
 
@@ -48,15 +45,27 @@ restartRequiredMessage
 
 Example::
 
-    {
-        label = "Button Setting",
-        class = "YesNoButton",
-        restartRequired = true,
-        variable = {
-            id = "HeartDestroyed",
-            class = "GlobalBoolean",
-        },                           
-    },
+    --EasyMCM:
+    local template = EasyMCM.createTemplate("My mod")
+    local page = template:createPage()
+    page:createYesNofButton{
+        label = "Yes or No?",
+        variable = EasyMCM.createTableVariable{
+            id = "enabled",
+            table = config
+        }
+    }
+
+    --Adding to a non-easyMCM element
+    block = e:createBlock()
+    EasyMCM.createYesNofButton{
+        block,
+        label = "Yes or No?",
+        variable = EasyMCM.createTableVariable{
+            id = "enabled",
+            table = config
+        }
+    }
 
 .. _`Button`: Button.html
 .. _`Setting`: ../settings.html

@@ -82,6 +82,7 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="components/components.html">Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="variables/variables.html">Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 </ul>
 
             
@@ -152,31 +153,13 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="components/components.html">Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="variables/variables.html">Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 </ul>
 </div>
 <p>EasyMCM is a UI Library for Morrowind,
 allowing modders to quickly generate Mod Config
 Menus and preconfigured UI elements without touching UI code.</p>
-<div class="section" id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="mwse">
-<h3>MWSE<a class="headerlink" href="#mwse" title="Permalink to this headline">¶</a></h3>
-<p>MWSE dev version &gt;2.1 is required for EasyMCM.
-You can find documentation on MWSE
-<a class="reference external" href="https://mwse.readthedocs.io/en/latest/installation.html">here</a>.</p>
-</div>
-<div class="section" id="an-mwse-mod">
-<h3>An MWSE Mod<a class="headerlink" href="#an-mwse-mod" title="Permalink to this headline">¶</a></h3>
-<p>If you have an MWSE mod you want to add a menu to, then great!
-If not, create a new folder in <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Files/MWSE/mods</span></code>, and
-call it the name of your mod. Then in your new folder,
-create a file called <code class="docutils literal notranslate"><span class="pre">main.lua</span></code>. This is where we will
-create our new MCM.</p>
-</div>
-</div>
-<div class="section" id="creating-an-mcm">
-<h2>Creating an MCM<a class="headerlink" href="#creating-an-mcm" title="Permalink to this headline">¶</a></h2>
-<p>Add the following to your <cite>main.lua</cite>:</p>
+<p>Example:</p>
 <div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">registerModConfig</span><span class="p">()</span>
     <span class="n">EasyMCM</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;easyMCM.EasyMCM&quot;</span><span class="p">)</span>
     <span class="kd">local</span> <span class="n">template</span> <span class="o">=</span> <span class="n">EasyMCM</span><span class="p">.</span><span class="n">createTemplate</span><span class="p">{</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Basic MCM&quot;</span> <span class="p">}</span>
@@ -188,97 +171,7 @@ create our new MCM.</p>
 <span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="s2">&quot;modConfigReady&quot;</span><span class="p">,</span> <span class="n">registerModConfig</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>An MCM needs, at minimum, a template, at least one page, and
-probably a setting or two.</p>
-<p>Advanced Example:</p>
-<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="c1">--fetch config file</span>
-<span class="kd">local</span> <span class="n">confPath</span> <span class="o">=</span> <span class="s2">&quot;config_test&quot;</span>
-<span class="kd">local</span> <span class="n">config</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">loadConfig</span><span class="p">(</span><span class="n">confPath</span><span class="p">)</span>
-<span class="kr">if</span> <span class="ow">not</span> <span class="n">config</span> <span class="kr">then</span>
-    <span class="n">config</span> <span class="o">=</span> <span class="p">{</span> <span class="n">blocked</span> <span class="o">=</span> <span class="p">{}</span> <span class="p">}</span>
-<span class="kr">end</span>
-
-<span class="kd">local</span> <span class="kr">function</span> <span class="nf">registerModConfig</span><span class="p">()</span>
-    <span class="c1">--get EasyMCM</span>
-    <span class="kd">local</span> <span class="n">EasyMCM</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;easyMCM.EasyMCM&quot;</span><span class="p">)</span>
-    <span class="c1">--create template</span>
-    <span class="kd">local</span> <span class="n">template</span> <span class="o">=</span> <span class="n">EasyMCM</span><span class="p">.</span><span class="n">createTemplate</span><span class="p">(</span><span class="s2">&quot;Advanced MCM&quot;</span><span class="p">)</span>
-    <span class="c1">--Have our config file save when MCM is closed</span>
-    <span class="n">template</span><span class="p">:</span><span class="n">saveOnClose</span><span class="p">(</span><span class="n">confPath</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
-    <span class="c1">--Make a page</span>
-    <span class="kd">local</span> <span class="n">page</span> <span class="o">=</span> <span class="n">template</span><span class="p">:</span><span class="n">createSideBarPage</span><span class="p">{</span>
-        <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;This text is shown on the sidebar&quot;</span>
-    <span class="p">}</span>
-    <span class="c1">--Make a category inside our page</span>
-    <span class="kd">local</span> <span class="n">category</span> <span class="o">=</span> <span class="n">page</span><span class="p">:</span><span class="n">createCategory</span><span class="p">(</span><span class="s2">&quot;Settings&quot;</span><span class="p">)</span>
-
-    <span class="c1">--Make some settings</span>
-    <span class="n">category</span><span class="p">:</span><span class="n">createButton</span><span class="p">({</span>
-        <span class="n">buttonText</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span><span class="p">,</span>
-        <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;A useless button&quot;</span><span class="p">,</span>
-        <span class="n">callback</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
-            <span class="n">tes3</span><span class="p">.</span><span class="n">messageBox</span><span class="p">(</span><span class="s2">&quot;Button pressed!&quot;</span><span class="p">)</span>
-        <span class="kr">end</span>
-    <span class="p">})</span>
-
-    <span class="n">category</span><span class="p">:</span><span class="n">createSlider</span><span class="p">{</span>
-        <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Time Scale&quot;</span><span class="p">,</span>
-        <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Changes the speed of the day/night cycle.&quot;</span><span class="p">,</span>
-        <span class="n">variable</span> <span class="o">=</span> <span class="n">EasyMCM</span><span class="p">:</span><span class="n">createGlobal</span><span class="p">{</span> <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;timeScale&quot;</span> <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="c1">--Make an exclusions page</span>
-    <span class="kd">local</span> <span class="n">exclusionsPage</span> <span class="o">=</span> <span class="n">template</span><span class="p">:</span><span class="n">createExclusionsPage</span><span class="p">{</span>
-        <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Exclusions&quot;</span><span class="p">,</span>
-        <span class="n">description</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="s2">&quot;Use an exclusions page to add items to a blacklist&quot;</span>
-        <span class="p">),</span>
-        <span class="n">variable</span> <span class="o">=</span> <span class="n">EasyMCM</span><span class="p">:</span><span class="n">createTableVariable</span><span class="p">{</span>
-            <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;blocked&quot;</span><span class="p">,</span>
-            <span class="n">table</span> <span class="o">=</span> <span class="n">config</span><span class="p">,</span>
-        <span class="p">},</span>
-        <span class="n">filters</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="p">{</span>
-                <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Plugins&quot;</span><span class="p">,</span>
-                <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Plugin&quot;</span><span class="p">,</span>
-            <span class="p">},</span>
-            <span class="p">{</span>
-                <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Food&quot;</span><span class="p">,</span>
-                <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Object&quot;</span><span class="p">,</span>
-                <span class="n">objectType</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">objectType</span><span class="p">.</span><span class="n">ingredient</span><span class="p">,</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="c1">--Register our MCM</span>
-    <span class="n">EasyMCM</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
-<span class="kr">end</span>
-
-<span class="c1">--register our mod when mcm is ready for it</span>
-<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="s2">&quot;modConfigReady&quot;</span><span class="p">,</span> <span class="n">registerModConfig</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="adding-easymcm-components-to-non-mcm-menus">
-<h2>Adding EasyMCM Components to non-MCM Menus<a class="headerlink" href="#adding-easymcm-components-to-non-mcm-menus" title="Permalink to this headline">¶</a></h2>
-<p>EasyMCM components can also be added to non-easyMCM elements,
-using the following format:</p>
-<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">block</span> <span class="o">=</span> <span class="n">element</span><span class="p">:</span><span class="n">createBlock</span><span class="p">()</span>
-
-<span class="n">EasyMCM</span><span class="p">.</span><span class="n">createSlider</span><span class="p">{</span>
-    <span class="n">block</span><span class="p">,</span>
-    <span class="p">{</span>
-        <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Time Scale&quot;</span><span class="p">,</span>
-        <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Changes the speed of the day/night cycle.&quot;</span><span class="p">,</span>
-        <span class="n">variable</span> <span class="o">=</span> <span class="n">EasyMCM</span><span class="p">:</span><span class="n">createGlobal</span><span class="p">{</span> <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;timeScale&quot;</span> <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Be warned, however, that easyMCM components require the parent
-element to have the correct formatting to appear. They tend to
-work best with menus that utilise widthProportional and autoHeight.</p>
-</div>
+<p>See the <a class="reference external" href="Tutorial.html">Tutorial</a> for a more detailed walkthrough.</p>
 </div>
 
 

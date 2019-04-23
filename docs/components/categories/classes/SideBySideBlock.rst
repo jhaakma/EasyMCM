@@ -16,34 +16,11 @@ description (string)
 
     *Optional.*
 
-class (string)
-    The name of this class.
-
-components (table)
-    A list of components to display.
-
 Example::
 
-    {
-        label = "Buttons",
-        class = "SideBySideBlock",
-        description = "A horizontal list of buttons."
-        components = {
-            {
-                buttonText = "Button A",
-                description = "A button.",
-                class = "Button",
-                callback = ( function(self) ... end ),
-
-            },
-            {
-                buttonText = "Button B",
-                description = "Another button.",
-                class = "Button",
-                callback = ( function(self) ... end ),
-            },
-        }
-    }
+    local category = page:createSideBySideBlock("List of buttons")
+    category:createButton{ buttonText = "Button A" }
+    category:createButton{ buttonText = "Button B" }
 
 
 .. _`SideBarPage`: ../../pages/classes/SideBarPage.html

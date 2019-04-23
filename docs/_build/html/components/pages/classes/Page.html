@@ -99,8 +99,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../variables/variables.html">Variables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../example.html">MCMData Example</a></li>
 </ul>
 
             
@@ -187,24 +185,22 @@ the <a class="reference external" href="SideBarPage.html">SideBarPage</a> for ba
 </div>
 <div class="section" id="fields">
 <h2>Fields:<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
-<dl class="simple">
-<dt>class (string)</dt><dd><p>Defaults to “Page” for all entries in the pages
-table in the template.</p>
-</dd>
+<dl>
 <dt>label (string)</dt><dd><p>The label field is displayed in the tab for that page at the top
 of the menu.</p>
-</dd>
-<dt>components (table)</dt><dd><p>A list of components to display.</p>
+<p><em>Optional: defaults to “Page {number}”</em></p>
 </dd>
 </dl>
 <p>Example:</p>
-<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Page 1&quot;</span><span class="p">,</span>
-    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Page&quot;</span><span class="p">,</span>
-    <span class="n">components</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="p">...</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="n">EasyMCM</span><span class="p">.</span><span class="n">createTemplate</span><span class="p">(</span><span class="s2">&quot;My mod&quot;</span><span class="p">)</span>
+
+<span class="n">template</span><span class="p">:</span><span class="n">createPage</span><span class="p">()</span> <span class="c1">--sets name to &quot;Page 1&quot;</span>
+
+<span class="n">template</span><span class="p">:</span><span class="n">createPage</span><span class="p">(</span><span class="s2">&quot;Page two&quot;</span><span class="p">)</span>
+
+<span class="n">template</span><span class="p">:</span><span class="n">createPage</span><span class="p">()</span> <span class="c1">--sets name to &quot;Page 3&quot;</span>
+
+<span class="n">template</span><span class="p">:</span><span class="n">createPage</span><span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Page 4&quot;</span> <span class="p">}</span>
 </pre></div>
 </div>
 </div>

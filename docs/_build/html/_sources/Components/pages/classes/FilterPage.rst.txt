@@ -11,9 +11,6 @@ Parent Class: `Page`_
 Fields:
 -------
 
-class (string)
-    The name of this class.
-
 label (string)
     The label field is displayed in the tab for that page at the top 
     of the menu.
@@ -24,9 +21,6 @@ description (string)
 
     *Optional.*
 
-components (table)
-    A list of components to display.
-
 sidebarComponents (table)
     A list of components to display on the sidebar 
     when nothing is moused over. 
@@ -36,16 +30,14 @@ sidebarComponents (table)
 
 Example::
 
-    {
+    local sidebar = {
+        EasyMCM.createButton({ buttonText = "press button" })
+    }
+
+    template:createFilterPage{
         label = "Filter Page",
         description = "Default sidebar text",
-        class = "FilterPage",
-        components = {
-            ...
-        },
-        sidebarComponents = {
-            ...
-        }
+        sidebarComponents = sidebar
     }
 
 
