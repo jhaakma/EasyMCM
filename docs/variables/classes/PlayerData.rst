@@ -15,9 +15,6 @@ Parent Class: `Variable`_
 Fields
 ----------
 
-class (string)
-    The name of this class.
-
 id (string)
     Key of entry used on the Player data table. 
 
@@ -28,7 +25,9 @@ path (string)
 
 defaultSetting (any)
     If ``id`` does not exist in on the playerData field, it will 
-    be initialised to this value.
+    be initialised to this value. best to initialise this yourself 
+    though, as this will not create the value until you've entered 
+    the MCM.
 
     *Optional.*
 
@@ -45,21 +44,12 @@ restartRequiredMessage (string)
 
 Example::
 
-    variable = {
-        class = "Variable",
-        get = (
-            function(self)
-                return tes3.getCurrentWeather().index or 0
-            end
-        ),
-        set = (
-            function(self, newVal)
-                if tes3.player then
-                    tes3.getWorldController().weatherController:switchImmediate(newVal)
-                end
-            end
-        ),
-    },
+    EasyMCM.createPlayerData{
+        id = "varID",
+        path = "myModName.mcmSettings",
+        defaultSetting = true
+    }
+
 
 .. _`Global`: Global.html
 .. _`GlobalBoolean`: GlobalBoolean.html

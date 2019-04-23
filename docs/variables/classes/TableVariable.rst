@@ -6,20 +6,8 @@ in that table.
 
 The TableVariable can be used to save multiple changes to a config file only 
 when the menu is closed. Load the config file with mwse.loadConfig(), pass it
-to any TableVariables in your MCM, then save it inside the onClose() function 
-in your template, like so::
-
-    local configPath = "path.to.config"
-    local myConfig = mwse.loadConfig(configPath)
-    {
-        name = "MyMod",
-        class = "Template",
-        pages = {...},
-        onClose = function()
-            mwse.saveConfig(configPath, myConfig)
-        end
-    }
-
+to any TableVariables in your MCM, then save it using the 
+template:onSaveClose() function.
 
 Parent Class: `Variable`_
 
@@ -61,10 +49,17 @@ restartRequiredMessage (string)
 
 Example::
 
-    variable = {
+    local configPath = "myMod.config"
+    local config = mwse.loadConfig(configPath)
+    if not config then
+        config = {}
+    end
+    local template = EasyMCM.createTemplate("My Mod")
+    template:saveOnClose(configPath, config)
+
+    EasyMCM.createTableVariable{
         id = "varID",                                
-        path = "MyMod/config",
-        class = "ConfigVariable",
+        table = config,
     },
 
 .. _`Global`: Global.html

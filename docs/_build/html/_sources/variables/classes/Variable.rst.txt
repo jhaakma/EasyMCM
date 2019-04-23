@@ -53,8 +53,7 @@ restartRequiredMessage (string)
 
 Example::
 
-    variable = {
-        class = "Variable",
+    EasyMCM.createVariable{
         get = (
             function(self)
                 return tes3.getCurrentWeather().index or 0
@@ -67,6 +66,7 @@ Example::
                 end
             end
         ),
+        inGameOnly = true
     },
 
 .. _`Global`: Global.html

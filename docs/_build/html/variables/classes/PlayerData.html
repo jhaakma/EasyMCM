@@ -94,8 +94,6 @@
 <li class="toctree-l2"><a class="reference internal" href="Variable.html">Variable</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../example.html">MCMData Example</a></li>
 </ul>
 
             
@@ -174,8 +172,6 @@ Player reference can only be accessed while a game is loaded.</p>
 <div class="section" id="fields">
 <h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
 <dl>
-<dt>class (string)</dt><dd><p>The name of this class.</p>
-</dd>
 <dt>id (string)</dt><dd><p>Key of entry used on the Player data table.</p>
 </dd>
 <dt>path (string)</dt><dd><p>Path to <code class="docutils literal notranslate"><span class="pre">id</span></code> relative to <code class="docutils literal notranslate"><span class="pre">tes3.player.data</span></code>.
@@ -183,7 +179,9 @@ It’s best to at least store all your PlayerData fields in
 a table named after your mod to avoid conflicts.</p>
 </dd>
 <dt>defaultSetting (any)</dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">id</span></code> does not exist in on the playerData field, it will
-be initialised to this value.</p>
+be initialised to this value. best to initialise this yourself
+though, as this will not create the value until you’ve entered
+the MCM.</p>
 <p><em>Optional.</em></p>
 </dd>
 <dt>restartRequired (boolean)</dt><dd><p>If true, updating the setting containing this variable
@@ -195,21 +193,11 @@ will notify the player to restart the game.</p>
 </dd>
 </dl>
 <p>Example:</p>
-<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Variable&quot;</span><span class="p">,</span>
-    <span class="n">get</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="kr">function</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
-            <span class="kr">return</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getCurrentWeather</span><span class="p">().</span><span class="n">index</span> <span class="ow">or</span> <span class="mi">0</span>
-        <span class="kr">end</span>
-    <span class="p">),</span>
-    <span class="n">set</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="kr">function</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">newVal</span><span class="p">)</span>
-            <span class="kr">if</span> <span class="n">tes3</span><span class="p">.</span><span class="n">player</span> <span class="kr">then</span>
-                <span class="n">tes3</span><span class="p">.</span><span class="n">getWorldController</span><span class="p">().</span><span class="n">weatherController</span><span class="p">:</span><span class="n">switchImmediate</span><span class="p">(</span><span class="n">newVal</span><span class="p">)</span>
-            <span class="kr">end</span>
-        <span class="kr">end</span>
-    <span class="p">),</span>
-<span class="p">},</span>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="n">EasyMCM</span><span class="p">.</span><span class="n">createPlayerData</span><span class="p">{</span>
+    <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;varID&quot;</span><span class="p">,</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;myModName.mcmSettings&quot;</span><span class="p">,</span>
+    <span class="n">defaultSetting</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>

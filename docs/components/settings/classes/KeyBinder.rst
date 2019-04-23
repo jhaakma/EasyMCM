@@ -23,9 +23,6 @@ Parent Class: `Button`_
 Fields:
 -------
 
-class (string)
-    The name of this class.
-
 label (string)
     Text shown next to the button.
 
@@ -37,7 +34,6 @@ description
     *Optional.*
 
 allowCombinations (boolean)
-
     If true, keybinds can allow combos of Shift+x, Alt+x or Ctrl+x
 
     *Optional.*
@@ -46,7 +42,6 @@ variable (`Variable`_)
     The Boolean variable being toggled.
 
 inGameOnly (boolean)
-
     If true, this setting is disabled in main menu.
 
     *Optional.*
@@ -70,23 +65,45 @@ callback (function)
 
 Example::
 
-    {
-        class = "KeyBinder", 
-        label = "Key Combo Binding",
-        description = "Keybinds can allow combos of Shift+x, Alt+x or Ctrl+x.",
+    --EasyMCM:
+    local template = EasyMCM.createTemplate("My mod")
+    local page = template:createPage()
+    page:createKeyBinder{
+        label = "Assign Keybind",
         allowCombinations = true,
-        variable = {
-            id = "keybind1", 
-            class = "TableVariable", 
-            table = localConfig,
+        variable = EasyMCM.createTableVariable{
+            id = "keybind_1",
+            table = config,
             defaultSetting = {
                 keyCode = tes3.scanCode.k,
                 --These default to false
                 isShiftDown = true,
                 isAltDown = false,
                 isControlDown = false,
-            },
-        },--/rebind
+            }
+        }
+    }
+
+    --Adding to a non-easyMCM element
+    block = e:createBlock()
+    EasyMCM.createKeyBinder{
+        block,
+        {
+            label = "Assign Keybind",
+            allowCombinations = true,
+            variable = EasyMCM.createTableVariable{
+                id = "keybind_1",
+                table = config,
+                defaultSetting = {
+                    keyCode = tes3.scanCode.k,
+                    --These default to false
+                    isShiftDown = true,
+                    isAltDown = false,
+                    isControlDown = false,
+                }
+            }
+        }
+    }
 
 .. _`Button`: Button.html
 .. _`Setting`: ../settings.html

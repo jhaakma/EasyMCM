@@ -94,8 +94,6 @@
 <li class="toctree-l2"><a class="reference internal" href="Variable.html">Variable</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../example.html">MCMData Example</a></li>
 </ul>
 
             
@@ -169,33 +167,12 @@ Treats 0 as false and &gt;=1 as true.</p>
 <p>Base Class: <a class="reference external" href="Global.html">Global</a></p>
 <div class="section" id="fields">
 <h2>Fields<a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
-<dl>
-<dt>class (string)</dt><dd><p>The name of this class.</p>
-</dd>
+<dl class="simple">
 <dt>id (string)</dt><dd><p>The id of the Morrowind Global.</p>
-</dd>
-<dt>inGameOnly (boolean)</dt><dd><p>If true, the setting containing this variable will
-be disabled in the main menu.</p>
-<p><em>Optional.</em></p>
-</dd>
-<dt>restartRequired (boolean)</dt><dd><p>If true, updating the setting containing this variable
-will notify the player to restart the game.</p>
-<p><em>Optional.</em></p>
-</dd>
-<dt>restartRequiredMessage (string)</dt><dd><p>The message shown if restartRequired is triggered.</p>
-<p><em>Optional.</em></p>
 </dd>
 </dl>
 <p>Example:</p>
-<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Button Setting&quot;</span><span class="p">,</span>
-    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;YesNoButton&quot;</span><span class="p">,</span>
-    <span class="n">restartRequired</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;HeartDestroyed&quot;</span><span class="p">,</span>
-        <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;GlobalBoolean&quot;</span><span class="p">,</span>
-    <span class="p">},</span>
-<span class="p">},</span>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="n">EasyMCM</span><span class="p">.</span><span class="n">createGlobalBoolean</span><span class="p">(</span><span class="s2">&quot;HeartDestroyed&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

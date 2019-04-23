@@ -8,7 +8,7 @@ it will create it.
 
 The ConfigVariable saves to the config file every time the setting 
 is updated. It is generally recommended you use `TableVariable`_ and 
-save the config in the onClose() function in the template instead, 
+save the config using template.saveOnClose() instead, 
 especially if you are using a setting where updates happen frequently 
 such as with sliders. 
 
@@ -17,9 +17,6 @@ Parent Class: `Variable`_
 
 Fields
 ----------
-
-class (string)
-    The name of this class.
 
 id (string)
     Key in the config file used to store the variable.
@@ -52,10 +49,9 @@ restartRequiredMessage (string)
 
 Example::
 
-    variable = {
+    EasyMCM.createVariable{
         id = "varID",                                
         path = "MyMod/config",
-        class = "ConfigVariable",
     },
 
 .. _`Global`: Global.html

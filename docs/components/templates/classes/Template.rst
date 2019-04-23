@@ -3,17 +3,11 @@ Template
 ==========
 
 A Template is the top level component in mcmData. It determines the overall 
-layout of the menu.
+layout of the menu. Can be created with a table or a string (name).
 
 
 Fields:
 -------
-
-class (string)
-    Can be set to custom template types. 
-
-    *Optional: Defaults to "Template" for the 
-    top level table in mcmData.*
 
 name (string)
     The name field is the mod name, used to register the MCM, 
@@ -40,10 +34,12 @@ onClose (function)
 
 Example::
 
-    {
-        name = "Mod Name", --Displayed in mod list on lefthand side of MCM
-        class = "Template", --Optional, defaults to "Template" class
-        headerImagePath = "Path/to/image", --Optional, shows image at top of menu
-        onClose = function() ... end, --Optional, called when menu is closed
-        pages = {}, --List of pages that contain your components
+    local template = EasyMCM.createTemplate("My Mod name")
+    template:saveOnClose(configPath, config)
+
+    
+    --with image header
+    local template = EasyMCM.createTemplate{
+        name = "My mod name",
+        headerImagePath = "Path/to/image.dds"
     }

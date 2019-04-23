@@ -35,7 +35,6 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Tutorial" href="../../tutorial.html" />
     <link rel="prev" title="TableVariable" href="TableVariable.html" /> 
 </head>
 
@@ -95,8 +94,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../example.html">MCMData Example</a></li>
 </ul>
 
             
@@ -203,8 +200,7 @@ will notify the player to restart the game.</p>
 </dd>
 </dl>
 <p>Example:</p>
-<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="n">variable</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">class</span> <span class="o">=</span> <span class="s2">&quot;Variable&quot;</span><span class="p">,</span>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="n">EasyMCM</span><span class="p">.</span><span class="n">createVariable</span><span class="p">{</span>
     <span class="n">get</span> <span class="o">=</span> <span class="p">(</span>
         <span class="kr">function</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
             <span class="kr">return</span> <span class="n">tes3</span><span class="p">.</span><span class="n">getCurrentWeather</span><span class="p">().</span><span class="n">index</span> <span class="ow">or</span> <span class="mi">0</span>
@@ -217,6 +213,7 @@ will notify the player to restart the game.</p>
             <span class="kr">end</span>
         <span class="kr">end</span>
     <span class="p">),</span>
+    <span class="n">inGameOnly</span> <span class="o">=</span> <span class="kc">true</span>
 <span class="p">},</span>
 </pre></div>
 </div>
@@ -230,8 +227,6 @@ will notify the player to restart the game.</p>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../../tutorial.html" class="btn btn-neutral float-right" title="Tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="TableVariable.html" class="btn btn-neutral float-left" title="TableVariable" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

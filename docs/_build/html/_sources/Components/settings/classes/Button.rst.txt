@@ -20,9 +20,6 @@ Button Subclasses:
 Fields:
 -------
 
-class (string)
-    The name of this class.
-
 label (string)
     Text shown next to the button.
 
@@ -31,7 +28,7 @@ label (string)
 buttonText (string)
     Text shown inside the button.
 
-description
+description (string)
     If in a `SideBarPage`_, description will be shown on mouseover.
 
     *Optional.*
@@ -50,27 +47,37 @@ restartRequired (boolean)
 
     *Optional.*
 
-restartRequiredMessage
+restartRequiredMessage (boolean)
     The message shown if restartRequired is triggered.
 
     *Optional.*
 
 Example::
 
-    {
+    --EasyMCM:
+    local template = EasyMCM.createTemplate("My mod")
+    local page = template:createPage()
+    page:createButton{
         label = "Reset Actors",
         buttonText = "Okay",
-        description = "Call the Reset Actors function which returns all actors to their original positions.",
-        class = "Button",
         inGameOnly = true,
         callback = (
             function(self)
                 tes3.messageBox("Resetting Actors")
                 tes3.runLegacyScript({command = "ResetActors"})
             end
-        ),
+        ),       
+    }
 
-    },--/Reset Actors Button
+    --Adding to a non-easyMCM element
+    block = e:createBlock()
+    EasyMCM.createButton{
+        block,
+        {
+            buttonText = "Okay"        
+        }
+    }
+
 
 .. _`OnOffButton`: OnOffButton.html
 .. _`YesNoButton`: YesNoButton.html
