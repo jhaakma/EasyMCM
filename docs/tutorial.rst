@@ -64,7 +64,7 @@ Advanced Example::
         local page = template:createSideBarPage{
             sidebarComponents = {
                 EasyMCM.createInfo{ text = "An info field in the sidebar" },
-                EasyMCM.createButton{ buttonText = "Press this button }
+                EasyMCM.createButton{ buttonText = "Press this button" }
             }
         }
         --Make a category inside our page

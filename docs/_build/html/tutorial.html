@@ -194,74 +194,74 @@ probably a setting or two.</p>
 <p>Check out the list of <a class="reference external" href="components/components.html">Components</a> that you can build your MCM
 out of, and the types of <a class="reference external" href="variables/variables.html">Variables</a> that can be attached to settings.</p>
 <p>Advanced Example:</p>
-<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span>--fetch config file
-local confPath = &quot;config_test&quot;
-local config = mwse.loadConfig(confPath)
-if not config then
-    config = { blocked = {} }
-end
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="c1">--fetch config file</span>
+<span class="kd">local</span> <span class="n">confPath</span> <span class="o">=</span> <span class="s2">&quot;config_test&quot;</span>
+<span class="kd">local</span> <span class="n">config</span> <span class="o">=</span> <span class="n">mwse</span><span class="p">.</span><span class="n">loadConfig</span><span class="p">(</span><span class="n">confPath</span><span class="p">)</span>
+<span class="kr">if</span> <span class="ow">not</span> <span class="n">config</span> <span class="kr">then</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="p">{</span> <span class="n">blocked</span> <span class="o">=</span> <span class="p">{}</span> <span class="p">}</span>
+<span class="kr">end</span>
 
-local function registerModConfig()
-    --get EasyMCM
-    local EasyMCM = require(&quot;easyMCM.EasyMCM&quot;)
-    --create template
-    local template = EasyMCM.createTemplate(&quot;Advanced MCM&quot;)
-    --Have our config file save when MCM is closed
-    template:saveOnClose(confPath, config)
-    --Make a page
-    local page = template:createSideBarPage{
-        sidebarComponents = {
-            EasyMCM.createInfo{ text = &quot;An info field in the sidebar&quot; },
-            EasyMCM.createButton{ buttonText = &quot;Press this button }
-        }
-    }
-    --Make a category inside our page
-    local category = page:createCategory(&quot;Settings&quot;)
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">registerModConfig</span><span class="p">()</span>
+    <span class="c1">--get EasyMCM</span>
+    <span class="kd">local</span> <span class="n">EasyMCM</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;easyMCM.EasyMCM&quot;</span><span class="p">)</span>
+    <span class="c1">--create template</span>
+    <span class="kd">local</span> <span class="n">template</span> <span class="o">=</span> <span class="n">EasyMCM</span><span class="p">.</span><span class="n">createTemplate</span><span class="p">(</span><span class="s2">&quot;Advanced MCM&quot;</span><span class="p">)</span>
+    <span class="c1">--Have our config file save when MCM is closed</span>
+    <span class="n">template</span><span class="p">:</span><span class="n">saveOnClose</span><span class="p">(</span><span class="n">confPath</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+    <span class="c1">--Make a page</span>
+    <span class="kd">local</span> <span class="n">page</span> <span class="o">=</span> <span class="n">template</span><span class="p">:</span><span class="n">createSideBarPage</span><span class="p">{</span>
+        <span class="n">sidebarComponents</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">EasyMCM</span><span class="p">.</span><span class="n">createInfo</span><span class="p">{</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;An info field in the sidebar&quot;</span> <span class="p">},</span>
+            <span class="n">EasyMCM</span><span class="p">.</span><span class="n">createButton</span><span class="p">{</span> <span class="n">buttonText</span> <span class="o">=</span> <span class="s2">&quot;Press this button&quot;</span> <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">--Make a category inside our page</span>
+    <span class="kd">local</span> <span class="n">category</span> <span class="o">=</span> <span class="n">page</span><span class="p">:</span><span class="n">createCategory</span><span class="p">(</span><span class="s2">&quot;Settings&quot;</span><span class="p">)</span>
 
-    --Make some settings
-    category:createButton({
-        buttonText = &quot;Hello&quot;,
-        description = &quot;A useless button&quot;,
-        callback = function(self)
-            tes3.messageBox(&quot;Button pressed!&quot;)
-        end
-    })
+    <span class="c1">--Make some settings</span>
+    <span class="n">category</span><span class="p">:</span><span class="n">createButton</span><span class="p">({</span>
+        <span class="n">buttonText</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span><span class="p">,</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;A useless button&quot;</span><span class="p">,</span>
+        <span class="n">callback</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+            <span class="n">tes3</span><span class="p">.</span><span class="n">messageBox</span><span class="p">(</span><span class="s2">&quot;Button pressed!&quot;</span><span class="p">)</span>
+        <span class="kr">end</span>
+    <span class="p">})</span>
 
-    category:createSlider{
-        label = &quot;Time Scale&quot;,
-        description = &quot;Changes the speed of the day/night cycle.&quot;,
-        variable = EasyMCM:createGlobal{ id = &quot;timeScale&quot; }
-    }
+    <span class="n">category</span><span class="p">:</span><span class="n">createSlider</span><span class="p">{</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Time Scale&quot;</span><span class="p">,</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Changes the speed of the day/night cycle.&quot;</span><span class="p">,</span>
+        <span class="n">variable</span> <span class="o">=</span> <span class="n">EasyMCM</span><span class="p">:</span><span class="n">createGlobal</span><span class="p">{</span> <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;timeScale&quot;</span> <span class="p">}</span>
+    <span class="p">}</span>
 
-    --Make an exclusions page
-    local exclusionsPage = template:createExclusionsPage{
-        label = &quot;Exclusions&quot;,
-        description = (
-            &quot;Use an exclusions page to add items to a blacklist&quot;
-        ),
-        variable = EasyMCM:createTableVariable{
-            id = &quot;blocked&quot;,
-            table = config,
-        },
-        filters = {
-            {
-                label = &quot;Plugins&quot;,
-                type = &quot;Plugin&quot;,
-            },
-            {
-                label = &quot;Food&quot;,
-                type = &quot;Object&quot;,
-                objectType = tes3.objectType.ingredient,
-            }
-        }
-    }
+    <span class="c1">--Make an exclusions page</span>
+    <span class="kd">local</span> <span class="n">exclusionsPage</span> <span class="o">=</span> <span class="n">template</span><span class="p">:</span><span class="n">createExclusionsPage</span><span class="p">{</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Exclusions&quot;</span><span class="p">,</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;Use an exclusions page to add items to a blacklist&quot;</span>
+        <span class="p">),</span>
+        <span class="n">variable</span> <span class="o">=</span> <span class="n">EasyMCM</span><span class="p">:</span><span class="n">createTableVariable</span><span class="p">{</span>
+            <span class="n">id</span> <span class="o">=</span> <span class="s2">&quot;blocked&quot;</span><span class="p">,</span>
+            <span class="n">table</span> <span class="o">=</span> <span class="n">config</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="n">filters</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="p">{</span>
+                <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Plugins&quot;</span><span class="p">,</span>
+                <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Plugin&quot;</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Food&quot;</span><span class="p">,</span>
+                <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;Object&quot;</span><span class="p">,</span>
+                <span class="n">objectType</span> <span class="o">=</span> <span class="n">tes3</span><span class="p">.</span><span class="n">objectType</span><span class="p">.</span><span class="n">ingredient</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 
-    --Register our MCM
-    EasyMCM.register(template)
-end
+    <span class="c1">--Register our MCM</span>
+    <span class="n">EasyMCM</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+<span class="kr">end</span>
 
---register our mod when mcm is ready for it
-event.register(&quot;modConfigReady&quot;, registerModConfig)
+<span class="c1">--register our mod when mcm is ready for it</span>
+<span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="s2">&quot;modConfigReady&quot;</span><span class="p">,</span> <span class="n">registerModConfig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
