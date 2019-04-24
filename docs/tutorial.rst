@@ -29,9 +29,9 @@ Add the following to your `main.lua`::
 
     local function registerModConfig()
         EasyMCM = require("easyMCM.EasyMCM")
-        local template = EasyMCM.createTemplate{ name = "Basic MCM" }
+        local template = EasyMCM.createTemplate("Basic MCM")
         local page = template:createPage()
-        local category = page:createCategory{ label = "Settings" }
+        local category = page:createCategory("Settings")
         category:createButton{ buttonText = "Press" }
         EasyMCM.register(template)
     end

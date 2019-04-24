@@ -23,9 +23,9 @@ Example::
 
     local function registerModConfig()
         EasyMCM = require("easyMCM.EasyMCM")
-        local template = EasyMCM.createTemplate{ name = "Basic MCM" }
+        local template = EasyMCM.createTemplate("Basic MCM")
         local page = template:createPage()
-        local category = page:createCategory{ label = "Settings" }
+        local category = page:createCategory("Settings")
         category:createButton{ buttonText = "Press" }
         EasyMCM.register(template)
     end
@@ -33,4 +33,4 @@ Example::
 
 See the `Tutorial`_ for a more detailed walkthrough.
 
-.. _`Tutorial`: Tutorial.html
+.. _`Tutorial`: tutorial.html
