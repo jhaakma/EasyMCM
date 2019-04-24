@@ -143,7 +143,7 @@ function Template:register()
         self:create(container)
         mcm.onClose = self.onClose
     end
-    mwse.log( "[EasyMCM v%s]: %s mod config registered", EasyMCM.version, self.name )
+    mwse.log( "[EasyMCM]: %s mod config registered", self.name )
     mwse.registerModConfig(self.name, mcm)
 end
 
