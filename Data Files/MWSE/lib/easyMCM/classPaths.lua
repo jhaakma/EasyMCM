@@ -1,13 +1,20 @@
-return {
-    "easyMCM/components/templates/userdefined/",
-    "easyMCM/components/pages/userdefined/",
-    "easyMCM/components/categories/userdefined/",
-    "easyMCM/components/settings/userdefined/",  
-    "easyMCM/components/userdefined/",
-    "easyMCM/components/templates/",
-    "easyMCM/components/pages/",
-    "easyMCM/components/categories/",
-    "easyMCM/components/settings/",
-    "easyMCM/components/infos/",
-    "easyMCM/components/",
+local this = {}
+
+this.components = {
+    templates = "easyMCM/components/templates/",
+    pages = "easyMCM/components/pages/",
+    categories = "easyMCM/components/categories/",
+    settings = "easyMCM/components/settings/",
+    infos = "easyMCM/components/infos/",
 }
+
+this.all = {
+    templates = "easyMCM/components/templates/",
+    pages = "easyMCM/components/pages/",
+    categories = "easyMCM/components/categories/",
+    settings = "easyMCM/components/settings/",
+    infos = "easyMCM/components/infos/",
+    variables = "easyMCM/variables/",
+}
+
+return this

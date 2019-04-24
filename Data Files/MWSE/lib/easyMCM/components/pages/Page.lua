@@ -9,10 +9,9 @@ Page.componentType = "Page"
 Page.indent = 6
 
 function Page:new(data)
-    local t = {}
+    local t = Parent:new(data)
     if data then
         --register ID for the page tab
-        t = data
         local tabUID = ( "Page_" .. t.label)
         t.tabUID = tes3ui.registerID(tabUID)
     end
@@ -59,5 +58,6 @@ function Page:createOuterContainer(parentBlock)
 
     self.elements.outerContainer = outerContainer
 end
+
 
 return Page

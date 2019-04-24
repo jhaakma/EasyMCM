@@ -19,7 +19,7 @@ function Hyperlink:execute()
     }
 end
 
-function Hyperlink:createComponent(parentBlock)
+function Hyperlink:makeComponent(parentBlock)
 
     if not self.text then
         mwse.log("ERROR: Text field missing for the following setting: ")

@@ -53,7 +53,7 @@ end
 function Setting:createContentsContainer(parentBlock)
     self:createLabel(parentBlock)
     self:createInnerContainer(parentBlock)
-    self:createComponent(self.elements.innerContainer)
+    self:makeComponent(self.elements.innerContainer)
 end
 
 

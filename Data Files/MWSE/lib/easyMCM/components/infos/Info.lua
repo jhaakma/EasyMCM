@@ -22,10 +22,14 @@ function Info:disable()
     self.elements.info.color = tes3ui.getPalette("disabled_color")
 end
 
-
+function Info:update()
+    if self.variable then
+        self.text = tostring(self.variable.value)
+    end
+end
 --UI METHODS
 
-function Info:createComponent(parentBlock)
+function Info:makeComponent(parentBlock)
     local info = parentBlock:createLabel({ id = tes3ui.registerID("Info")})
     info.borderRight = self.indent-- * 2
     info.wrapText = true

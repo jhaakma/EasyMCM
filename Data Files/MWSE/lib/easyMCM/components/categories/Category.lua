@@ -24,6 +24,14 @@ local Category = Parent:new()
 Category.componentType = "Category"
 --CONTROL METHODS
 
+function Category:new(data)
+    local t = Parent:new(data)
+    setmetatable(t, self)
+    t.__index = Category.__index
+    t.components = t.components or {}
+    return t
+end
+
 function Category:disable()
     Parent.disable(self)
     for _, element in ipairs(self.elements.subcomponentsContainer.children) do
@@ -99,5 +107,40 @@ function Category:createContentsContainer(parentBlock)
     parentBlock:getTopLevelParent():updateLayout()
 end
 
+function Category.__index(tbl, key)
+    local meta = getmetatable(tbl)
+    local prefixLen = string.len("create")
+    if string.sub( key, 1, prefixLen ) == "create" then
+        local class = string.sub(key, prefixLen + 1)
+        local component
+        local classPaths = require("easyMCM.classPaths").components
+        for _, path in pairs(classPaths) do
+            
+            local classPath = (path .. class) 
+            local fullPath = lfs.currentdir() .. "/Data Files/MWSE/lib/" .. classPath .. ".lua"
+            local fileExists = lfs.attributes(fullPath, "mode") == "file"
+    
+            if fileExists then 
+                component = require(classPath)
+                break
+            end      
+        end
+        if component then
+            return function(self, data)
+                data = data or {}
+                if type(data) == "string" then
+                    data = { label = data }
+                end
+                data.class = class
+                component = component:new(data)
+                table.insert(self.components, component)
+                return component
+            end
+        end
+    end 
 
-return Category
+    return meta[key]
+end
+
+
+return Category 

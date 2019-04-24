@@ -83,7 +83,7 @@ function Dropdown:createDropdown()
 end
 
 
-function Dropdown:createComponent(parentBlock)
+function Dropdown:makeComponent(parentBlock)
 
     local border = parentBlock:createThinBorder()
     border.widthProportional = 1.0
@@ -124,7 +124,7 @@ end
 function Dropdown:createContentsContainer(parentBlock)
     self:createLabel(parentBlock)
     self:createInnerContainer(parentBlock)
-    self:createComponent(self.elements.innerContainer)
+    self:makeComponent(self.elements.innerContainer)
 end
 
 return Dropdown

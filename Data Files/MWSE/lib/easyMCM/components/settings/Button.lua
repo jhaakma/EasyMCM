@@ -5,6 +5,8 @@ local Parent = require("easyMCM.components.settings.Setting")
 local Button = Parent:new()
 Button.disabledText = "---"
 Button.leftSide = true
+Button.buttonText = "---"
+
 --Determines what text is displayed on the button
 function Button:getText()
     return self.buttonText
@@ -41,13 +43,14 @@ function Button:enable()
     )
 end
 
-function Button:createComponent(parentBlock)
+function Button:makeComponent(parentBlock)
     local buttonText = self.buttonText or self.disabledText
     local button = parentBlock:createButton({ id = tes3ui.registerID("Button"), text = buttonText })
     button.borderAllSides = 0
     button.borderRight = self.indent
     button.autoWidth = true
     self.elements.button = button
+    table.insert(self.mouseOvers, button)
 end
 
 
@@ -67,11 +70,11 @@ end
 function Button:createContentsContainer(parentBlock)
     self:createInnerContainer(parentBlock)
     if self.leftSide then
-        self:createComponent(self.elements.innerContainer)
+        self:makeComponent(self.elements.innerContainer)
     end
     self:createLabel(self.elements.innerContainer)
     if not self.leftSide then
-        self:createComponent(self.elements.innerContainer)
+        self:makeComponent(self.elements.innerContainer)
     end
 end
 

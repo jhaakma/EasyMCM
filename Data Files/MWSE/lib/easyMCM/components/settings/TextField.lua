@@ -101,7 +101,7 @@ function TextField:createInnerContainer(parentBlock)
     
 end
 
-function TextField:createComponent(parentBlock)
+function TextField:makeComponent(parentBlock)
     local border = parentBlock:createThinBorder()
     border.widthProportional = 1.0
     border.autoHeight = true

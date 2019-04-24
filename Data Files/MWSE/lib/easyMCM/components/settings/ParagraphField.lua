@@ -13,7 +13,7 @@ function ParagraphField:enable()
 end
 
 
-function ParagraphField:createComponent(parentBlock)
+function ParagraphField:makeComponent(parentBlock)
     local border = parentBlock:createBlock()
     border.widthProportional = 1.0
     border.autoHeight = true

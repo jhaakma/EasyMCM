@@ -25,14 +25,14 @@ function ExclusionsPage:new(data)
         t = data
         local tabUID = ( "Page_" .. t.label)
         t.tabUID = tes3ui.registerID(tabUID)
-
         --create variable
         local typePath = ("easyMCM.variables." .. t.variable.class)
-        t.variable = require(typePath):new(t.variable)
-        if t.variable.value == nil then
-            t.variable.value = { }
+        if not t.variable.__index then
+            t.variable = require(typePath):new(t.variable)
+            if t.variable.value == nil then
+                t.variable.value = { }
+            end
         end
-
     end
     setmetatable(t, self)
     self.__index = self
@@ -48,7 +48,7 @@ local function getSortedModList()
 	table.sort(list)
 	return list
 end
-
+ 
 local function getSortedObjectList(params)
     local list = {}
 
@@ -92,14 +92,17 @@ function ExclusionsPage:toggle(e)
 	e.source:destroy()
 
 	-- toggle blocked
-	if list == self.elements.leftList then
-		list = self.elements.rightList
-        self.variable.value[text] = nil
-	else
+    if list == self.elements.leftList then
+        list = self.elements.rightList
+        local var = self.variable.value
+        var[text] = nil
+        self.variable.value = var
+    else
 		list = self.elements.leftList
-		self.variable.value[text] = true
-	end
-    mwse.log("Saving %s value %s to %s", text, self.variable.value[text], self.configPath)
+        local var = self.variable.value
+        var[text] = true
+        self.variable.value = var
+    end
 
 	-- create element
 	list:createTextSelect{ id = itemID, text=text}:register("mouseClick", function(e) self:toggle(e) end )
@@ -139,21 +142,36 @@ function ExclusionsPage:updateSearch(listName)
 end
 
 
-function ExclusionsPage:distribute(items)
+function ExclusionsPage:distributeLeft(items)
     -- distribute items between blocked / allowed
     
 	self.elements.leftList:getContentElement():destroyChildren()
-    self.elements.rightList:getContentElement():destroyChildren()
 
-    for i, name in pairs(items) do
-		if self.variable.value[name] then
-			self.elements.leftList:createTextSelect{ id = itemID, text=name}:register("mouseClick",  function(e) self:toggle(e) end )
-		else
-			self.elements.rightList:createTextSelect{ id = itemID, text=name}:register("mouseClick",  function(e) self:toggle(e) end)
-		end
+    if self.showAllBlocked then
+        --show all items
+        for name, blocked in pairs(self.variable.value) do
+            if blocked then
+                self.elements.leftList:createTextSelect{ id = itemID, text=name}:register("mouseClick",  function(e) self:toggle(e) end )
+            end
+        end
+    else
+        for i, name in pairs(items) do
+            if self.variable.value[name] then
+                self.elements.leftList:createTextSelect{ id = itemID, text=name}:register("mouseClick",  function(e) self:toggle(e) end )
+            end
+        end
     end
+end
 
-    self:resetSearchBars()
+function ExclusionsPage:distributeRight(items)
+    -- distribute items between blocked / allowed
+    
+    self.elements.rightList:getContentElement():destroyChildren()
+    for i, name in pairs(items) do
+        if not self.variable.value[name] then
+            self.elements.rightList:createTextSelect{ id = itemID, text=name}:register("mouseClick",  function(e) self:toggle(e) end)
+        end
+    end
 end
 
 
@@ -326,7 +344,9 @@ function ExclusionsPage:createFiltersSection(parentBlock)
             function (e)
                 local items = getItemsCallback()
                 self:clickFilter(button)
-                self:distribute(items)
+                self:distributeLeft(items)
+                self:distributeRight(items)
+                self:resetSearchBars()
             end
         )
 

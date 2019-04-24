@@ -88,11 +88,11 @@ function SideBarPage:createRightColumn(parentBlock)
     event.register(self.triggerOn, doMouseOver)
     event.register(self.triggerOff, doMouseLeave)
     parentBlock:register("destroy",
-    function()
-        event.unregister(self.triggerOn, doMouseOver)
-        event.unregister(self.triggerOff, doMouseLeave)
-    end
-)
+        function()
+            event.unregister(self.triggerOn, doMouseOver)
+            event.unregister(self.triggerOff, doMouseLeave)
+        end
+    )
 end
 
 

@@ -3,6 +3,7 @@
 ]]--
 
 local Component = {}
+Component.componentType = "Component"
 Component.paddingBottom = 4
 Component.indent = 12
 Component.sOK = tes3.findGMST(tes3.gmst.sOK).value
@@ -13,12 +14,15 @@ Component.sNo = tes3.findGMST(tes3.gmst.sNo).value
 
 --CONTROL METHODS
 
-
 function Component:new(data)
     local t = data or {}
     setmetatable(t, self)
     self.__index = self
     return t
+end
+
+function Component:__index(key)
+    return self[key]
 end
 
 --Prints the component table to the log
@@ -39,13 +43,17 @@ end
 
 
 function Component:getComponent(componentData)
+
+    --if componentType field is set then we've already built it
+    if componentData.componentType then return componentData end
+
     if not componentData.class then
         mwse.log("ERROR: No class found for component:")
         self:printComponent(componentData)
     end
     local component
-    local classPaths = require("easyMCM.classPaths")
-    for _, path in ipairs(classPaths) do
+    local classPaths = require("easyMCM.classPaths").components
+    for _, path in pairs(classPaths) do
         local classPath = (path .. componentData.class) 
         local fullPath = lfs.currentdir() .. "/Data Files/MWSE/lib/" .. classPath .. ".lua"
         local fileExists = lfs.attributes(fullPath, "mode") == "file"
@@ -68,8 +76,9 @@ function Component:registerMouseOverElements(mouseOverList)
         for _, element in ipairs(mouseOverList) do
             element:register(
                 "mouseOver",
-                function()
+                function(e)
                     event.trigger("MCM:MouseOver", self)
+                    e.source:forwardEvent(e)
                 end
             )
             element:register(
@@ -140,7 +149,7 @@ function Component:createLabel(parentBlock)
         table.insert(self.mouseOvers, label)
     end
 end
-
+ 
 --[[
     Wraps up the entire component 
 ]]
@@ -149,11 +158,10 @@ function Component:createOuterContainer(parentBlock)
     outerContainer = parentBlock:createBlock({ id = tes3ui.registerID("OuterContainer") })
     outerContainer.flowDirection = "top_to_bottom"
 
-    if parentBlock.flowDirection == "top_to_bottom" then
-        outerContainer.widthProportional = 1.0
-    else
-        outerContainer.autoWidth = true
-    end
+    outerContainer.autoWidth = true
+
+    outerContainer.widthProportional = 1.0
+
 
     outerContainer.autoHeight = true
     outerContainer.paddingBottom = self.paddingBottom * 2
@@ -177,6 +185,7 @@ end
 
 
 function Component:create(parentBlock)
+
     self.elements = {}
     self.mouseOvers = {}
 
@@ -199,5 +208,7 @@ function Component:create(parentBlock)
         self:postCreate()
     end
 end
+
+
 
 return Component

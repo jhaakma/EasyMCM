@@ -4,22 +4,34 @@ local Parent = require("easyMCM.components.Component")
 --Class object
 local Template = Parent:new()
 
+Template.componentType = "Template"
 
-function Template:new(modData)
-    local t = modData or {}
-    if modData then 
+function Template:new(data)
+    if type(data) == "string" then
+        data = { name = data }
+    end
+    local t = Parent:new(data)
+    setmetatable(t, self)
+    if t then 
         --Create Pages
         local pages = {}
-        for _, page in ipairs(modData.pages) do
+        t.pages = t.pages or {}
+        for _, page in ipairs(t.pages) do
             page.class = page.class or "Page"
             local newPage = self:getComponent(page)
             table.insert(pages, newPage )
         end
+        
         t.pages = pages
     end
-    setmetatable(t, self)
-    self.__index = self
+    self.__index = Template.__index
     return t
+end
+
+function Template:saveOnClose(configPath, config)
+    self.onClose = function()
+        mwse.saveConfig(configPath, config)
+    end
 end
 
 
@@ -122,6 +134,37 @@ function Template:createContentsContainer(parentBlock)
     self:createLabel(parentBlock)
     self:createTabsBlock(parentBlock)
     self:createSubcomponentsContainer(parentBlock)
+end
+
+
+function Template.__index(tbl, key)
+
+    local meta = getmetatable(tbl)
+    local prefixLen = string.len("create")
+    if string.sub( key, 1, prefixLen ) == "create" then
+        local component
+        
+        local class = string.sub(key, prefixLen + 1)
+        local classPath = require("easyMCM.classPaths").all.pages .. class
+        local fullPath = lfs.currentdir() .. "/Data Files/MWSE/lib/" .. classPath .. ".lua"
+        local fileExists = lfs.attributes(fullPath, "mode") == "file"
+        if fileExists then 
+            component = require(classPath)
+        end      
+
+        if component then
+            return function(self, data)
+                data = data or {}
+                data.class = class
+                data.label = data.label or ( "Page " .. ( #self.pages + 1 ) )
+                component = component:new(data)
+                table.insert(self.pages, component)
+                return component
+            end
+        end
+
+    end 
+    return meta[key]
 end
 
 return Template

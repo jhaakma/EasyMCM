@@ -1,4 +1,5 @@
 local this = {}
+
 this.version = 1.2
 function this.registerModData(mcmData)
     --object returned to be used in modConfigMenu
@@ -39,6 +40,7 @@ function this.registerMCM(mcmData)
     local mcm = this.registerModData( mcmData ) 
     mwse.registerModConfig(mcmData.name, mcm)
 end
+
 
 
 return this

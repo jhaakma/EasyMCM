@@ -10,8 +10,21 @@ Slider.step = 1
 Slider.jump = 5
 
 function Slider:updateValueLabel()
-    local newValue = self.elements.slider.widget.current + self.min
-    self.elements.sliderValueLabel.text = ( ": " .. newValue )
+    local newValue = ""
+    local labelText = ""
+
+    if self.elements.slider then
+        newValue = self.elements.slider.widget.current + self.min
+    end
+  
+    if string.find(self.label, "%s", 1, true) then
+        labelText = string.format(self.label, newValue)
+    else
+        labelText = self.label .. ": " .. newValue
+    end
+
+    self.elements.label.text = labelText
+
 end
 
 function Slider:update()
@@ -42,8 +55,10 @@ end
 function Slider:enable()
     Parent.enable(self)
     if self.variable.value then
-        self.elements.sliderValueLabel.text = ( ": " .. self.variable.value )
+        --self.elements.sliderValueLabel.text = ( ": " .. self.variable.value )
         self.elements.slider.widget.current = self.variable.value - self.min
+        self:updateValueLabel() 
+        
     end
     --Register slider elements so that the value only updates when the mouse is released
     for _, sliderElement in ipairs(self.elements.slider.children) do
@@ -67,7 +82,7 @@ function Slider:disable()
     Parent.disable(self)
 
     self.elements.slider.children[2].children[1].visible = false
-    self.elements.sliderValueLabel.color = tes3ui.getPalette("disabled_color")
+    --self.elements.sliderValueLabel.color = tes3ui.getPalette("disabled_color")
 
 end
 
@@ -76,22 +91,24 @@ end
 
 function Slider:createOuterContainer(parentBlock)
     Parent.createOuterContainer(self, parentBlock)
+    self.elements.outerContainer.widthProportional = 1.0
     self.elements.outerContainer.borderRight = self.indent -- * 2
     self.elements.outerContainer.flowDirection = "top_to_bottom"
 end
 
 function Slider:createLabel(parentBlock)
     Parent.createLabel(self, parentBlock)
-    self.elements.label.autoWidth = true
+    self:updateValueLabel(self)
+    --[[self.elements.label.autoWidth = true
     self.elements.label.widthProportional = nil
     self.elements.labelBlock.flowDirection = "left_to_right"
     
     local sliderValueLabel = self.elements.labelBlock:createLabel({text = ": --" })
     self.elements.sliderValueLabel = sliderValueLabel
-    table.insert(self.mouseOvers, sliderValueLabel)
+    table.insert(self.mouseOvers, sliderValueLabel)]]--
 end
 
-function Slider:createComponent(parentBlock)
+function Slider:makeComponent(parentBlock)
     local sliderBlock 
     sliderBlock = parentBlock:createBlock()
     sliderBlock.flowDirection = "left_to_right"

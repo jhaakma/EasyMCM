@@ -1,4 +1,4 @@
-local Parent = require("easyMCM.components.categories.Category")
+--[[local Parent = require("easyMCM.components.categories.Category")
 
 local MouseOver = Parent:new()
 MouseOver.triggerOn = "MCM:MouseOver"
@@ -22,4 +22,4 @@ function MouseOver:createSubcomponentsContainer(parentBlock)
 
 end
 
-return MouseOver
+return MouseOver]]--

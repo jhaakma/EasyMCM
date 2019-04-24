@@ -137,6 +137,7 @@ function KeyBinder:showKeyBindMessage(keyCombo)
 end
 
 function KeyBinder:update()
+    mwse.log("updating keybind")
     --Initialise combo to existing keybind
     self.currentCombo = self.variable.value
     --Display message to change keybinding
@@ -155,8 +156,8 @@ function KeyBinder:createOuterContainer(parentBlock)
 end
 
 
-function KeyBinder:createComponent(parentBlock)
-    Parent.createComponent(self, parentBlock)
+function KeyBinder:makeComponent(parentBlock)
+    Parent.makeComponent(self, parentBlock)
     --self.elements.button.absolutePosAlignX = 1.0
 end
 

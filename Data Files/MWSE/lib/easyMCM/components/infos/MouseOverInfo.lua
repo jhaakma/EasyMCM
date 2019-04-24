@@ -10,9 +10,9 @@ MouseOverInfo.triggerOn = "MCM:MouseOver"
 MouseOverInfo.triggerOff = "MCM:MouseLeave"
 
 
-function MouseOverInfo:createComponent(parentBlock)
+function MouseOverInfo:makeComponent(parentBlock)
 
-    Parent.createComponent(self, parentBlock)
+    Parent.makeComponent(self, parentBlock)
     local info = self.elements.info
 
     local function updateInfo(component)

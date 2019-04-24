@@ -54,7 +54,6 @@
 
 local simpleExample = {
     name = "Simple MCM",
-    template = "Template", --Optional: defaults to "Template"
     pages = {
         {
             label = "SideBar Page",
@@ -188,7 +187,7 @@ local exampleTemplate = {
                                 id = "enabled",
                                 class = "ConfigVariable",--Saves to a json file
                                 defaultSetting = true,--Optional: for OnOffButton defaults to false
-                                path = configPath,--Path to config file
+                                path = configPath,--Path to config file 
                             },]]--
                             variable = {
                                 id = "enabled",
@@ -564,4 +563,52 @@ local exampleTemplate = {
 
 --Make sure to return the mcmData object!
 --return simpleExample
-return exampleTemplate
+
+local mcmData = {
+    name = "Simple MCM",
+    class = "Template",
+    pages = { 
+        {
+            label = "Page 1",
+            class = "Page",
+            components = {
+                {
+                    label = "Buttons",
+                    class = "Category",
+                    components = {
+                        {
+                            buttonText = "Reset Actors",
+                            class = "Button",
+                            inGameOnly = true,
+                            callback = (
+                                function(self)
+                                    tes3.messageBox("Resetting Actors")
+                                    tes3.runLegacyScript({command = "ResetActors"})
+                                end
+                            ),
+                        },
+                    }
+                },
+
+                {
+                    label = "Sliders",
+                    class = "Category", 
+                    components = {
+                        {
+                            label = "Time Scale",
+                            class = "Slider",
+                            min = 5,
+                            max = 50,
+                            variable = {
+                                id = "timeScale",
+                                class = "Global",
+                            },
+                        },   
+                    }
+                }
+
+            }
+        }
+    }
+}
+return mcmData

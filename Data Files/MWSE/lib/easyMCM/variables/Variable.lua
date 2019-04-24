@@ -16,16 +16,19 @@
 ]]--
 
 local Variable = {}
+Variable.componentType = "Variable"
 Variable.inGameOnly = false
 Variable.restartRequiredMessage = "The game must be restarted before this change will come into effect."
 function Variable:new(variable)
     local t = variable or {}
+    if type(t) == "string" then
+        t = { id = t }
+    end
     setmetatable(t, self)
     self.__index = Variable.__index
     self.__newindex = Variable.__newindex
     return t
 end
-
 
 
 function Variable:get()
@@ -35,8 +38,7 @@ end
 function Variable:set(newValue)
     rawset(self, "value", newValue)
 end
-
-
+ 
 function Variable.__index(tbl, key)
     local meta = getmetatable(tbl)
     if key == "value" then
