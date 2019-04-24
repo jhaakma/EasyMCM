@@ -136,6 +136,17 @@ function Template:createContentsContainer(parentBlock)
     self:createSubcomponentsContainer(parentBlock)
 end
 
+function Template:register()
+    local mcm = {}
+    
+    mcm.onCreate = function(container)
+        self:create(container)
+        mcm.onClose = self.onClose
+    end
+    mwse.log( "[EasyMCM v%s]: %s mod config registered", EasyMCM.version, self.name )
+    mwse.registerModConfig(self.name, mcm)
+end
+
 
 function Template.__index(tbl, key)
 
@@ -166,5 +177,7 @@ function Template.__index(tbl, key)
     end 
     return meta[key]
 end
+
+
 
 return Template

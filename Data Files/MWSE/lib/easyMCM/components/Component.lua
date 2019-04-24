@@ -83,7 +83,7 @@ function Component:registerMouseOverElements(mouseOverList)
             )
             element:register(
                 "mouseLeave",
-                function()
+                function(e)
                     event.trigger("MCM:MouseLeave")
                     e.source:forwardEvent(e)
                 end
