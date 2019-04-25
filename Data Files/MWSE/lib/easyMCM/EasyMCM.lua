@@ -59,10 +59,12 @@ function EasyMCM.__index(tbl, key)
                     else
                         data = param1
                     end
-                    if type(data) == "table" then
-                        data.class = class
+                    if not data then data = "---" end
+                    if type(data) == "string" then
+                        data = { label = data }
                     end
-                    
+                    data.class = class
+
                     component = component:new(data)
                     --Add check for easyMCM field to deal with using `:` instead of `.`
                     if parent and parent.easyMCM ~= true then

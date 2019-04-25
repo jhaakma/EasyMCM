@@ -5,14 +5,9 @@ local TextField = Parent:new()
 TextField.buttonText = "Submit"
 TextField.sNumbersOnly = "Value must be a number."
 TextField.sNewValue = "New value: '%s'"
+TextField.defaultSetting = ""
 function TextField:enable()
     self.elements.inputField.text = self.variable.value or ""
-
-    --[[self.elements.inputField:register("keyEnter",
-        function()
-            self:update()
-        end
-    )]]--
 
     self.elements.border:register(
         "mouseClick", 
@@ -73,7 +68,7 @@ function TextField:press()
     --HINT: this could be overridden for a 
     --confirmation message before calling update
     self:update()
-end 
+end  
 
 function TextField:callback()
     --default messageBox on update
@@ -101,11 +96,14 @@ function TextField:createInnerContainer(parentBlock)
     
 end
 
+
+
 function TextField:makeComponent(parentBlock)
     local border = parentBlock:createThinBorder()
     border.widthProportional = 1.0
     border.autoHeight = true
     border.flowDirection = "left_to_right"
+    if self.minHeight then border.minHeight = self.minHeight end
 
     local inputField = border:createTextInput()
     inputField.text = self.variable.defaultSetting or ""
@@ -119,6 +117,7 @@ function TextField:makeComponent(parentBlock)
     inputField.consumeMouseEvents = false
     inputField.wrapText = true
 
+
     self:createSubmitButton(parentBlock)
     
     self.elements.border = border
@@ -127,6 +126,8 @@ function TextField:makeComponent(parentBlock)
     table.insert(self.mouseOvers, self.elements.border)
     table.insert(self.mouseOvers, self.elements.inputField)
     table.insert(self.mouseOvers, self.elements.label)
+
+
 end
 
 

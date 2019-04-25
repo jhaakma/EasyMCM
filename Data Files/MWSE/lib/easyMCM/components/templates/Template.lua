@@ -7,23 +7,20 @@ local Template = Parent:new()
 Template.componentType = "Template"
 
 function Template:new(data)
-    if type(data) == "string" then
-        data = { name = data }
-    end
+    data.name = data.name or data.label
     local t = Parent:new(data)
     setmetatable(t, self)
-    if t then 
-        --Create Pages
-        local pages = {}
-        t.pages = t.pages or {}
-        for _, page in ipairs(t.pages) do
-            page.class = page.class or "Page"
-            local newPage = self:getComponent(page)
-            table.insert(pages, newPage )
-        end
-        
-        t.pages = pages
+
+    --Create Pages
+    local pages = {}
+    t.pages = t.pages or {}
+    for _, page in ipairs(t.pages) do
+        page.class = page.class or "Page"
+        local newPage = self:getComponent(page)
+        table.insert(pages, newPage )
     end
+    t.pages = pages
+
     self.__index = Template.__index
     return t
 end
@@ -128,6 +125,7 @@ function Template:createSubcomponentsContainer(parentBlock)
     self.currentPage = self.pages[1]
     self.currentPage:create(pageBlock)
     self.elements.pageBlock = pageBlock
+    pageBlock.flowDirection = tes3.flowDirection.leftToRight
 end
 
 function Template:createContentsContainer(parentBlock)
@@ -165,9 +163,8 @@ function Template.__index(tbl, key)
 
         if component then
             return function(self, data)
-                data = data or {}
+                data = self:prepareData(data)
                 data.class = class
-                data.label = data.label or ( "Page " .. ( #self.pages + 1 ) )
                 component = component:new(data)
                 table.insert(self.pages, component)
                 return component

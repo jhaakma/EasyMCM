@@ -27,24 +27,28 @@ description (string)
 
     *Optional.*
 
-sidebarComponents (table)
-    A list of components to display on the sidebar 
-    when nothing is moused over. 
+sidebar (MouseOverPage)
+    The object that holds components in the sidebar.
+    Add to it like any
 
-    *Optional: Should have either this or a description.* 
+noScroll (boolean)
+    When set to true, the page will not have a scrollbar. 
+    Particularly useful if you want to use a ParagraphField, 
+    which is not compatible inside of scroll panes. 
 
 
 Example::
 
-    EasyMCM.createTemplate("My Mod")
-
-    local sidebar = { EasyMCM.createButton{ buttonText = "press button" } }
-    local page = template:createSideBarPage{ sidebarComponents = sidebar }
+    --With sidebar
+    local template = EasyMCM.createTemplate("My Mod")
+    local page = template:createSideBarPage()
     page:createButton{
         buttonText = "Button",
         description = "When hovering over the button, this text will be shown in the sidebar"
     }
+    page.sidebar:createButton{ buttonText = "press button" } }
 
+    --With basic description
     template:createSideBarPage{
         label = "Sidebar Page",
         description = "Default sidebar text"

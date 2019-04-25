@@ -16,6 +16,12 @@ Component.sNo = tes3.findGMST(tes3.gmst.sNo).value
 
 function Component:new(data)
     local t = data or {}
+
+    if t.parentComponent then
+        t.indent = t.parentComponent.childIndent or t.indent
+        t.paddingBottom = t.parentComponent.childSpacing or t.paddingBottom
+    end
+
     setmetatable(t, self)
     self.__index = self
     return t
@@ -41,6 +47,15 @@ function Component:printComponent(component)
     mwse.log("}")
 end
 
+function Component:prepareData(data)
+    data = data or {}
+    if type(data) == "string" then
+        data = { label = data }
+    end
+    data.parentComponent = self
+    return data
+end
+
 
 function Component:getComponent(componentData)
 
@@ -64,6 +79,7 @@ function Component:getComponent(componentData)
         end
     end
     if component then
+        data = self:prepareData(componentData)
         return component:new(componentData)
     else
         mwse.log("Error: class %s not found", componentData.class)
@@ -162,7 +178,7 @@ function Component:createOuterContainer(parentBlock)
     outerContainer.autoWidth = true
 
     outerContainer.widthProportional = 1.0
-
+    
 
     outerContainer.autoHeight = true
     outerContainer.paddingBottom = self.paddingBottom * 2
@@ -174,7 +190,7 @@ end
 function Component:createInnerContainer(parentBlock)
     local innerContainer = parentBlock:createBlock({id = tes3ui.registerID("InnerContainer")})
     innerContainer.widthProportional = parentBlock.widthProportional
-    innerContainer.autoWidth = true-- parentBlock.autoWidth
+    innerContainer.autoWidth = parentBlock.autoWidth
     innerContainer.heightProportional = parentBlock.heightProportional
     innerContainer.autoHeight = parentBlock.autoHeight
     innerContainer.flowDirection = parentBlock.flowDirection

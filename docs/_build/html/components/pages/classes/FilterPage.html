@@ -184,21 +184,14 @@ of the menu.</p>
 defined</p>
 <p><em>Optional.</em></p>
 </dd>
-<dt>sidebarComponents (table)</dt><dd><p>A list of components to display on the sidebar
-when nothing is moused over.</p>
-<p><em>Optional: Should have either this or a description.</em></p>
+<dt>sidebar (MouseOverPage)</dt><dd><p>The object that holds components in the sidebar.
+Add to it like any other component</p>
 </dd>
 </dl>
 <p>Example:</p>
-<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">sidebar</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">EasyMCM</span><span class="p">.</span><span class="n">createButton</span><span class="p">({</span> <span class="n">buttonText</span> <span class="o">=</span> <span class="s2">&quot;press button&quot;</span> <span class="p">})</span>
-<span class="p">}</span>
-
-<span class="n">template</span><span class="p">:</span><span class="n">createFilterPage</span><span class="p">{</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Filter Page&quot;</span><span class="p">,</span>
-    <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Default sidebar text&quot;</span><span class="p">,</span>
-    <span class="n">sidebarComponents</span> <span class="o">=</span> <span class="n">sidebar</span>
-<span class="p">}</span>
+<div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="n">filterPage</span> <span class="o">=</span> <span class="n">template</span><span class="p">:</span><span class="n">createFilterPage</span><span class="p">(</span><span class="s2">&quot;Filter Page&quot;</span><span class="p">)</span>
+<span class="n">filterPage</span><span class="p">.</span><span class="n">sidebar</span><span class="p">:</span><span class="n">createCategory</span><span class="p">(</span><span class="s2">&quot;Heading&quot;</span><span class="p">)</span>
+<span class="n">filterpage</span><span class="p">.</span><span class="n">sideBar</span><span class="p">:</span><span class="n">createInfo</span><span class="p">{</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Description of my mod.&quot;</span> <span class="p">}</span>
 </pre></div>
 </div>
 </div>

@@ -10,7 +10,14 @@ Page.indent = 6
 
 function Page:new(data)
     local t = Parent:new(data)
+    
     if data then
+        if data.parentComponent.pages then
+            data.label = data.label or ( "Page " .. ( #(data.parentComponent.pages) + 1 ) )
+        else
+            --child of page, must be sidebar
+            data.label = "Sidebar"
+        end
         --register ID for the page tab
         local tabUID = ( "Page_" .. t.label)
         t.tabUID = tes3ui.registerID(tabUID)
@@ -45,13 +52,25 @@ end
 
 
 function Page:createOuterContainer(parentBlock)
-    local scrollPane = parentBlock:createVerticalScrollPane({ id = tes3ui.registerID("Page_ScrollPane") })
-    scrollPane.heightProportional = 1.0
-    scrollPane.widthProportional = 1.0
+    local border
 
-    local outerContainer = scrollPane:createBlock({ id = tes3ui.registerID("Page_OuterContainer") })
+    if self.noScroll then
+        border = parentBlock:createThinBorder({ id = tes3ui.registerID("MouseOver_thinBorder") })
+        border.heightProportional = 1.0
+        border.widthProportional = 1.0
+        border.flowDirection = "top_to_bottom"
+        border.paddingTop = self.indent + 4
+        border.paddingLeft = self.indent + 4
+    else
+        border = parentBlock:createVerticalScrollPane({ id = tes3ui.registerID("Page_ScrollPane") })
+        border.heightProportional = 1.0
+        border.widthProportional = 1.0
+    end
+
+    local outerContainer = border:createBlock({ id = tes3ui.registerID("Page_OuterContainer") })
     outerContainer.flowDirection = "top_to_bottom"
     outerContainer.autoHeight = true
+    outerContainer.heightProportional = 1.0
     outerContainer.widthProportional = 1.0
     outerContainer.paddingLeft = self.indent
     outerContainer.paddingTop = self.indent

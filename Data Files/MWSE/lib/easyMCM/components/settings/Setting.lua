@@ -10,13 +10,17 @@ Setting.restartRequiredMessage = "The game must be restarted before this change 
 
 
 function Setting:new(data) 
-    local t = data or {}
+    local t = Parent:new(data)
+    setmetatable(t, self)
+
     if data and data.variable then
         --create setting variable
+        t.variable.defaultSetting = t.variable.defaultSetting or t.defaultSetting
+        mwse.log("%s defaultSetting = %s", t.label, t.variable.defaultSetting)
         local typePath = ("easyMCM.variables." .. t.variable.class)
         t.variable = require(typePath):new(t.variable)
     end
-    setmetatable(t, self)
+    
     self.__index = self
     return t
 end

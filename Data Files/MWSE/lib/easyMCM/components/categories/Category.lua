@@ -22,6 +22,8 @@
 local Parent = require("easyMCM.components.Component")
 local Category = Parent:new()
 Category.componentType = "Category"
+--Category.childSpacing = 20
+--Category.childIndent = 40
 --CONTROL METHODS
 
 function Category:new(data)
@@ -82,9 +84,10 @@ end
 function Category:createSubcomponentsContainer(parentBlock)
     local subcomponentsContainer = parentBlock:createBlock({ id = tes3ui.registerID("Category_ContentsContainer") })
     subcomponentsContainer.flowDirection = "top_to_bottom"
-    subcomponentsContainer.widthProportional = 1.0
-    subcomponentsContainer.autoHeight = true
-    subcomponentsContainer.autoWidth = true
+    subcomponentsContainer.widthProportional = parentBlock.widthProportional
+    subcomponentsContainer.heightProportional = parentBlock.heightProportional
+    subcomponentsContainer.autoHeight = parentBlock.autoHeight
+    subcomponentsContainer.autoWidth = parentBlock.autoWidth
     self.elements.subcomponentsContainer = subcomponentsContainer
 end
 
@@ -92,7 +95,9 @@ end
 function Category:createSubcomponents(parentBlock, components)
     if components then
         for _, component in pairs(components) do
+            component.parentComponent = self
             local newComponent = self:getComponent(component)
+            
             newComponent:create(parentBlock)
         end
     end
@@ -125,12 +130,10 @@ function Category.__index(tbl, key)
                 break
             end      
         end
+
         if component then
             return function(self, data)
-                data = data or {}
-                if type(data) == "string" then
-                    data = { label = data }
-                end
+                data = self:prepareData(data)
                 data.class = class
                 component = component:new(data)
                 table.insert(self.components, component)

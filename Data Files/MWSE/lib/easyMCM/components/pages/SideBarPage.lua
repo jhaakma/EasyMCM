@@ -8,6 +8,17 @@ local SideBarPage = Parent:new()
 SideBarPage.triggerOn = "MCM:MouseOver"
 SideBarPage.triggerOff = "MCM:MouseLeave"
 
+
+function SideBarPage:new(data)
+    t = Parent:new(data)
+    t.sidebar = self:getComponent({ class = "MouseOverPage" })
+
+    setmetatable(t, self)
+    self.__index = self
+    return t
+
+end
+
 function SideBarPage:createSidetoSideBlock(parentBlock)
     local sideToSideBlock = parentBlock:createBlock()
     sideToSideBlock.flowDirection = "left_to_right"
@@ -18,46 +29,31 @@ end
 
 
 function SideBarPage:createLeftColumn(parentBlock)
-    --Lefthand window containing settings
-    local scrollPane = parentBlock:createVerticalScrollPane({ id = tes3ui.registerID("Page_OuterContainer") })
-    scrollPane.heightProportional = 1.0
-    scrollPane.widthProportional = 1.0
-
-    local outerContainer = scrollPane:createBlock({ id = tes3ui.registerID("SBP_OuterContainer")})
-    outerContainer.flowDirection = "top_to_bottom"
-    outerContainer.autoHeight = true
-    outerContainer.widthProportional = 1.0
-    outerContainer.paddingLeft = self.indent
-    outerContainer.paddingTop = self.indent
-    self.elements.outerContainer = outerContainer   
+    Parent.createOuterContainer(self, parentBlock)
 end
 
 
+--Sidebar
 function SideBarPage:createRightColumn(parentBlock)
-    --Righthand window containing mouse-hover info
-    local rightColumn = parentBlock:createThinBorder({ id = tes3ui.registerID("SideBar")})
-    rightColumn.heightProportional = 1.0
-    rightColumn.widthProportional = 1.0
-    rightColumn.flowDirection = "top_to_bottom"
-    rightColumn.paddingTop = self.indent + 4
-    rightColumn.paddingLeft = self.indent + 4
 
-    --ContentsBlock is hidden on mouseOver
-    local defaultContentsBlock = rightColumn:createBlock()
-    defaultContentsBlock.heightProportional = 1.0
-    defaultContentsBlock.widthProportional = 1.0
-    defaultContentsBlock.flowDirection = "top_to_bottom"
+    self.sidebar:create(parentBlock)
+    local defaultView = self.sidebar.elements.subcomponentsContainer
+    local mouseoverView = self.sidebar.elements.mouseOverBlock
 
+    --For backwards compatibility, add sidebarComponents elements
     if self.sidebarComponents then
-        self:createSubcomponents(defaultContentsBlock, self.sidebarComponents)
-    else
+        mwse.log("creating default sidebar")
+        self:createSubcomponents(defaultView, self.sidebarComponents)
+
+    --or description
+    elseif self.description then
         --By default, sidebar is a mouseOver description pane
         local sidebarInfo = self:getComponent({
             --label = self.label,
-            text = self.description or "",
+            text = self.description,
             class = "Info"
         })
-        sidebarInfo:create(defaultContentsBlock)
+        sidebarInfo:create(defaultView)
     end
 
     --mouseover shows descriptions of settings
@@ -66,7 +62,7 @@ function SideBarPage:createRightColumn(parentBlock)
         text = self.description or "",
         class = "MouseOverInfo"
     })
-    mouseOver:create(rightColumn)
+    mouseOver:create(mouseoverView)
     mouseOver.elements.outerContainer.visible = false
     self.elements.mouseOver = mouseOver
 
@@ -74,14 +70,14 @@ function SideBarPage:createRightColumn(parentBlock)
     local function doMouseOver(component)
         if component.description then
             mouseOver.elements.outerContainer.visible = true
-            defaultContentsBlock.visible = false
+            defaultView.visible = false
         end
     end
 
     --event to hide mouseover and show default
     local function doMouseLeave()
         mouseOver.elements.outerContainer.visible = false
-        defaultContentsBlock.visible = true
+        defaultView.visible = true
     end
 
     --register events
@@ -93,6 +89,9 @@ function SideBarPage:createRightColumn(parentBlock)
             event.unregister(self.triggerOff, doMouseLeave)
         end
     )
+
+
+
 end
 
 

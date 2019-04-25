@@ -21,24 +21,16 @@ description (string)
 
     *Optional.*
 
-sidebarComponents (table)
-    A list of components to display on the sidebar 
-    when nothing is moused over. 
-
-    *Optional: Should have either this or a description.* 
+sidebar (MouseOverPage)
+    The object that holds components in the sidebar.
+    Add to it like any other component
 
 
 Example::
 
-    local sidebar = {
-        EasyMCM.createButton({ buttonText = "press button" })
-    }
-
-    template:createFilterPage{
-        label = "Filter Page",
-        description = "Default sidebar text",
-        sidebarComponents = sidebar
-    }
+    local filterPage = template:createFilterPage("Filter Page")
+    filterPage.sidebar:createCategory("Heading")
+    filterpage.sideBar:createInfo{ text = "Description of my mod." }
 
 
 

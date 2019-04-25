@@ -162,16 +162,16 @@ Menus and preconfigured UI elements without touching UI code.</p>
 <p>Example:</p>
 <div class="highlight-lua notranslate"><div class="highlight"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">registerModConfig</span><span class="p">()</span>
     <span class="n">EasyMCM</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;easyMCM.EasyMCM&quot;</span><span class="p">)</span>
-    <span class="kd">local</span> <span class="n">template</span> <span class="o">=</span> <span class="n">EasyMCM</span><span class="p">.</span><span class="n">createTemplate</span><span class="p">{</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Basic MCM&quot;</span> <span class="p">}</span>
+    <span class="kd">local</span> <span class="n">template</span> <span class="o">=</span> <span class="n">EasyMCM</span><span class="p">.</span><span class="n">createTemplate</span><span class="p">(</span><span class="s2">&quot;Basic MCM&quot;</span><span class="p">)</span>
     <span class="kd">local</span> <span class="n">page</span> <span class="o">=</span> <span class="n">template</span><span class="p">:</span><span class="n">createPage</span><span class="p">()</span>
-    <span class="kd">local</span> <span class="n">category</span> <span class="o">=</span> <span class="n">page</span><span class="p">:</span><span class="n">createCategory</span><span class="p">{</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Settings&quot;</span> <span class="p">}</span>
+    <span class="kd">local</span> <span class="n">category</span> <span class="o">=</span> <span class="n">page</span><span class="p">:</span><span class="n">createCategory</span><span class="p">(</span><span class="s2">&quot;Settings&quot;</span><span class="p">)</span>
     <span class="n">category</span><span class="p">:</span><span class="n">createButton</span><span class="p">{</span> <span class="n">buttonText</span> <span class="o">=</span> <span class="s2">&quot;Press&quot;</span> <span class="p">}</span>
     <span class="n">EasyMCM</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
 <span class="kr">end</span>
 <span class="n">event</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="s2">&quot;modConfigReady&quot;</span><span class="p">,</span> <span class="n">registerModConfig</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>See the <a class="reference external" href="Tutorial.html">Tutorial</a> for a more detailed walkthrough.</p>
+<p>See the <a class="reference external" href="tutorial.html">Tutorial</a> for a more detailed walkthrough.</p>
 </div>
 
 
