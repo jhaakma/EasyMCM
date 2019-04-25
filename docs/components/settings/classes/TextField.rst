@@ -31,6 +31,11 @@ numbersOnly (boolean)
 
     *Optional: default false*
 
+press (function)
+    A function that happens before the update()
+    function. Can be overriden to add a confirmation message 
+    before updating.
+
 sNumbersOnly (string)
     The text shown in a messageBox when the user entered 
     an invalid input when numbersOnly is true.

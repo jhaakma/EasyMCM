@@ -35,8 +35,8 @@
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="TextField" href="TextField.1.html" />
-    <link rel="prev" title="OnOffButton" href="OnOffButton.html" /> 
+    <link rel="next" title="YesNoButton" href="YesNoButton.html" />
+    <link rel="prev" title="ParagraphField" href="ParagraphField.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -89,12 +89,12 @@
 <li class="toctree-l3"><a class="reference internal" href="Button.html">Button</a></li>
 <li class="toctree-l3"><a class="reference internal" href="KeyBinder.html">KeyBinder</a></li>
 <li class="toctree-l3"><a class="reference internal" href="OnOffButton.html">OnOffButton</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ParagraphField.html">ParagraphField</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">TextField</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#textfield-subclasses">TextField Subclasses:</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#fields">Fields:</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="TextField.1.html">TextField</a></li>
 <li class="toctree-l3"><a class="reference internal" href="YesNoButton.html">YesNoButton</a></li>
 </ul>
 </li>
@@ -194,6 +194,10 @@ only accept numbers with the numbersOnly field.</p>
 <dt>numbersOnly (boolean)</dt><dd><p>If true, the input will only accept numbers</p>
 <p><em>Optional: default false</em></p>
 </dd>
+<dt>press (function)</dt><dd><p>A function that happens before the update()
+function. Can be overriden to add a confirmation message
+before updating.</p>
+</dd>
 <dt>sNumbersOnly (string)</dt><dd><p>The text shown in a messageBox when the user entered
 an invalid input when numbersOnly is true.</p>
 <p><em>Optional: default “Value must be a number.”</em></p>
@@ -248,10 +252,10 @@ to restart their game when the setting changes.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="TextField.1.html" class="btn btn-neutral float-right" title="TextField" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="YesNoButton.html" class="btn btn-neutral float-right" title="YesNoButton" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="OnOffButton.html" class="btn btn-neutral float-left" title="OnOffButton" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="ParagraphField.html" class="btn btn-neutral float-left" title="ParagraphField" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
