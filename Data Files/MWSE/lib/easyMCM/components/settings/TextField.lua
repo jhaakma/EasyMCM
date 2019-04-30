@@ -15,7 +15,7 @@ function TextField:enable()
             tes3ui.acquireTextInput(self.elements.inputField)
         end
     )
-    local function registerTextInput(e)
+    local function registerAcquireTextInput(e)
         e:register(
             "mouseClick", 
             function()
@@ -28,7 +28,7 @@ function TextField:enable()
             end
         end
     end
-    registerTextInput(self.elements.inputField)
+    registerAcquireTextInput(self.elements.inputField)
 
     self.elements.submitButton:register(
         "mouseClick", 
@@ -119,7 +119,13 @@ function TextField:makeComponent(parentBlock)
 
 
     self:createSubmitButton(parentBlock)
-    
+
+    inputField:register("keyEnter",
+        function()
+            self:update()
+        end
+    )
+
     self.elements.border = border
     self.elements.inputField = inputField
 

@@ -16,6 +16,9 @@ label (string)
     *Optional.*
 
 
+variable (`Variable`_)
+    The variable which stores the setting value.
+
 description (string)
     If in a `SideBarPage`_, description will be shown on mouseover.
 
@@ -80,4 +83,4 @@ Example::
 .. _`ParagraphField`: ParagraphField.html
 .. _`Setting`: ../settings.html
 .. _`SideBarPage`: ../../pages/SideBarPage.html
-
+.. _`Variable`: ../../../variables/Variable.html

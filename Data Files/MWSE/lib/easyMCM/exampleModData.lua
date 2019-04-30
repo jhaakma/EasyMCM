@@ -150,7 +150,7 @@ local exampleTemplate = {
     name = "My Mod Name",
     onClose = (
         function()
-            mwse.log("saving config ot json")
+            mwse.log("saving config to json")
             mwse.saveConfig(configPath, localConfig)
         end
     ),

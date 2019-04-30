@@ -61,7 +61,11 @@ function EasyMCM.__index(tbl, key)
                     end
                     if not data then data = "---" end
                     if type(data) == "string" then
-                        data = { label = data }
+                        if component.componentType == "Template" then
+                            data = { name = data }
+                        else
+                            data = { label = data }
+                        end
                     end
                     data.class = class
 

@@ -28,9 +28,11 @@ Category.componentType = "Category"
 
 function Category:new(data)
     local t = Parent:new(data)
-    setmetatable(t, self)
-    t.__index = Category.__index
     t.components = t.components or {}
+    
+    setmetatable(t, self)
+    t.__index = self.__index
+    
     return t
 end
 

@@ -16,7 +16,7 @@ function Page:new(data)
             data.label = data.label or ( "Page " .. ( #(data.parentComponent.pages) + 1 ) )
         else
             --child of page, must be sidebar
-            data.label = "Sidebar"
+            data.label = data.label or "Page"
         end
         --register ID for the page tab
         local tabUID = ( "Page_" .. t.label)
@@ -55,12 +55,13 @@ function Page:createOuterContainer(parentBlock)
     local border
 
     if self.noScroll then
-        border = parentBlock:createThinBorder({ id = tes3ui.registerID("MouseOver_thinBorder") })
+        border = parentBlock:createThinBorder({ id = tes3ui.registerID("Page_thinBorder") })
         border.heightProportional = 1.0
         border.widthProportional = 1.0
+        border.autoHeight = true
         border.flowDirection = "top_to_bottom"
-        border.paddingTop = self.indent + 4
-        border.paddingLeft = self.indent + 4
+        border.paddingTop =  4
+        border.paddingLeft =  4
     else
         border = parentBlock:createVerticalScrollPane({ id = tes3ui.registerID("Page_ScrollPane") })
         border.heightProportional = 1.0

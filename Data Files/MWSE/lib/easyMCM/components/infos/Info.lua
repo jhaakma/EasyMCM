@@ -23,7 +23,7 @@ function Info:disable()
 end
 
 function Info:update()
-    if self.variable then
+    if self.variable and self.variable.value then
         self.text = tostring(self.variable.value)
     end
 end
@@ -40,6 +40,7 @@ function Info:makeComponent(parentBlock)
 
     self.elements.info = info
     table.insert(self.mouseOvers, info)
+    self:update()
     info:getTopLevelParent():updateLayout()
 end
 

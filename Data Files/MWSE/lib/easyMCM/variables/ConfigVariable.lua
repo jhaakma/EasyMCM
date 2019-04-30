@@ -6,6 +6,7 @@ ConfigVariable.inGameOnly = false
 
 function ConfigVariable:get()
     local config = mwse.loadConfig(self.path)
+    
     --initialise config file if doesn't exist
     if not config then
         mwse.log("Config file '%s' does not exist. Creating new file", self.path)
@@ -25,6 +26,7 @@ function ConfigVariable:set(newValue)
     local config = mwse.loadConfig(self.path)
     config[self.id] = newValue
     mwse.saveConfig(self.path, config)
+
 end
 
 

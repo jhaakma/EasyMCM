@@ -28,6 +28,8 @@ function PlayerDataVar:get()
             current[self.id] = self.defaultSetting
         end
         return current[self.id]
+    else
+        return self.defaultSetting
     end
 
     return nil

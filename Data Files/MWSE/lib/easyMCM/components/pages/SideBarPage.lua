@@ -42,7 +42,6 @@ function SideBarPage:createRightColumn(parentBlock)
 
     --For backwards compatibility, add sidebarComponents elements
     if self.sidebarComponents then
-        mwse.log("creating default sidebar")
         self:createSubcomponents(defaultView, self.sidebarComponents)
 
     --or description
