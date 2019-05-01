@@ -1,6 +1,6 @@
 local EasyMCM = {}
 EasyMCM.easyMCM = true
-EasyMCM.version = 1.2
+EasyMCM.version = 1.4
 function EasyMCM:new()
     local t = {}
     setmetatable(t, self)
