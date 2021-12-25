@@ -48,7 +48,7 @@ Example::
     --EasyMCM:
     local template = EasyMCM.createTemplate("My mod")
     local page = template:createPage()
-    page:createYesNofButton{
+    page:createYesNoButton{
         label = "Yes or No?",
         variable = EasyMCM.createTableVariable{
             id = "enabled",
