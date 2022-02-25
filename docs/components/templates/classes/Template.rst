@@ -15,7 +15,7 @@ name (string)
 
 headerImagePath (string)
     Set headerImagePath to display an image at the top of your menu. 
-    Path is relative to ``Data Files/``
+    Path is relative to ``Data Files/``. Internally uses `:createImage()` method, so inherently the image must have power-of-2 dimensions (i.e. 16, 32, 64, 128, 256, 512, 1024, etc.).
     
     *Optional.*
 
